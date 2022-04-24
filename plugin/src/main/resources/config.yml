@@ -10,7 +10,7 @@ config:
   # Message section - not much to do here
   messages:
     # Sent when an administrator joins the server having the unknown proxy detection disabled.
-    setup-mode-enabled: "&5&l>> &fThe &a&nunknown proxy&f detection is currently running under setup mode. Please run &a&n/sentey help&f to learn how to configure it."
+    setup-mode-enabled: "&5&l>> &fThe &aunknown proxy&f detection is currently running under setup mode. Please run &a/sentey help&f to learn how to configure it."
 
     # Command messages
     command:
@@ -43,7 +43,8 @@ config:
 
   # Login related settings.
   login:
-    # Detects local addresses (see https://docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html#isAnyLocalAddress--)
+    # Detects local addresses
+    # See: https://docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html#isAnyLocalAddress--)
     block-local-addresses:
       # Whether to enable the check or not
       enabled: true
@@ -54,7 +55,8 @@ config:
       # Whether to check the 'spoofed' address or not
       check-spoofed-address: true
 
-    # Detects site local addresses (see https://docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html#isSiteLocalAddress--)
+    # Detects site local addresses
+    # See: https://docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html#isSiteLocalAddress--)
     block-site-local-addresses:
       # Whether to enable the check or not
       enabled: true
@@ -65,7 +67,8 @@ config:
       # Whether to check the 'spoofed' address or not
       check-spoofed-address: true
 
-    # Detects loopback addresses (see https://docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html#isLoopbackAddress--)
+    # Detects loopback addresses
+    # See: https://docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html#isLoopbackAddress--)
     block-loopback-addresses:
       # Whether to enable the check or not
       enabled: true
@@ -76,17 +79,23 @@ config:
       # Whether to check the 'spoofed' address or not
       check-spoofed-address: true
 
-    # Detects null IP addresses.
+    # Detects null IP addresses. Since the server is using IP forwarding,
+    # BungeeCord (or Velocity) needs to send the player's IP address to
+    # the server through a packet. This means that it can be spoofed
+    # allowing it to be an invalid IP address - which may cause issues
+    # with certain security plugins.
     block-null-addresses:
       # Whether to enable the check or not
       enabled: true
 
-    # Whether to block invalid IP addresses or not.
+    # Whether to block invalid IP addresses or not. This is usually
+    # handled by the "block-null-addresses" detection already.
     block-invalid-addresses:
       # Whether to enable the check or not
       enabled: true
 
-    # 'Unknown proxy' detection type
+    # Detects the address of a proxy and checks if it's trusted or not.
+    # Similar (or almost identical) to the classic "IPWhitelist" plugin.
     unknown-proxies:
       # Whether to enable this detection or not.
       enabled: true
@@ -138,50 +147,47 @@ config:
         # The message that will be sent
         message: "Unauthorized connection attempt from `%player%` (UUID: `%uuid%`; real IP address: `%proxyAddress%`; 'spoofed' IP address: `%address%`; detection type: `%detectionType%`)"
 
-
-
-  #WIP
-  #If you want to sync messages, commands, etc. between servers, config this.
-  #Recommended if you have more than 2 o 3 servers.
+  # This is still an early work-in-progress.
+  # Recommended if you have more than 2 or 3 servers and want to sync alerts, messages and commands.
   sync:
-    #Sync service, put "NONE" to disable it.
-    #Service: NONE, REDIS, RABBITMQ, NATS
-    sync-service: NONE
+    # The service to use for syncing.
+    # This can be one of the following: NONE, REDIS, RABBITMQ, NATS
+    service: NONE
 
     credentials:
-      #If you're using REDIS, put the credentials here.
+      # If you're using Redis as the sync service, put the credentials here.
       redis:
-        #Redis host
+        # The hostname of the Redis server
         host: localhost
 
-        #Redis port
+        # The port of the Redis server
         port: 6379
 
-        #Redis password
+        # And the password of the Redis server
         password: ""
 
-      #If you're using RABBITMQ, put the credentials here.
-      rabbitmq:
-        #RabbitMQ host
+      # If you're using RabbitMQ as the sync service, put the credentials here.
+      rabbit-mq:
+        # The hostname of the RabbitMQ server
         host: "localhost"
 
-        #RabbitMQ port
+        # The port of the RabbitMQ server
         port: 5672
 
-        #RabbitMQ username
+        # The username of the RabbitMQ server
         username: "guest"
 
-        #RabbitMQ password
+        # The password of the RabbitMQ server
         password: "guest"
 
-        #RabbitMQ vhost
+        # And the virtual host of the RabbitMQ server
         vhost: "/"
 
-      #If you're using NATS, put the credentials here.
+      # If you're using NATS as the sync service, put the credentials here.
       nats:
-        #NATS uri
+        # The NATS server URI
         uri: "nats://localhost:4222"
 
         auth:
-          #NATS Credentials File
+          # And the NATS credentials file
           file: "nats/credentials"
