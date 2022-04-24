@@ -1,0 +1,139 @@
+config:
+  # Whether to enable the plugin even if the 'bungeecord' option is
+  # disabled on the Spigot configuration files
+  ignore-bungeecord-check: false
+
+  # Whether to enable the plugin even if the server is NOT running
+  # Spigot. This is not recommended by any means.
+  ignore-spigot-check: false
+
+  # Message section - not much to do here
+  messages:
+    # Sent when an administrator joins the server having the unknown proxy detection disabled.
+    setup-mode-enabled: "&5&l>> &fThe &a&nunknown proxy&f detection is currently running under setup mode. Please run &a&n/sentey help&f to learn how to configure it."
+
+    # Command messages
+    command:
+      no-permission: "&4&l>> &cYou don't have permission to use this command."
+      config-reloaded: "&5&l>> &fConfiguration files reloaded."
+      help: |-
+        &5&l>> &fSentey Help &a(1/1)
+        &7- &f/sentey help: &7Shows this message.
+        &7- &f/sentey trusted-proxies: &7Configure the 'Unknown Proxy' detection.
+        &7- &f/sentey reload: &7Reloads the configuration.
+
+      trusted-proxies:
+        usage: "&5&l>> &fUsage: &a/sentey trusted-proxies <add|remove|list|toggle-setup> [<ip>]"
+        add:
+          success: "&5&l>> &fAdded &a%proxy%&f to the trusted proxies list. You may now turn on the detection by using &a/sentey trusted-proxies toggle-setup&f."
+          usage: "&5&l>> &fUsage: &a/sentey trusted-proxies add <ip>"
+          already-trusted: "&5&l>> &fThat proxy is already in the trusted proxies list."
+          invalid-ipv4: "&5&l>> &fInvalid IPv4 address: &a%proxy%&c."
+        remove:
+          success: "&5&l>> &fRemoved proxy &a%proxy%&f from the trusted proxies list."
+          usage: "&5&l>> &fUsage: &a/sentey trusted-proxies remove <ip>"
+          not-trusted: "&5&l>> &fThat proxy is not in the trusted proxies list."
+        list:
+          none: "&5&l>> &fThere are no trusted proxies. Add some with &a/sentey trusted-proxies add <ip>&f."
+          message: "&5&l>> &fTrusted proxies: &a%proxies%"
+          delimiter: "&f, &a"
+        toggle-setup:
+          enabled: "&5&l>> &fUnknown proxies setup mode is now &aenabled&f. Server is now accessible by all BungeeCord servers. Beware."
+          disabled: "&5&l>> &fUnknown proxies setup mode is now &cdisabled&f. Server is now accessible only by trusted proxies."
+
+  # Login related settings.
+  login:
+    # Detects local addresses (see https://docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html#isAnyLocalAddress--)
+    block-local-addresses:
+      # Whether to enable the check or not
+      enabled: true
+
+      # Whether to check for the proxy IP address or not
+      check-handshake: true
+
+      # Whether to check the 'spoofed' address or not
+      check-spoofed-address: true
+
+    # Detects site local addresses (see https://docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html#isSiteLocalAddress--)
+    block-site-local-addresses:
+      # Whether to enable the check or not
+      enabled: true
+
+      # Whether to check for the proxy IP address or not
+      check-handshake: true
+
+      # Whether to check the 'spoofed' address or not
+      check-spoofed-address: true
+
+    # Detects loopback addresses (see https://docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html#isLoopbackAddress--)
+    block-loopback-addresses:
+      # Whether to enable the check or not
+      enabled: true
+
+      # Whether to check for the proxy IP address or not
+      check-handshake: true
+
+      # Whether to check the 'spoofed' address or not
+      check-spoofed-address: true
+
+    # Detects null IP addresses.
+    block-null-addresses:
+      # Whether to enable the check or not
+      enabled: true
+
+    # Whether to block invalid IP addresses or not.
+    block-invalid-addresses:
+      # Whether to enable the check or not
+      enabled: true
+
+    # 'Unknown proxy' detection type
+    unknown-proxies:
+      # Whether to enable this detection or not.
+      enabled: true
+
+      # Whether to enable unknown proxies' setup mode or not
+      # If this is enabled, the unknown proxy detection will be disabled
+      # and a message will be displayed to server administrators when
+      # they join telling them to set up allowed proxies.
+      setup: true
+
+      # The list of allowed proxies
+      allowed-proxies: []
+
+    # Actions to take when an unauthorized connection attempt is detected.
+    actions:
+      disallow-connection:
+        # Whether to disallow it or not. Leaving this enabled is recommended.
+        enabled: true
+
+        # The message sent to the attacker
+        reason: |-
+          Your connection has been blocked.
+          Please contact the server administrator for more information.
+      commands:
+        # Whether to run a list of commands or not
+        enabled: false
+
+        # The list of commands to run
+        list:
+          - "minecraft:ban %player% Unauthorized connection attempt"
+          - "minecraft:ban-ip %proxyAddress% Unauthorized connection attempt"
+      alerts:
+        # Whether to send a message through the chat to online players or not
+        enabled: true
+
+        # The message sent to online staff
+        message: "&5&l>> &fUnauthorized connection attempt made by &c%player%&f. Handshake made from &c%proxyAddress% &7(%detectionType%)"
+      webhook:
+        # Whether to send a message to a Discord webhook or not
+        enabled: true
+
+        # Whether to enable TTS or not. If enabled, the message will be read aloud.
+        # Probably annoying, not gonna lie. I don't even know why I'm making this an option.
+        tts: false
+
+        # The Discord webhook URL
+        url: ""
+
+        # The message that will be sent
+        message: "Unauthorized connection attempt from `%player%` (UUID: `%uuid%`; real IP address: `%proxyAddress%`; 'spoofed' IP address: `%address%`; detection type: `%detectionType%`)"
