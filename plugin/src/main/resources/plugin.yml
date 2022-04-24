@@ -1,0 +1,12 @@
+name: Sentey
+description: Protects your server against BungeeCord IP forwarding exploits
+version: ${project.parent.version}
+main: com.comugamers.sentey.core.Sentey
+authors: [ Pabszito, Jojo1545 ]
+website: www.comugamers.com
+api-version: 1.13
+
+commands:
+  sentey:
+    description: Main command of the plugin.
+    aliases: [ csentey, comusentey ]
