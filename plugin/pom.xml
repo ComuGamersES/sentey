@@ -7,6 +7,7 @@
         <groupId>com.comugamers</groupId>
         <version>2022.0423.0</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.comugamers.sentey</groupId>
@@ -109,7 +110,7 @@
         <dependency>
             <groupId>com.comugamers.sentey</groupId>
             <artifactId>common</artifactId>
-            <version>DEV</version>
+            <version>2022.0423.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

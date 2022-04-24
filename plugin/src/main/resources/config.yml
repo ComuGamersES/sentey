@@ -137,3 +137,51 @@ config:
 
         # The message that will be sent
         message: "Unauthorized connection attempt from `%player%` (UUID: `%uuid%`; real IP address: `%proxyAddress%`; 'spoofed' IP address: `%address%`; detection type: `%detectionType%`)"
+
+
+
+  #WIP
+  #If you want to sync messages, commands, etc. between servers, config this.
+  #Recommended if you have more than 2 o 3 servers.
+  sync:
+    #Sync service, put "NONE" to disable it.
+    #Service: NONE, REDIS, RABBITMQ, NATS
+    sync-service: NONE
+
+    credentials:
+      #If you're using REDIS, put the credentials here.
+      redis:
+        #Redis host
+        host: localhost
+
+        #Redis port
+        port: 6379
+
+        #Redis password
+        password: ""
+
+      #If you're using RABBITMQ, put the credentials here.
+      rabbitmq:
+        #RabbitMQ host
+        host: "localhost"
+
+        #RabbitMQ port
+        port: 5672
+
+        #RabbitMQ username
+        username: "guest"
+
+        #RabbitMQ password
+        password: "guest"
+
+        #RabbitMQ vhost
+        vhost: "/"
+
+      #If you're using NATS, put the credentials here.
+      nats:
+        #NATS uri
+        uri: "nats://localhost:4222"
+
+        auth:
+          #NATS Credentials File
+          file: "nats/credentials"
