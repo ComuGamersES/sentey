@@ -1,4 +1,4 @@
-package com.comugamers.sentey.common.login.context;
+package com.comugamers.sentey.core.login.context;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerLoginEvent;

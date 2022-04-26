@@ -1,8 +1,8 @@
-package com.comugamers.sentey.core.login.address;
+package com.comugamers.sentey.core.login.modifier.internal;
 
 import com.comugamers.sentey.common.file.YamlFile;
-import com.comugamers.sentey.common.login.LoginModifier;
-import com.comugamers.sentey.common.login.context.LoginContext;
+import com.comugamers.sentey.core.login.context.LoginContext;
+import com.comugamers.sentey.core.login.modifier.LoginModifier;
 import com.google.inject.Inject;
 
 public class SiteLocalAddressLoginModifier implements LoginModifier {

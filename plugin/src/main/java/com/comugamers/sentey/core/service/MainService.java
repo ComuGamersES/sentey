@@ -8,7 +8,7 @@ import com.google.inject.name.Named;
 import org.bukkit.command.CommandSender;
 import org.spigotmc.SpigotConfig;
 
-import static com.comugamers.sentey.common.string.StringUtil.colorize;
+import static com.comugamers.sentey.common.util.TextUtil.colorize;
 import static com.comugamers.sentey.common.util.VersionUtil.isSpigot;
 
 public class MainService implements Service {
@@ -24,6 +24,12 @@ public class MainService implements Service {
 
     @Inject @Named("command")
     private Service commandService;
+
+    @Inject @Named("internalLoginModifier")
+    private Service internalLoginModifierService;
+
+    @Inject @Named("internalLoginAction")
+    private Service internalLoginActionService;
 
     @Override
     public void start() {
@@ -85,7 +91,12 @@ public class MainService implements Service {
         }
 
         // Start all services
-        startServices(listenerService, commandService);
+        startServices(
+                internalLoginModifierService,
+                internalLoginActionService,
+                listenerService,
+                commandService
+        );
 
         // Send a message to the console saying that the startup process is finished
         consoleCommandSender.sendMessage(colorize("&a-> &fStartup process finished!"));

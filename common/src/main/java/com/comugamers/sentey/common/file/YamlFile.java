@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-import static com.comugamers.sentey.common.string.StringUtil.colorize;
+import static com.comugamers.sentey.common.util.TextUtil.colorize;
 
 public final class YamlFile extends YamlConfiguration {
 

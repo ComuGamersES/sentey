@@ -1,8 +1,7 @@
 package com.comugamers.sentey.core.guice.submodules;
 
-import com.comugamers.sentey.common.login.LoginModifier;
-import com.comugamers.sentey.core.login.address.*;
-import com.comugamers.sentey.core.login.proxy.UnknownProxyLoginModifier;
+import com.comugamers.sentey.core.login.modifier.LoginModifier;
+import com.comugamers.sentey.core.login.modifier.internal.*;
 import com.google.inject.AbstractModule;
 import com.google.inject.multibindings.Multibinder;
 

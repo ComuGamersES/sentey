@@ -1,10 +1,10 @@
-package com.comugamers.sentey.common.string;
+package com.comugamers.sentey.common.util;
 
 import org.bukkit.ChatColor;
 
 import java.util.List;
 
-public class StringUtil {
+public class TextUtil {
 
     public static String colorize(String str) {
         return ChatColor.translateAlternateColorCodes('&', str);

@@ -2,8 +2,10 @@ package com.comugamers.sentey.core.guice.submodules;
 
 import com.comugamers.sentey.common.Service;
 import com.comugamers.sentey.core.service.MainService;
+import com.comugamers.sentey.core.service.action.InternalLoginActionService;
 import com.comugamers.sentey.core.service.command.CommandService;
 import com.comugamers.sentey.core.service.listener.ListenerService;
+import com.comugamers.sentey.core.service.modifier.InternalLoginModifierService;
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
 
@@ -28,6 +30,18 @@ public class ServiceModule extends AbstractModule {
         this.bind(Service.class)
                 .annotatedWith(named("command"))
                 .to(CommandService.class)
+                .in(Scopes.SINGLETON);
+
+        // Bind the modifier service
+        this.bind(Service.class)
+                .annotatedWith(named("internalLoginModifier"))
+                .to(InternalLoginModifierService.class)
+                .in(Scopes.SINGLETON);
+
+        // Bind the action service
+        this.bind(Service.class)
+                .annotatedWith(named("internalLoginAction"))
+                .to(InternalLoginActionService.class)
                 .in(Scopes.SINGLETON);
     }
 }

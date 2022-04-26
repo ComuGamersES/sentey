@@ -8,7 +8,7 @@ import org.bukkit.plugin.PluginManager;
 
 import java.util.Set;
 
-import static com.comugamers.sentey.common.string.StringUtil.colorize;
+import static com.comugamers.sentey.common.util.TextUtil.colorize;
 
 public class ListenerService implements Service {
 
