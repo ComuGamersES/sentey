@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 
 import java.util.List;
 
-import static com.comugamers.sentey.common.string.StringUtil.colorize;
+import static com.comugamers.sentey.common.util.TextUtil.colorize;
 import static com.comugamers.sentey.common.util.NetworkUtil.isValidIPv4;
 
 // TODO: improve this class, it is a mess

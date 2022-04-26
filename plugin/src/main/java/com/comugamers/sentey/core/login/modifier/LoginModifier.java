@@ -1,6 +1,6 @@
-package com.comugamers.sentey.common.login;
+package com.comugamers.sentey.core.login.modifier;
 
-import com.comugamers.sentey.common.login.context.LoginContext;
+import com.comugamers.sentey.core.login.context.LoginContext;
 
 /**
  * Represents a login security module.
