@@ -4,6 +4,7 @@ import com.comugamers.sentey.common.file.YamlFile;
 import com.comugamers.sentey.core.Sentey;
 import com.comugamers.sentey.core.guice.submodules.ListenerModule;
 import com.comugamers.sentey.core.guice.submodules.MetricsModule;
+import com.comugamers.sentey.core.guice.submodules.ModifierModule;
 import com.comugamers.sentey.core.guice.submodules.ServiceModule;
 import com.google.inject.AbstractModule;
 import org.bukkit.plugin.Plugin;
@@ -36,5 +37,8 @@ public class SenteyModule extends AbstractModule {
 
         // Install the listener module
         this.install(new ListenerModule());
+
+        // Install the modifier module
+        this.install(new ModifierModule());
     }
 }
