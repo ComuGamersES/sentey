@@ -17,6 +17,26 @@ You can find more information on this type of exploits in [this writeup](https:/
 
 The plugin also offers an option for filtering the handshake IP address - which is essentially the IP address of the proxy. By default, it is set to set up mode to prevent blocking all connections to the server. Server administrators may configure this filter by using the `/sentey trusted-proxies` command.
 
+## Detecting port scans
+The plugin also offers a way of detecting server list pings which may be caused by external programs such as [nmap](https://nmap.org/). You can enable it here:
+```yaml
+  # Server list ping related settings.
+  # The server list ping event is normally fired when a player requests the MOTD of the server,
+  # but it can also be fired by external programs such as nmap.
+  server-list-ping:
+    # Whether to enable listening for the server list ping event or not
+    enabled: false
+```
+
+### Hiding pings from trusted proxies
+Ping alerts from trusted proxies are hidden by default - although you can enable them by changing this setting under the `server-list-ping` path:
+```yaml
+    # List of internal filters
+    filters:
+      # Whether to ignore trusted proxies. 'true' is recommended.
+      ignore-trusted-proxies: true
+```
+
 ## Taking action
 The plugin offers a variety of default actions when a server list ping is received or when an unauthorized connection attempt happens - however, external plugins may register custom actions using the plugin's API.
 
@@ -87,24 +107,3 @@ You may run commands, disallow the connection attempt and send alerts through a 
         # The message that will be sent
         message: "[`%serverAddress%`] | Unauthorized connection attempt from `%player%` (UUID: `%uuid%`; real IP address: `%proxyAddress%`; 'spoofed' IP address: `%address%`; detection type: `%detectionType%`)"
 ```
-
-## Detecting port scans
-The plugin also offers a way of detecting server list pings which may be caused by external programs such as [nmap](https://nmap.org/). You can enable it here:
-```yaml
-  # Server list ping related settings.
-  # The server list ping event is normally fired when a player requests the MOTD of the server,
-  # but it can also be fired by external programs such as nmap.
-  server-list-ping:
-    # Whether to enable listening for the server list ping event or not
-    enabled: false
-```
-
-### Hiding pings from trusted proxies
-Ping alerts from trusted proxies are hidden by default - although you can enable them by changing this setting under the `server-list-ping` path:
-```yaml
-    # List of internal filters
-    filters:
-      # Whether to ignore trusted proxies. 'true' is recommended.
-      ignore-trusted-proxies: true
-```
-
