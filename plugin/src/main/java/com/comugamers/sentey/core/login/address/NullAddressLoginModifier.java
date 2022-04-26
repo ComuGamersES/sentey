@@ -25,6 +25,6 @@ public class NullAddressLoginModifier implements LoginModifier {
 
         // Allow the login attempt if both IP addresses are valid.
         // If one of them is null or empty, the login attempt is denied.
-        return context.isValidSpoofedAddress() || context.isValidHandshakeAddress();
+        return context.isValidSpoofedAddress() && context.isValidHandshakeAddress();
     }
 }
