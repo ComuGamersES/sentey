@@ -1,13 +1,13 @@
-package com.comugamers.sentey.core.login.modifier.internal;
+package com.comugamers.sentey.core.login.filter.internal;
 
 import com.comugamers.sentey.common.file.YamlFile;
 import com.comugamers.sentey.core.login.context.LoginContext;
-import com.comugamers.sentey.core.login.modifier.LoginModifier;
+import com.comugamers.sentey.core.login.filter.LoginFilter;
 import com.google.inject.Inject;
 
 import java.util.List;
 
-public class UnknownProxyLoginModifier implements LoginModifier {
+public class UnknownProxyLoginFilter implements LoginFilter {
 
     @Inject
     private YamlFile config;
@@ -18,7 +18,7 @@ public class UnknownProxyLoginModifier implements LoginModifier {
     }
 
     @Override
-    public boolean handle(LoginContext context) {
+    public boolean isClean(LoginContext context) {
         // Check if the 'Unknown proxy' detection type is enabled
         if(config.getBoolean("config.login.unknown-proxies.enabled")) {
             // If so, check if the detection is on setup mode

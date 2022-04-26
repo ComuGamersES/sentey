@@ -1,6 +1,6 @@
-package com.comugamers.sentey.core.listeners;
+package com.comugamers.sentey.core.listeners.player;
 
-import com.comugamers.sentey.core.login.modifier.LoginModifier;
+import com.comugamers.sentey.core.login.filter.LoginFilter;
 import com.comugamers.sentey.core.login.action.LoginAction;
 import com.comugamers.sentey.core.login.context.LoginContext;
 import com.comugamers.sentey.core.Sentey;
@@ -19,10 +19,10 @@ public class PlayerLoginListener implements Listener {
         // Create a new login context
         LoginContext ctx = new LoginContext(event);
 
-        // Loop through each login modifier
-        for(LoginModifier module : plugin.getLoginModifiers()) {
+        // Loop through each login filter
+        for(LoginFilter module : plugin.getLoginFilters()) {
             // Handle the login attempt
-            boolean result = module.handle(ctx);
+            boolean result = module.isClean(ctx);
 
             // If the login attempt was denied, cancel the login event
             if(!result) {

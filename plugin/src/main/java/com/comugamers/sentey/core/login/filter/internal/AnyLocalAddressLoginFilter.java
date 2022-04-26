@@ -1,11 +1,11 @@
-package com.comugamers.sentey.core.login.modifier.internal;
+package com.comugamers.sentey.core.login.filter.internal;
 
 import com.comugamers.sentey.common.file.YamlFile;
 import com.comugamers.sentey.core.login.context.LoginContext;
-import com.comugamers.sentey.core.login.modifier.LoginModifier;
+import com.comugamers.sentey.core.login.filter.LoginFilter;
 import com.google.inject.Inject;
 
-public class AnyLocalAddressLoginModifier implements LoginModifier {
+public class AnyLocalAddressLoginFilter implements LoginFilter {
 
     @Inject
     private YamlFile config;
@@ -16,7 +16,7 @@ public class AnyLocalAddressLoginModifier implements LoginModifier {
     }
 
     @Override
-    public boolean handle(LoginContext context) {
+    public boolean isClean(LoginContext context) {
         // Check if we should block local addresses
         if(config.getBoolean("config.login.block-local-addresses.enabled")) {
             // Check if we should check the handshake IP address

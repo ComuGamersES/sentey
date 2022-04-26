@@ -19,7 +19,7 @@ public class DisallowEventLoginAction implements LoginAction {
             // If so, do it I guess
             context.getRawLoginEvent().disallow(
                     PlayerLoginEvent.Result.KICK_OTHER,
-                    PlaceholderUtil.applyPlaceholdersFromContext(
+                    PlaceholderUtil.applyPlaceholdersFromLoginContext(
                             config.getString("config.login.actions.disallow-connection.reason"),
                             detection,
                             context

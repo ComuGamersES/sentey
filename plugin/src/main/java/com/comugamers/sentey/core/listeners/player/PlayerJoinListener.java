@@ -1,4 +1,4 @@
-package com.comugamers.sentey.core.listeners;
+package com.comugamers.sentey.core.listeners.player;
 
 import com.comugamers.sentey.common.file.YamlFile;
 import com.google.inject.Inject;
@@ -13,7 +13,7 @@ public class PlayerJoinListener implements Listener {
     private YamlFile config;
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
+    public void onPlayerJoinEvent(PlayerJoinEvent event) {
         // Get the player that joined
         Player player = event.getPlayer();
 

@@ -25,7 +25,7 @@ public class CommandLoginAction implements LoginAction {
                     command ->
                             plugin.getServer().dispatchCommand(
                                     plugin.getServer().getConsoleSender(),
-                                    PlaceholderUtil.applyPlaceholdersFromContext(
+                                    PlaceholderUtil.applyPlaceholdersFromLoginContext(
                                             command, detection, context
                                     )
                             )

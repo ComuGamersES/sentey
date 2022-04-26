@@ -1,4 +1,7 @@
 config:
+  # Whether to enable bStats or not. All submitted data is anonymous.
+  bstats: true
+
   # Whether to enable the plugin even if the 'bungeecord' option is
   # disabled on the Spigot configuration files
   ignore-bungeecord-check: false
@@ -41,7 +44,7 @@ config:
           enabled: "&5&l>> &fUnknown proxies setup mode is now &aenabled&f. Server is now accessible by all BungeeCord servers. Beware."
           disabled: "&5&l>> &fUnknown proxies setup mode is now &cdisabled&f. Server is now accessible only by trusted proxies."
 
-  # Login related settings.
+  # Login related settings. This can't be disabled entirely since it is the main function of the plugin.
   login:
     # Detects local addresses
     # See: https://docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html#isAnyLocalAddress--)
@@ -135,6 +138,40 @@ config:
         message: "&5&l>> &fUnauthorized connection attempt made by &c%player%&f. Handshake made from &c%proxyAddress% &7(%detectionType%)"
       webhook:
         # Whether to send a message to a Discord webhook or not
+        enabled: true
+
+        # Whether to enable TTS or not. If enabled, the message will be read aloud.
+        # Probably annoying, not gonna lie. I don't even know why I'm making this an option.
+        tts: false
+
+        # The Discord webhook URL
+        url: ""
+
+        # The message that will be sent
+        message: "[`%serverAddress%`] | Unauthorized connection attempt from `%player%` (UUID: `%uuid%`; real IP address: `%proxyAddress%`; 'spoofed' IP address: `%address%`; detection type: `%detectionType%`)"
+
+  # Server list ping related settings.
+  # The server list ping event is normally fired when a player requests the MOTD of the server,
+  # but it can also be fired by external programs such as nmap.
+  server-list-ping:
+    # Whether to enable listening for the server list ping event or not
+    enabled: false
+
+    # List of internal filters
+    filters:
+      # Whether to ignore trusted proxies. 'true' is recommended.
+      ignore-trusted-proxies: true
+
+    # The actions taken when a ping is received
+    actions:
+      alerts:
+        # Whether to send a message through the chat to online staff or not
+        enabled: true
+
+        # The message sent to online staff
+        message: "&5&l>> &fServer list ping received from &c%address%&f, is the firewall properly configured?"
+      webhook:
+        # Whether to send a message to a Discord webhook or not
         enabled: false
 
         # Whether to enable TTS or not. If enabled, the message will be read aloud.
@@ -145,7 +182,7 @@ config:
         url: ""
 
         # The message that will be sent
-        message: "Unauthorized connection attempt from `%player%` (UUID: `%uuid%`; real IP address: `%proxyAddress%`; 'spoofed' IP address: `%address%`; detection type: `%detectionType%`)"
+        message: "[`%serverAddress%`] | Server list ping received from `%address%`"
 
   # This is still an early work-in-progress.
   # Recommended if you have more than 2 or 3 servers and want to sync alerts, messages and commands.
