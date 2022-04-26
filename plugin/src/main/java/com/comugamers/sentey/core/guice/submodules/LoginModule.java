@@ -1,0 +1,47 @@
+package com.comugamers.sentey.core.guice.submodules;
+
+import com.comugamers.sentey.core.login.action.LoginAction;
+import com.comugamers.sentey.core.login.action.internal.AlertLoginAction;
+import com.comugamers.sentey.core.login.action.internal.CommandLoginAction;
+import com.comugamers.sentey.core.login.action.internal.DisallowEventLoginAction;
+import com.comugamers.sentey.core.login.action.internal.WebhookLoginAction;
+import com.comugamers.sentey.core.login.filter.LoginFilter;
+import com.comugamers.sentey.core.login.filter.internal.*;
+import com.google.inject.AbstractModule;
+import com.google.inject.multibindings.Multibinder;
+
+public class LoginModule extends AbstractModule {
+
+    @Override
+    protected void configure() {
+        // Bind each internal login action
+        bindInternalActions();
+
+        // Bind each internal login filter
+        bindInternalFilters();
+    }
+
+    private void bindInternalActions() {
+        // Create a new Multibinder for the LoginAction interface
+        Multibinder<LoginAction> loginActionMultibinder = Multibinder.newSetBinder(binder(), LoginAction.class);
+
+        // Bind each internal login action
+        loginActionMultibinder.addBinding().to(DisallowEventLoginAction.class);
+        loginActionMultibinder.addBinding().to(CommandLoginAction.class);
+        loginActionMultibinder.addBinding().to(AlertLoginAction.class);
+        loginActionMultibinder.addBinding().to(WebhookLoginAction.class);
+    }
+
+    private void bindInternalFilters() {
+        // Create a new multibinder for the LoginFilter interface as well
+        Multibinder<LoginFilter> multibinder = Multibinder.newSetBinder(binder(), LoginFilter.class);
+
+        // Bind each internal login filter
+        multibinder.addBinding().to(NullAddressLoginFilter.class);
+        multibinder.addBinding().to(MalformedAddressLoginFilter.class);
+        multibinder.addBinding().to(AnyLocalAddressLoginFilter.class);
+        multibinder.addBinding().to(LoopbackAddressLoginFilter.class);
+        multibinder.addBinding().to(SiteLocalAddressLoginFilter.class);
+        multibinder.addBinding().to(UnknownProxyLoginFilter.class);
+    }
+}

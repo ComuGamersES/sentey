@@ -32,11 +32,11 @@ public class SenteyModule extends AbstractModule {
         // Install the service module
         this.install(new ServiceModule());
 
-        // Install the modifier module
-        this.install(new ModifierModule());
+        // Install the login module which will register all internal login filters and actions
+        this.install(new LoginModule());
 
-        // Install the action module
-        this.install(new ActionModule());
+        // Install the ping module which will register all internal ping filters and actions
+        this.install(new PingModule());
 
         // Install the listener module
         this.install(new ListenerModule());

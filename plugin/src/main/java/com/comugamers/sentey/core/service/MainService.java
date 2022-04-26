@@ -25,11 +25,11 @@ public class MainService implements Service {
     @Inject @Named("command")
     private Service commandService;
 
-    @Inject @Named("internalLoginModifier")
-    private Service internalLoginModifierService;
+    @Inject @Named("login")
+    private Service loginService;
 
-    @Inject @Named("internalLoginAction")
-    private Service internalLoginActionService;
+    @Inject @Named("ping")
+    private Service pingService;
 
     @Override
     public void start() {
@@ -92,8 +92,8 @@ public class MainService implements Service {
 
         // Start all services
         startServices(
-                internalLoginModifierService,
-                internalLoginActionService,
+                loginService,
+                pingService,
                 listenerService,
                 commandService
         );

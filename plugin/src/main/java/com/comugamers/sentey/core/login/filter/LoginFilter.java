@@ -1,4 +1,4 @@
-package com.comugamers.sentey.core.login.modifier;
+package com.comugamers.sentey.core.login.filter;
 
 import com.comugamers.sentey.core.login.context.LoginContext;
 
@@ -6,17 +6,17 @@ import com.comugamers.sentey.core.login.context.LoginContext;
  * Represents a login security module.
  * These are later ran by the Sentey plugin on player login.
  */
-public interface LoginModifier {
+public interface LoginFilter {
 
     /**
-     * The human-readable name of the module.
+     * The name of the module displayed on detection types.
      */
     String getName();
 
     /**
      * Handles the login attempt.
      * @param context The login context.
-     * @return Whether the login attempt was allowed or not.
+     * @return false if the login attempt should be cancelled.
      */
-    boolean handle(LoginContext context);
+    boolean isClean(LoginContext context);
 }

@@ -1,11 +1,11 @@
-package com.comugamers.sentey.core.login.modifier.internal;
+package com.comugamers.sentey.core.login.filter.internal;
 
 import com.comugamers.sentey.common.file.YamlFile;
 import com.comugamers.sentey.core.login.context.LoginContext;
-import com.comugamers.sentey.core.login.modifier.LoginModifier;
+import com.comugamers.sentey.core.login.filter.LoginFilter;
 import com.google.inject.Inject;
 
-public class NullAddressLoginModifier implements LoginModifier {
+public class NullAddressLoginFilter implements LoginFilter {
 
     @Inject
     private YamlFile config;
@@ -16,7 +16,7 @@ public class NullAddressLoginModifier implements LoginModifier {
     }
 
     @Override
-    public boolean handle(LoginContext context) {
+    public boolean isClean(LoginContext context) {
         // Check if we should check for null addresses
         if(!config.getBoolean("config.login.block-null-addresses.enabled")) {
             // If not, allow the login attempt.

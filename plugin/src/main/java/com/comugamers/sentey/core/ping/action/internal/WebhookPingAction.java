@@ -1,16 +1,16 @@
-package com.comugamers.sentey.core.login.action.internal;
+package com.comugamers.sentey.core.ping.action.internal;
 
 import com.comugamers.sentey.common.util.discord.DiscordWebhook;
 import com.comugamers.sentey.common.file.YamlFile;
-import com.comugamers.sentey.core.login.action.LoginAction;
-import com.comugamers.sentey.core.login.context.LoginContext;
-import com.comugamers.sentey.core.util.PlaceholderUtil;
 import com.comugamers.sentey.core.Sentey;
+import com.comugamers.sentey.core.ping.action.PingAction;
+import com.comugamers.sentey.core.util.PlaceholderUtil;
 import com.google.inject.Inject;
 
 import java.io.IOException;
+import java.net.InetAddress;
 
-public class WebhookLoginAction implements LoginAction {
+public class WebhookPingAction implements PingAction {
 
     @Inject
     private YamlFile config;
@@ -19,23 +19,21 @@ public class WebhookLoginAction implements LoginAction {
     private Sentey plugin;
 
     @Override
-    public void handle(LoginContext context, String detection) {
+    public void handle(InetAddress address) {
         // Check if we should send a message to a webhook
-        if(config.getBoolean("config.login.actions.webhook.enabled")) {
+        if(config.getBoolean("config.server-list-ping.actions.webhook.enabled")) {
             // If so, create a new webhook
-            DiscordWebhook webhook = new DiscordWebhook(config.getString("config.login.actions.webhook.url"));
+            DiscordWebhook webhook = new DiscordWebhook(config.getString("config.server-list-ping.actions.webhook.url"));
 
             // Set the TTS option
             webhook.setTTS(
-                    config.getBoolean("config.login.actions.webhook.tts", false)
+                    config.getBoolean("config.server-list-ping.actions.webhook.tts", false)
             );
 
             // Set the message
             webhook.setContent(
-                    PlaceholderUtil.applyPlaceholdersFromLoginContext(
-                            config.getString("config.login.actions.webhook.message"),
-                            detection,
-                            context
+                    PlaceholderUtil.applyPlaceholdersFromPingContext(
+                            config.getString("config.server-list-ping.actions.webhook.message"), address
                     )
             );
 

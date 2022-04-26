@@ -23,7 +23,7 @@ public class AlertLoginAction implements LoginAction {
             plugin.getServer().getOnlinePlayers().forEach(target -> {
                 if(target.hasPermission("sentey.alerts")) {
                     target.sendMessage(
-                            PlaceholderUtil.applyPlaceholdersFromContext(
+                            PlaceholderUtil.applyPlaceholdersFromLoginContext(
                                     config.getString("config.login.actions.alerts.message"),
                                     detection,
                                     context

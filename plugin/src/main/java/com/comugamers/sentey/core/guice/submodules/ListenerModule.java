@@ -1,7 +1,8 @@
 package com.comugamers.sentey.core.guice.submodules;
 
-import com.comugamers.sentey.core.listeners.PlayerJoinListener;
-import com.comugamers.sentey.core.listeners.PlayerLoginListener;
+import com.comugamers.sentey.core.listeners.player.PlayerJoinListener;
+import com.comugamers.sentey.core.listeners.player.PlayerLoginListener;
+import com.comugamers.sentey.core.listeners.server.ServerListPingListener;
 import com.google.inject.AbstractModule;
 import com.google.inject.multibindings.Multibinder;
 import org.bukkit.event.Listener;
@@ -16,5 +17,6 @@ public class ListenerModule extends AbstractModule {
         // Bind listeners
         multibinder.addBinding().to(PlayerJoinListener.class);
         multibinder.addBinding().to(PlayerLoginListener.class);
+        multibinder.addBinding().to(ServerListPingListener.class);
     }
 }

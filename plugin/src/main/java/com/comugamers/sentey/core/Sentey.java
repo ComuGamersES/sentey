@@ -1,9 +1,11 @@
 package com.comugamers.sentey.core;
 
 import com.comugamers.sentey.common.Service;
-import com.comugamers.sentey.core.login.modifier.LoginModifier;
+import com.comugamers.sentey.core.login.filter.LoginFilter;
 import com.comugamers.sentey.core.login.action.LoginAction;
 import com.comugamers.sentey.core.guice.SenteyModule;
+import com.comugamers.sentey.core.ping.action.PingAction;
+import com.comugamers.sentey.core.ping.filter.PingFilter;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
@@ -17,13 +19,20 @@ public class Sentey extends JavaPlugin {
     @Inject
     private Service service;
 
-    private List<LoginModifier> loginModifiers;
+    // Login related
+    private List<LoginFilter> loginFilters;
     private List<LoginAction> loginActions;
+
+    // Server list ping related
+    private List<PingAction> pingActions;
+    private List<PingFilter> pingFilters;
 
     @Override
     public void onLoad() {
-        this.loginModifiers = new ArrayList<>();
+        this.loginFilters = new ArrayList<>();
         this.loginActions = new ArrayList<>();
+        this.pingActions = new ArrayList<>();
+        this.pingFilters = new ArrayList<>();
     }
 
     @Override
@@ -46,11 +55,19 @@ public class Sentey extends JavaPlugin {
         service.stop();
     }
 
-    public List<LoginModifier> getLoginModifiers() {
-        return loginModifiers;
+    public List<LoginFilter> getLoginFilters() {
+        return loginFilters;
     }
 
     public List<LoginAction> getLoginActions() {
         return loginActions;
+    }
+
+    public List<PingAction> getPingActions() {
+        return pingActions;
+    }
+
+    public List<PingFilter> getPingFilters() {
+        return pingFilters;
     }
 }
