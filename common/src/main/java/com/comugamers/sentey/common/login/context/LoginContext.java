@@ -1,6 +1,7 @@
 package com.comugamers.sentey.common.login.context;
 
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerLoginEvent;
 
 import java.net.InetAddress;
 
@@ -11,17 +12,23 @@ import java.net.InetAddress;
 public class LoginContext {
 
     private final Player player;
+    private final PlayerLoginEvent rawLoginEvent;
     private final InetAddress spoofedAddress;
     private final InetAddress handshakeAddress;
 
-    public LoginContext(Player player, InetAddress spoofedAddress, InetAddress handshakeAddress) {
+    public LoginContext(PlayerLoginEvent rawLoginEvent) {
+        this(rawLoginEvent.getPlayer(), rawLoginEvent, rawLoginEvent.getAddress(), rawLoginEvent.getRealAddress());
+    }
+
+    public LoginContext(Player player, PlayerLoginEvent rawLoginEvent, InetAddress spoofedAddress, InetAddress handshakeAddress) {
         this.player = player;
+        this.rawLoginEvent = rawLoginEvent;
         this.spoofedAddress = spoofedAddress;
         this.handshakeAddress = handshakeAddress;
     }
 
     /**
-     * Gets the player that is attempting to login.
+     * Gets the player that is attempting to log in.
      */
     public Player getPlayer() {
         return player;
@@ -57,5 +64,12 @@ public class LoginContext {
      */
     public boolean isValidHandshakeAddress() {
         return handshakeAddress != null;
+    }
+
+    /**
+     * The raw {@link PlayerLoginEvent} that was fired.
+     */
+    public PlayerLoginEvent getRawLoginEvent() {
+        return rawLoginEvent;
     }
 }
