@@ -1,4 +1,4 @@
-package com.comugamers.sentey.common.discord;
+package com.comugamers.sentey.common.util.discord;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.awt.*;
