@@ -1,21 +1,23 @@
 # Sentey
-Protect your Spigot server against IP forwarding exploits, as well as blocking unknown layer 7 proxies such as BungeeCord or Velocity.
+Protect your Spigot server against IP forwarding exploits, as well as blocking unknown BungeeCord and/or Velocity proxies.
 
 ## But firewalls are a thing!
-Even though a firewall is 100 times better than this, having this as a second option in case of a firewall misconfiguration won't hurt anyone (or well, as long as it is configured properly).
+Even though a properly configured firewall is 100 times better than this, having this as a second option in case of a firewall misconfiguration won't hurt anyone (or well, as long as it is configured properly).
 
 Besides, some people may not be able to access or configure their firewall system, so plugins like this are probably the best option for them.
 
 ## How it works
-Layer 7 proxies such as BungeeCord need to send the IP address of the player to Spigot proxies through a packet. If they don't, the IP address of the player will be the same as the proxy's for the Spigot server. This introduces a variety of exploits since Spigot does *not* sanitize the IP address. The way this plugin works is by sending the player's spoofed IP address through a variety of filters such as:
+When proxies such as BungeeCord have the IP forwarding option enabled, they need to send the IP address of the player to Spigot proxies through the [handshake packet (0x00)](https://wiki.vg/Protocol#Handshake). If they don't, the IP address of the player would be the same as the proxy's for the Spigot server. This introduces a variety of exploits since Spigot does *not* sanitize the IP address. The way this plugin works is by sending the player's spoofed IP address through a variety of filters such as:
 
 - Checking if the IP address is not null or empty
 - - Checking if the IP address is malformed
 - Checking if the spoofed address is a local, loopback or site local address.
 
+You can find more information on this type of exploits in [this writeup](https://github.com/wodxgod/Griefing-Methods/blob/master/Exploitation/UUID%20Spoofing.md) made by [wodxgod](https://github.com/wodxgod).
+
 The plugin also offers an option for filtering the handshake IP address - which is essentially the IP address of the proxy. By default, it is set to set up mode to prevent blocking all connections to the server. Server administrators may configure this filter by using the `/sentey trusted-proxies` command.
 
-## Taking actions
+## Taking action
 The plugin offers a variety of default actions when a server list ping is received or when an unauthorized connection attempt happens - however, external plugins may register custom actions using the plugin's API.
 
 ### Server List Ping
@@ -86,7 +88,7 @@ You may run commands, disallow the connection attempt and send alerts through a 
         message: "[`%serverAddress%`] | Unauthorized connection attempt from `%player%` (UUID: `%uuid%`; real IP address: `%proxyAddress%`; 'spoofed' IP address: `%address%`; detection type: `%detectionType%`)"
 ```
 
-## Detecting port scans using server list pings
+## Detecting port scans
 The plugin also offers a way of detecting server list pings which may be caused by external programs such as [nmap](https://nmap.org/). You can enable it here:
 ```yaml
   # Server list ping related settings.
