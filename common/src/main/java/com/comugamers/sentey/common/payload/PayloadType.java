@@ -1,5 +1,6 @@
 package com.comugamers.sentey.common.payload;
 
+@Deprecated
 public enum PayloadType {
 
     INVALID_IP_ADDRESS,
