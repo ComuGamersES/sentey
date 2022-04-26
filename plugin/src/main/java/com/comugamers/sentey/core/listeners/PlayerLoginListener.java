@@ -8,6 +8,7 @@ import com.comugamers.sentey.core.Sentey;
 import com.google.inject.Inject;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
 
@@ -28,11 +29,7 @@ public class PlayerLoginListener implements Listener {
     @EventHandler
     public void onPlayerLoginEvent(PlayerLoginEvent event) {
         // Create a new login context
-        LoginContext ctx = new LoginContext(
-                event.getPlayer(),
-                event.getAddress(),
-                event.getRealAddress()
-        );
+        LoginContext ctx = new LoginContext(event);
 
         // Loop through each login modifier
         for(LoginModifier module : loginModifiers) {
@@ -41,6 +38,7 @@ public class PlayerLoginListener implements Listener {
 
             // If the login attempt was denied, cancel the login event
             if(!result) {
+                // Run user desired actions
                 disallow(ctx, module.getName());
                 break;
             }
@@ -50,6 +48,15 @@ public class PlayerLoginListener implements Listener {
     // TODO: make this more flexible as well
     private void disallow(LoginContext ctx, String detection) {
         Player player = ctx.getPlayer();
+
+        // Check if we should disallow the connection
+        if(config.getBoolean("config.login.actions.disallow-connection.enabled")) {
+            // If so, do it:
+            ctx.getRawLoginEvent().disallow(
+                    PlayerLoginEvent.Result.KICK_BANNED,
+                    config.getString("config.login.actions.disallow-connection.reason")
+            );
+        }
 
         // Check if we should run commands
         if(config.getBoolean("config.login.actions.commands.enabled")) {
