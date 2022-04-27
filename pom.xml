@@ -7,7 +7,7 @@
     <groupId>com.comugamers</groupId>
     <artifactId>sentey</artifactId>
     <packaging>pom</packaging>
-    <version>2022.0426.0</version>
+    <version>2022.0427.0</version>
 
     <modules>
         <module>plugin</module>
