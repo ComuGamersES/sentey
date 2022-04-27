@@ -17,11 +17,11 @@ config:
     abuseipdb:
       # Whether to automatically send an abuse report to AbuseIPDB or not.
       # Comments can be edited on the "actions" section of each listener (login or server list pings).
-      enabled: true
+      enabled: false
 
       # The API key used for this integration - get one for free at https://www.abuseipdb.com/account/api
       # Please note that the login actions and ping actions are able to use different API keys.
-      key: "4724f60446440904fc0c28d7dfbe6438e77872dd664387fc7fc9750829646e2bdb33be36b896556b"
+      key: ""
 
   # Message section - not much to do here
   messages:
@@ -154,14 +154,14 @@ config:
         message: "&5&l>> &fUnauthorized connection attempt made by &c%player%&f. Handshake made from &c%proxyAddress% &7(%detectionType%)"
       webhook:
         # Whether to send a message to a Discord webhook or not
-        enabled: true
+        enabled: false
 
         # Whether to enable TTS or not. If enabled, the message will be read aloud.
         # Probably annoying, not gonna lie. I don't even know why I'm making this an option.
         tts: false
 
         # The Discord webhook URL
-        url: "https://canary.discord.com/api/webhooks/967410856138768384/QMNJXV8jeR90_viDHuePDQZyNIy1dcO34mUVhQ1tXWTO3dZ3qWiQXIatXm9N_Pz_FYRW"
+        url: ""
 
         # The message that will be sent
         message: "[`%serverAddress%`] | Unauthorized connection attempt from `%player%` (UUID: `%uuid%`; real IP address: `%proxyAddress%`; 'spoofed' IP address: `%address%`; detection type: `%detectionType%`)"
@@ -195,7 +195,7 @@ config:
         tts: false
 
         # The Discord webhook URL
-        url: "https://canary.discord.com/api/webhooks/967410856138768384/QMNJXV8jeR90_viDHuePDQZyNIy1dcO34mUVhQ1tXWTO3dZ3qWiQXIatXm9N_Pz_FYRW"
+        url: ""
 
         # The message that will be sent
         message: "[`%serverAddress%`] | Server list ping received from `%address%`"
