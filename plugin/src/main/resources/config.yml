@@ -210,11 +210,31 @@ config:
     # This can be one of the following: NONE, REDIS, RABBITMQ, NATS
     service: NONE
 
+    # The name you want to assign to this server, so we can send the name when an alert broadcast.
+    server-name: "Server-01"
+
+    # Select what you want to sync between servers.
+    what-to-sync:
+      # Sync when you add or remove allowed proxies.
+      allowed-proxies: true
+
+      # Sync alerts between servers
+      alerts: true
+
+      # Sync the commands to run on all servers.
+      commands: true
+
     credentials:
       # If you're using Redis as the sync service, put the credentials here.
       redis:
         # The hostname of the Redis server
         host: localhost
+
+        # If you have a Jedis Sentry Cluster, put the host as a list, it MUST have the port on that case.
+        # host:
+        #  - "localhost:6379"
+        #  - "1.2.3.4:6379"
+        #  - "4.3.2.1:6379"
 
         # The port of the Redis server
         port: 6379
@@ -244,6 +264,11 @@ config:
         # The NATS server URI
         uri: "nats://localhost:4222"
 
+        # If you have a cluster, put all the uri separated by comma
+        # uri: "nats://localhost:4222,nats://localhost:4223,nats://localhost:4224"
+
+
         auth:
           # And the NATS credentials file
+          # Comment this if you don't have a credentials file.
           file: "nats/credentials"

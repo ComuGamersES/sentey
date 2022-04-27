@@ -17,6 +17,13 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>sonatype releases</id>
+            <url>https://oss.sonatype.org/content/repositories/releases</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>org.spigotmc</groupId>
@@ -36,5 +43,21 @@
             <version>RELEASE</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- TODO: Use a dependency downloader and move the next dependencies to provided -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>4.2.2</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.nats</groupId>
+            <artifactId>jnats</artifactId>
+            <version>2.14.1</version>
+            <scope>compile</scope>
+        </dependency>
+
     </dependencies>
 </project>
