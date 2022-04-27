@@ -99,6 +99,9 @@ public class AbuseIPDB implements AbuseDatabase {
             return AbuseReportResult.ERROR;
         }
 
+        // Set the address on cooldown
+        onCooldown.add(address);
+
         // Check if the JSON contains an "errors" property
         if(jsonObject.has("errors")) {
             // Cancel cooldown
@@ -141,12 +144,9 @@ public class AbuseIPDB implements AbuseDatabase {
             // Return an "ERROR" result
             return AbuseReportResult.ERROR;
         } else {
-            // Set the address on cooldown
-            onCooldown.add(address);
-
             // Schedule a task to remove the address from the cooldown list
             plugin.getServer().getScheduler().runTaskLater(
-                    plugin, () -> onCooldown.remove(address), 900 * 20L
+                    plugin, () -> onCooldown.remove(address), 18000L
             );
 
             // And return a "SUCCESS" result
