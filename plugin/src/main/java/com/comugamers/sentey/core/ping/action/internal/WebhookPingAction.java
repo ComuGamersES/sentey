@@ -23,7 +23,9 @@ public class WebhookPingAction implements PingAction {
         // Check if we should send a message to a webhook
         if(config.getBoolean("config.server-list-ping.actions.webhook.enabled")) {
             // If so, create a new webhook
-            DiscordWebhook webhook = new DiscordWebhook(config.getString("config.server-list-ping.actions.webhook.url"));
+            DiscordWebhook webhook = new DiscordWebhook(
+                    config.getString("config.server-list-ping.actions.webhook.url")
+            );
 
             // Set the TTS option
             webhook.setTTS(

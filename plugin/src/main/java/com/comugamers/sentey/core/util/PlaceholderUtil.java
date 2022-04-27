@@ -15,11 +15,13 @@ public class PlaceholderUtil {
                 .replace("%proxyAddress%", context.getHandshakeAddress().getHostAddress())
                 .replace("%address%", context.isValidSpoofedAddress() ? context.getSpoofedAddress().getHostAddress() : "null")
                 .replace("%detectionType%", detection)
-                .replace("%serverAddress%", getIPv4() + ":" + Bukkit.getPort());
+                .replace("%serverAddress%", getIPv4() + ":" + Bukkit.getPort())
+                .replace("%serverPort%", String.valueOf(Bukkit.getPort()));
     }
 
     public static String applyPlaceholdersFromPingContext(String string, InetAddress address) {
         return string.replace("%address%", address.getHostAddress())
-                .replace("%serverAddress%", getIPv4() + ":" + Bukkit.getPort());
+                .replace("%serverAddress%", getIPv4() + ":" + Bukkit.getPort())
+                .replace("%serverPort%", String.valueOf(Bukkit.getPort()));
     }
 }

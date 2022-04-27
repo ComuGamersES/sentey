@@ -32,6 +32,9 @@ public class SenteyModule extends AbstractModule {
         // Install the service module
         this.install(new ServiceModule());
 
+        // Install the abuse database module
+        this.install(new AbuseDatabaseModule(plugin, config));
+
         // Install the login module which will register all internal login filters and actions
         this.install(new LoginModule());
 

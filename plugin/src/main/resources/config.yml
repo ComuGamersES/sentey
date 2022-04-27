@@ -10,6 +10,19 @@ config:
   # Spigot. This is not recommended by any means.
   ignore-spigot-check: false
 
+  # List of plugin integrations to enable or disable.
+  integrations:
+    # Whether to enable the AbuseIPDB integration or not.
+    # See: https://abuseipdb.com
+    abuseipdb:
+      # Whether to automatically send an abuse report to AbuseIPDB or not.
+      # Comments can be edited on the "actions" section of each listener (login or server list pings).
+      enabled: true
+
+      # The API key used for this integration - get one for free at https://www.abuseipdb.com/account/api
+      # Please note that the login actions and ping actions are able to use different API keys.
+      key: "4724f60446440904fc0c28d7dfbe6438e77872dd664387fc7fc9750829646e2bdb33be36b896556b"
+
   # Message section - not much to do here
   messages:
     # Sent when an administrator joins the server having the unknown proxy detection disabled.
@@ -44,7 +57,7 @@ config:
           enabled: "&5&l>> &fUnknown proxies setup mode is now &aenabled&f. Server is now accessible by all BungeeCord servers. Beware."
           disabled: "&5&l>> &fUnknown proxies setup mode is now &cdisabled&f. Server is now accessible only by trusted proxies."
 
-  # Login related settings. This can't be disabled entirely since it is the main function of the plugin.
+  # Login listener related settings. This can't be disabled entirely since it is the main function of the plugin.
   login:
     # Detects local addresses
     # See: https://docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html#isAnyLocalAddress--)
@@ -114,6 +127,9 @@ config:
 
     # Actions to take when an unauthorized connection attempt is detected.
     actions:
+      abuseipdb:
+        # The comment sent with the report if the AbuseIPDB integration is enabled on the integrations section.
+        comment: "Attempted to login to protected Minecraft server on port %serverPort%/tcp (player name: %player%; UUID: %uuid%)"
       disallow-connection:
         # Whether to disallow it or not. Leaving this enabled is recommended.
         enabled: true
@@ -145,12 +161,12 @@ config:
         tts: false
 
         # The Discord webhook URL
-        url: ""
+        url: "https://canary.discord.com/api/webhooks/967410856138768384/QMNJXV8jeR90_viDHuePDQZyNIy1dcO34mUVhQ1tXWTO3dZ3qWiQXIatXm9N_Pz_FYRW"
 
         # The message that will be sent
         message: "[`%serverAddress%`] | Unauthorized connection attempt from `%player%` (UUID: `%uuid%`; real IP address: `%proxyAddress%`; 'spoofed' IP address: `%address%`; detection type: `%detectionType%`)"
 
-  # Server list ping related settings.
+  # Server list ping listener related settings.
   # The server list ping event is normally fired when a player requests the MOTD of the server,
   # but it can also be fired by external programs such as nmap.
   server-list-ping:
@@ -179,10 +195,13 @@ config:
         tts: false
 
         # The Discord webhook URL
-        url: ""
+        url: "https://canary.discord.com/api/webhooks/967410856138768384/QMNJXV8jeR90_viDHuePDQZyNIy1dcO34mUVhQ1tXWTO3dZ3qWiQXIatXm9N_Pz_FYRW"
 
         # The message that will be sent
         message: "[`%serverAddress%`] | Server list ping received from `%address%`"
+      abuseipdb:
+        # The comment sent with the report if the AbuseIPDB integration is enabled on the integrations section.
+        comment: "Possible port scan on port %serverPort%/tcp"
 
   # This is still an early work-in-progress.
   # Recommended if you have more than 2 or 3 servers and want to sync alerts, messages and commands.

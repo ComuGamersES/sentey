@@ -1,10 +1,7 @@
 package com.comugamers.sentey.core.guice.submodules;
 
 import com.comugamers.sentey.core.login.action.LoginAction;
-import com.comugamers.sentey.core.login.action.internal.AlertLoginAction;
-import com.comugamers.sentey.core.login.action.internal.CommandLoginAction;
-import com.comugamers.sentey.core.login.action.internal.DisallowEventLoginAction;
-import com.comugamers.sentey.core.login.action.internal.WebhookLoginAction;
+import com.comugamers.sentey.core.login.action.internal.*;
 import com.comugamers.sentey.core.login.filter.LoginFilter;
 import com.comugamers.sentey.core.login.filter.internal.*;
 import com.google.inject.AbstractModule;
@@ -30,6 +27,7 @@ public class LoginModule extends AbstractModule {
         loginActionMultibinder.addBinding().to(CommandLoginAction.class);
         loginActionMultibinder.addBinding().to(AlertLoginAction.class);
         loginActionMultibinder.addBinding().to(WebhookLoginAction.class);
+        loginActionMultibinder.addBinding().to(AbuseReportLoginAction.class);
     }
 
     private void bindInternalFilters() {
