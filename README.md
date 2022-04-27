@@ -95,7 +95,7 @@ You may run commands, disallow the connection attempt and send alerts through a 
         message: "&5&l>> &fUnauthorized connection attempt made by &c%player%&f. Handshake made from &c%proxyAddress% &7(%detectionType%)"
       webhook:
         # Whether to send a message to a Discord webhook or not
-        enabled: true
+        enabled: false
 
         # Whether to enable TTS or not. If enabled, the message will be read aloud.
         # Probably annoying, not gonna lie. I don't even know why I'm making this an option.
