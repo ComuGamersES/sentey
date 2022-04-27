@@ -1,6 +1,7 @@
 package com.comugamers.sentey.core.guice.submodules;
 
 import com.comugamers.sentey.core.ping.action.PingAction;
+import com.comugamers.sentey.core.ping.action.internal.AbuseReportPingAction;
 import com.comugamers.sentey.core.ping.action.internal.AlertPingAction;
 import com.comugamers.sentey.core.ping.action.internal.WebhookPingAction;
 import com.comugamers.sentey.core.ping.filter.PingFilter;
@@ -26,6 +27,7 @@ public class PingModule extends AbstractModule {
         // Bind each internal ping action
         multibinder.addBinding().to(AlertPingAction.class);
         multibinder.addBinding().to(WebhookPingAction.class);
+        multibinder.addBinding().to(AbuseReportPingAction.class);
     }
 
     private void bindInternalFilters() {

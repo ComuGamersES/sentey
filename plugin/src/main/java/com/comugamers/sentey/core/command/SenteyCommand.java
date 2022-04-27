@@ -1,8 +1,10 @@
 package com.comugamers.sentey.core.command;
 
 import com.comugamers.sentey.common.file.YamlFile;
+import com.comugamers.sentey.common.report.AbuseDatabase;
 import com.comugamers.sentey.core.Sentey;
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -20,6 +22,9 @@ public class SenteyCommand implements CommandExecutor {
 
     @Inject
     private Sentey plugin;
+
+    @Inject @Named("abuseipdb")
+    private AbuseDatabase abuseDatabase;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
@@ -56,6 +61,11 @@ public class SenteyCommand implements CommandExecutor {
             case "reload": {
                 // Reload the configuration file
                 config.reload();
+
+                // Update the API key
+                abuseDatabase.updateKey(
+                        config.getString("config.integrations.abuseipdb.key")
+                );
 
                 // Send the 'Configuration reloaded' message
                 sender.sendMessage(config.getString("config.messages.command.config-reloaded"));
