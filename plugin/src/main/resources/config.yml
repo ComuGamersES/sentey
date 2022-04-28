@@ -267,8 +267,12 @@ config:
         # If you have a cluster, put all the uri separated by comma
         # uri: "nats://localhost:4222,nats://localhost:4223,nats://localhost:4224"
 
+        # If you want to use the Nats JetStream system, enable this.
+        use-jetstream: false
 
         auth:
+          # Enable this if you want to use auth.
+          enable: false
           # And the NATS credentials file
           # Comment this if you don't have a credentials file.
           file: "nats/credentials"

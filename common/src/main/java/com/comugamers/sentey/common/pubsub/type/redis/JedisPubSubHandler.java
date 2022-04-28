@@ -1,4 +1,4 @@
-package com.comugamers.sentey.common.pubsub.type;
+package com.comugamers.sentey.common.pubsub.type.redis;
 
 import com.comugamers.sentey.common.connection.Connection;
 import com.comugamers.sentey.common.pubsub.PubSubHandler;
@@ -54,7 +54,12 @@ public class JedisPubSubHandler implements PubSubHandler {
             subscriber = new JedisPubSub() {
                 @Override
                 public void onMessage(String channel, String message) {
-                    messageHandler.onMessage(new Message(channel, message));
+                    messageHandler.onMessage(
+                            new Message(
+                                    channel,
+                                    message
+                            )
+                    );
                 }
             };
         });

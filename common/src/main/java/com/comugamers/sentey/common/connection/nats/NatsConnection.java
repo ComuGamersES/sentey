@@ -20,7 +20,6 @@ public class NatsConnection implements Connection<io.nats.client.Connection> {
 
     @Override
     public void connect() {
-
         try {
             if (authFileLocation != null) {
                 AuthHandler authHandler = Nats.credentials(authFileLocation);
