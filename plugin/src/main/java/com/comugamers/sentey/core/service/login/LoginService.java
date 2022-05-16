@@ -30,7 +30,7 @@ public class LoginService implements Service {
                     colorize("&a-> &fRegistering internal login filter &a" + filter.getClass().getSimpleName())
             );
 
-            plugin.getLoginFilters().add(filter);
+            plugin.addLoginFilter(filter);
         });
 
         // Loop through each bound login action
@@ -41,7 +41,7 @@ public class LoginService implements Service {
             );
 
             // Add it to the list of login actions
-            plugin.getLoginActions().add(action);
+            plugin.addLoginAction(action);
         });
     }
 }
