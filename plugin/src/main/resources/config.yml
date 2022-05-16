@@ -1,13 +1,16 @@
 config:
   # Whether to enable bStats or not. All submitted data is anonymous.
+  # Keeping this enabled helps us (the developers) know if providing
+  # support for this plugin is useful for the community, so you may
+  # want to keep this enabled. Thanks for using Sentey! :)
   bstats: true
 
   # Whether to enable the plugin even if the 'bungeecord' option is
-  # disabled on the Spigot configuration files
+  # disabled on the Spigot configuration files. Not recommended.
   ignore-bungeecord-check: false
 
   # Whether to enable the plugin even if the server is NOT running
-  # Spigot. This is not recommended by any means.
+  # Spigot. This is not recommended at all, refrain from enabling it.
   ignore-spigot-check: false
 
   # List of plugin integrations to enable or disable.
@@ -22,40 +25,6 @@ config:
       # The API key used for this integration - get one for free at https://www.abuseipdb.com/account/api
       # Please note that the login actions and ping actions are able to use different API keys.
       key: ""
-
-  # Message section - not much to do here
-  messages:
-    # Sent when an administrator joins the server having the unknown proxy detection disabled.
-    setup-mode-enabled: "&5&l>> &fThe &aunknown proxy&f detection is currently running under setup mode. Please run &a/sentey help&f to learn how to configure it."
-
-    # Command messages
-    command:
-      no-permission: "&4&l>> &cYou don't have permission to use this command."
-      config-reloaded: "&5&l>> &fConfiguration files reloaded."
-      help: |-
-        &5&l>> &fSentey Help &a(1/1)
-        &7- &f/sentey help: &7Shows this message.
-        &7- &f/sentey trusted-proxies: &7Configure the 'Unknown Proxy' detection.
-        &7- &f/sentey reload: &7Reloads the configuration.
-
-      trusted-proxies:
-        usage: "&5&l>> &fUsage: &a/sentey trusted-proxies <add|remove|list|toggle-setup> [<ip>]"
-        add:
-          success: "&5&l>> &fAdded &a%proxy%&f to the trusted proxies list. You may now turn on the detection by using &a/sentey trusted-proxies toggle-setup&f."
-          usage: "&5&l>> &fUsage: &a/sentey trusted-proxies add <ip>"
-          already-trusted: "&5&l>> &fThat proxy is already in the trusted proxies list."
-          invalid-ipv4: "&5&l>> &fInvalid IPv4 address: &a%proxy%&c."
-        remove:
-          success: "&5&l>> &fRemoved proxy &a%proxy%&f from the trusted proxies list."
-          usage: "&5&l>> &fUsage: &a/sentey trusted-proxies remove <ip>"
-          not-trusted: "&5&l>> &fThat proxy is not in the trusted proxies list."
-        list:
-          none: "&5&l>> &fThere are no trusted proxies. Add some with &a/sentey trusted-proxies add <ip>&f."
-          message: "&5&l>> &fTrusted proxies: &a%proxies%"
-          delimiter: "&f, &a"
-        toggle-setup:
-          enabled: "&5&l>> &fUnknown proxies setup mode is now &aenabled&f. Server is now accessible by all BungeeCord servers. Beware."
-          disabled: "&5&l>> &fUnknown proxies setup mode is now &cdisabled&f. Server is now accessible only by trusted proxies."
 
   # Login listener related settings. This can't be disabled entirely since it is the main function of the plugin.
   login:
@@ -136,8 +105,7 @@ config:
 
         # The message sent to the attacker
         reason: |-
-          Your connection has been blocked.
-          Please contact the server administrator for more information.
+          https://cdn.discordapp.com/attachments/697331954085003314/975608533640953897/mailbox.mov
       commands:
         # Whether to run a list of commands or not
         enabled: false
