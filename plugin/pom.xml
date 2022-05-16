@@ -59,7 +59,7 @@
                                     </excludes>
                                 </filter>
                             </filters>
-                            <finalName>sentey</finalName>
+                            <finalName>sentey-${revision}</finalName>
                         </configuration>
                     </execution>
                 </executions>
