@@ -18,10 +18,13 @@ import static com.comugamers.sentey.common.util.NetworkUtil.isValidIPv4;
 public class SenteyCommand implements CommandExecutor {
 
     @Inject
-    private YamlFile config;
+    private Sentey plugin;
 
     @Inject
-    private Sentey plugin;
+    private YamlFile config;
+
+    @Inject @Named("messages")
+    private YamlFile messages;
 
     @Inject @Named("abuseipdb")
     private AbuseDatabase abuseDatabase;
@@ -52,7 +55,7 @@ public class SenteyCommand implements CommandExecutor {
         }
 
         if(!sender.hasPermission("sentey.admin")) {
-            sender.sendMessage(config.getString("config.messages.command.no-permission"));
+            sender.sendMessage(messages.getString("messages.command.no-permission"));
             return true;
         }
 
@@ -68,18 +71,18 @@ public class SenteyCommand implements CommandExecutor {
                 );
 
                 // Send the 'Configuration reloaded' message
-                sender.sendMessage(config.getString("config.messages.command.config-reloaded"));
+                sender.sendMessage(messages.getString("messages.command.config-reloaded"));
                 return true;
             }
             default:
             case "help": {
                 // Send the help message
-                sender.sendMessage(config.getString("config.messages.command.help"));
+                sender.sendMessage(messages.getString("messages.command.help"));
                 return true;
             }
             case "trusted-proxies": {
                 if(args.length < 2) {
-                    sender.sendMessage(config.getString("config.messages.command.trusted-proxies.usage"));
+                    sender.sendMessage(messages.getString("messages.command.trusted-proxies.usage"));
                     return true;
                 }
 
@@ -87,7 +90,7 @@ public class SenteyCommand implements CommandExecutor {
                 switch(action) {
                     default: {
                         // Send the usage message
-                        sender.sendMessage(config.getString("config.messages.command.trusted-proxies.usage"));
+                        sender.sendMessage(messages.getString("messages.command.trusted-proxies.usage"));
 
                         // And return
                         return true;
@@ -96,7 +99,7 @@ public class SenteyCommand implements CommandExecutor {
                         // Check if enough arguments were provided
                         if(args.length < 3) {
                             // If not, send the usage message
-                            sender.sendMessage(config.getString("config.messages.command.trusted-proxies.add.usage"));
+                            sender.sendMessage(messages.getString("messages.command.trusted-proxies.add.usage"));
                             return true;
                         }
 
@@ -112,7 +115,7 @@ public class SenteyCommand implements CommandExecutor {
                         if (!isValidIPv4(proxyAddress)) {
                             // If not, send the 'Invalid IP address' message
                             sender.sendMessage(
-                                    config.getString("config.messages.command.trusted-proxies.add.invalid-ipv4")
+                                    messages.getString("messages.command.trusted-proxies.add.invalid-ipv4")
                                             .replace("%proxy%", proxyAddress)
                             );
 
@@ -123,7 +126,7 @@ public class SenteyCommand implements CommandExecutor {
                         // Check if the proxy is already trusted
                         if (trustedProxies.contains(proxyAddress)) {
                             // If so, send the 'Proxy already trusted' message and return
-                            sender.sendMessage(config.getString("config.messages.command.trusted-proxies.add.already-trusted"));
+                            sender.sendMessage(messages.getString("messages.command.trusted-proxies.add.already-trusted"));
                             return true;
                         }
 
@@ -138,7 +141,7 @@ public class SenteyCommand implements CommandExecutor {
 
                         // Send the 'Proxy added' message
                         sender.sendMessage(
-                                config.getString("config.messages.command.trusted-proxies.add.success")
+                                messages.getString("messages.command.trusted-proxies.add.success")
                                         .replace("%proxy%", proxyAddress)
                         );
 
@@ -151,7 +154,7 @@ public class SenteyCommand implements CommandExecutor {
                         if(args.length < 3) {
                             // If not, send the usage message
                             sender.sendMessage(
-                                    config.getString("config.messages.command.trusted-proxies.remove.usage")
+                                    messages.getString("messages.command.trusted-proxies.remove.usage")
                             );
 
                             // And return
@@ -170,7 +173,7 @@ public class SenteyCommand implements CommandExecutor {
                         if (!trustedProxies.contains(proxyAddress)) {
                             // If not, send the 'Proxy not trusted' message
                             sender.sendMessage(
-                                    config.getString("config.messages.command.trusted-proxies.remove.not-trusted")
+                                    messages.getString("messages.command.trusted-proxies.remove.not-trusted")
                             );
 
                             // And return
@@ -188,7 +191,7 @@ public class SenteyCommand implements CommandExecutor {
 
                         // Send the 'Proxy removed' message
                         sender.sendMessage(
-                                config.getString("config.messages.command.trusted-proxies.remove.success")
+                                messages.getString("messages.command.trusted-proxies.remove.success")
                                         .replace("%proxy%", proxyAddress)
                         );
 
@@ -205,7 +208,7 @@ public class SenteyCommand implements CommandExecutor {
                         if(trustedProxies.isEmpty()) {
                             // If so, send the 'There are no trusted proxies' message
                             sender.sendMessage(
-                                    config.getString("config.messages.command.trusted-proxies.list.none")
+                                    messages.getString("messages.command.trusted-proxies.list.none")
                             );
 
                             // And return
@@ -213,11 +216,11 @@ public class SenteyCommand implements CommandExecutor {
                         }
 
                         // Get the trusted proxy list delimiter
-                        String delimiter = config.getString("config.messages.command.trusted-proxies.list.delimiter");
+                        String delimiter = messages.getString("messages.command.trusted-proxies.list.delimiter");
 
                         // Send the list of trusted proxies
                         sender.sendMessage(
-                                config.getString("config.messages.command.trusted-proxies.list.message")
+                                messages.getString("messages.command.trusted-proxies.list.message")
                                         .replace("%proxies%", String.join(delimiter, trustedProxies))
                         );
 
@@ -238,8 +241,8 @@ public class SenteyCommand implements CommandExecutor {
 
                         // Send the 'Setup enabled/disabled' message
                         sender.sendMessage(
-                                config.getString(
-                                        "config.messages.command.trusted-proxies.toggle-setup."
+                                messages.getString(
+                                        "messages.command.trusted-proxies.toggle-setup."
                                                 + (setup ? "disabled" : "enabled")
                                 )
                         );

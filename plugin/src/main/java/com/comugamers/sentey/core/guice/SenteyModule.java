@@ -26,6 +26,9 @@ public class SenteyModule extends AbstractModule {
         // Bind it
         this.bind(YamlFile.class).toInstance(config);
 
+        // Install the message module
+        this.install(new MessageModule(plugin));
+
         // Install the metrics module
         this.install(new MetricsModule(plugin, config));
 
