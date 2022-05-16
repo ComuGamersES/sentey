@@ -5,10 +5,10 @@
     <parent>
         <artifactId>sentey</artifactId>
         <groupId>com.comugamers</groupId>
-        <version>2022.0427.0</version>
+        <version>${revision}</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
+    <modelVersion>4.0.0</modelVersion>
     <groupId>com.comugamers.sentey</groupId>
     <artifactId>common</artifactId>
 
@@ -33,7 +33,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>RELEASE</version>
+            <version>5.8.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

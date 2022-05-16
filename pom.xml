@@ -7,16 +7,12 @@
     <groupId>com.comugamers</groupId>
     <artifactId>sentey</artifactId>
     <packaging>pom</packaging>
-    <version>2022.0427.0</version>
-
-    <modules>
-        <module>plugin</module>
-        <module>common</module>
-    </modules>
+    <version>${revision}</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <revision>2022.0516.0</revision>
     </properties>
 
     <repositories>
@@ -25,4 +21,9 @@
             <url>https://repo.codemc.io/repository/nms/</url>
         </repository>
     </repositories>
+
+    <modules>
+        <module>plugin</module>
+        <module>common</module>
+    </modules>
 </project>
