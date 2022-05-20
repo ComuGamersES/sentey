@@ -3,6 +3,7 @@ package com.comugamers.sentey.core.login.filter.internal;
 import com.comugamers.sentey.common.file.YamlFile;
 import com.comugamers.sentey.core.login.context.LoginContext;
 import com.comugamers.sentey.core.login.filter.LoginFilter;
+import com.google.common.net.InetAddresses;
 import com.google.inject.Inject;
 
 import static com.comugamers.sentey.common.util.NetworkUtil.isValidIPv4;
@@ -29,7 +30,7 @@ public class MalformedAddressLoginFilter implements LoginFilter {
             String handshakeAddress = context.getHandshakeAddress().getHostAddress();
 
             // Return false if any of the IP addresses is malformed
-            return isValidIPv4(spoofedAddress) && isValidIPv4(handshakeAddress);
+            return InetAddresses.isInetAddress(spoofedAddress) && InetAddresses.isInetAddress(handshakeAddress);
         }
 
         // If all conditions above failed, allow the login attempt
