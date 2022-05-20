@@ -1,6 +1,6 @@
 package com.comugamers.sentey.common.util;
 
-import org.bukkit.Bukkit;
+import com.google.common.net.InetAddresses;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,6 +9,10 @@ import java.net.URL;
 
 public class NetworkUtil {
 
+    /**
+     * Gets the IPv4 address of the machine running this Java application.
+     * @return The IPv4 address as a string.
+     */
     public static String getIPv4() {
         try {
             URL url = new URL("https://checkip.amazonaws.com");
@@ -30,6 +34,13 @@ public class NetworkUtil {
         }
     }
 
+    /**
+     * Checks if a string is a valid IPv4 address.
+     * Deprecated - please use {@link InetAddresses#isInetAddress(String)} instead.
+     * @param ip The IP address to check
+     * @return true if valid.
+     */
+    @Deprecated
     public static boolean isValidIPv4(String ip) {
         try {
             // Split the IP on different parts
@@ -55,7 +66,11 @@ public class NetworkUtil {
         return true;
     }
 
+    /**
+     * Gets the formatted current server address. Only works under Bukkit.
+     * @return The formatted server address as a string, for example <code>194.48.18.94:25565</code>.
+     */
     public static String getCurrentServerAddress() {
-        return getIPv4() + ":" + Bukkit.getPort();
+        return getIPv4() + ":" + org.bukkit.Bukkit.getPort();
     }
 }
