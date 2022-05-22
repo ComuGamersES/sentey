@@ -1,5 +1,5 @@
 # Sentey
-Protect your Spigot server against IP forwarding exploits, block unknown BungeeCord and/or Velocity proxies and even 
+Protect your Spigot server against IP forwarding exploits, block unknown BungeeCord and Velocity proxies and even 
 create a Honeypot if you want.
 
 ## Use a firewall!
