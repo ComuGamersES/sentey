@@ -6,7 +6,8 @@ import org.bukkit.event.player.PlayerLoginEvent;
 import java.net.InetAddress;
 
 /**
- * Represents the context of a login attempt.
+ * Represents the context of a login attempt. It contains information such as the {@link Player},
+ * the raw {@link PlayerLoginEvent} and the {@link InetAddress involved IP addresses}.
  * @author Pabszito
  */
 public class LoginContext {
@@ -51,7 +52,7 @@ public class LoginContext {
 
     /**
      * Whether the spoofed IP address is valid or not.
-     * @return True if the spoofed IP address is not null.
+     * @return true if the spoofed IP address is not null.
      */
     public boolean isValidSpoofedAddress() {
         return spoofedAddress != null;
@@ -60,14 +61,14 @@ public class LoginContext {
     /**
      * Whether the handshake IP address is valid. Should always be true,
      * but I don't even trust Minecraft anymore.
-     * @return True if the handshake IP address is not null.
+     * @return true if the handshake IP address is not null.
      */
     public boolean isValidHandshakeAddress() {
         return handshakeAddress != null;
     }
 
     /**
-     * The raw {@link PlayerLoginEvent} that was fired.
+     * The raw {@link PlayerLoginEvent login event} that was fired by the server.
      */
     public PlayerLoginEvent getRawLoginEvent() {
         return rawLoginEvent;
