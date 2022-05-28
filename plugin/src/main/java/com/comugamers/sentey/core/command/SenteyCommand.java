@@ -2,17 +2,19 @@ package com.comugamers.sentey.core.command;
 
 import com.comugamers.sentey.common.file.YamlFile;
 import com.comugamers.sentey.common.report.AbuseDatabase;
+import com.comugamers.sentey.common.util.ConnectionUtil;
 import com.comugamers.sentey.core.Sentey;
+import com.google.common.net.InetAddresses;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import java.util.List;
 
 import static com.comugamers.sentey.common.util.TextUtil.colorize;
-import static com.comugamers.sentey.common.util.NetworkUtil.isValidIPv4;
 
 // TODO: improve this class, it is a mess
 public class SenteyCommand implements CommandExecutor {
@@ -35,14 +37,14 @@ public class SenteyCommand implements CommandExecutor {
             // Send the 'Running Sentey version x.x.x' message
             sender.sendMessage(
                     colorize(
-                            "&5&l>> &fRunning &aSentey &fversion &a" + plugin.getDescription().getVersion() + "&f."
+                            "&b&lSENTEY >> &fRunning &aSentey &fversion &a" + plugin.getDescription().getVersion() + "&f."
                     )
             );
 
             // And send the list of authors as well
             sender.sendMessage(
                     colorize(
-                            "&5&l>> &fAuthors: &a"
+                            "&b&lSENTEY >> &fAuthors: &a"
                                     + String.join("&f, &a", plugin.getDescription().getAuthors())
                     )
             );
@@ -51,7 +53,7 @@ public class SenteyCommand implements CommandExecutor {
             if(sender.hasPermission("sentey.admin")) {
                 // If so, send the 'Run /sentey help' message
                 sender.sendMessage(
-                        colorize("&5&l>> &fRun &a/sentey help&f for help.")
+                        colorize("&b&lSENTEY >> &fRun &a/sentey help&f for help.")
                 );
             }
 
@@ -66,6 +68,42 @@ public class SenteyCommand implements CommandExecutor {
 
         String subCommand = args[0].toLowerCase();
         switch(subCommand) {
+            case "address": {
+                // Check if enough arguments were provided
+                if(args.length < 2) {
+                    // If not, send the usage message
+                    sender.sendMessage(messages.getString("messages.command.address.usage"));
+                    return true;
+                }
+
+                // Get the player name
+                String playerName = args[1];
+
+                // Get the target
+                Player target = plugin.getServer().getPlayer(playerName);
+
+                // Check if it is online
+                if(target == null || !target.isOnline()) {
+                    // If not, send the usage message
+                    sender.sendMessage(messages.getString("messages.command.address.must-be-online"));
+                    return true;
+                }
+
+                // Send the address information message
+                sender.sendMessage(
+                        messages.getString("messages.command.address.information")
+                                .replace("%player%", target.getName())
+                                .replace("%rawAddress%", ConnectionUtil.getRemoteAddress(target))
+                                .replace("%address%",
+                                        target.getAddress() != null
+                                                ? target.getAddress().getAddress().getHostAddress()
+                                                : "null"
+                                )
+                );
+
+                // Return true since everything is done
+                return true;
+            }
             case "reload": {
                 // Reload the configuration file
                 config.reload();
@@ -117,7 +155,7 @@ public class SenteyCommand implements CommandExecutor {
                         String proxyAddress = args[2];
 
                         // Check if the proxy address is valid
-                        if (!isValidIPv4(proxyAddress)) {
+                        if (!InetAddresses.isInetAddress(proxyAddress)) {
                             // If not, send the 'Invalid IP address' message
                             sender.sendMessage(
                                     messages.getString("messages.command.trusted-proxies.add.invalid-ipv4")
