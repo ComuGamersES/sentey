@@ -11,7 +11,7 @@ public class NetworkUtil {
 
     /**
      * Gets the IPv4 address of the machine running this Java application.
-     * @return The IPv4 address as a string.
+     * @return The IPv4 address as a {@link String}.
      */
     public static String getIPv4() {
         try {
@@ -29,16 +29,16 @@ public class NetworkUtil {
                     }
                 }
             }
-        } catch (IOException exception) {
+        } catch (IOException ex) {
             return "localhost";
         }
     }
 
     /**
-     * Checks if a string is a valid IPv4 address.
-     * Deprecated - please use {@link InetAddresses#isInetAddress(String)} instead.
-     * @param ip The IP address to check
-     * @return true if valid.
+     * Checks if a {@link String} is a valid IPv4 address.
+     * This is deprecated - please use {@link InetAddresses#isInetAddress(String)} instead.
+     * @param ip The IP address to check as a {@link String}
+     * @return true if the address valid.
      */
     @Deprecated
     public static boolean isValidIPv4(String ip) {
