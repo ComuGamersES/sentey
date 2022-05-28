@@ -97,6 +97,9 @@ config:
     # Actions to take when an unauthorized connection attempt is detected.
     actions:
       abuseipdb:
+        # Whether to ignore unauthorized login attempts. Not recommended at all.
+        ignore-login: false
+
         # The comment sent with the report if the AbuseIPDB integration is enabled on the integrations section.
         comment: "Attempted to login to protected Minecraft server on port %serverPort%/tcp (player name: %player%; UUID: %uuid%)"
       disallow-connection:
@@ -168,6 +171,9 @@ config:
         # The message that will be sent
         message: "[`%serverAddress%`] | Server list ping received from `%address%`"
       abuseipdb:
+        # Whether to disable auto-reporting on server list pings
+        ignore-pings: false
+
         # The comment sent with the report if the AbuseIPDB integration is enabled on the integrations section.
         comment: "Possible port scan on port %serverPort%/tcp"
 

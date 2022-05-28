@@ -30,12 +30,18 @@ public class AbuseReportPingAction implements PingAction {
             return;
         }
 
+        // Check if server list pings are ignored
+        if(config.getBoolean("config.server-list-ping.actions.abuseipdb.ignore-pings")) {
+            // If so, return
+            return;
+        }
+
         // Get the comment
         String comment = PlaceholderUtil.applyPlaceholdersFromPingContext(
                 config.getString("config.server-list-ping.actions.abuseipdb.comment"), address
         );
 
-        // Report it
+        // Report the source address
         AbuseReportResult result = abuseDatabase.reportAddress(address.getHostAddress(), comment);
 
         // Check if the abuse report result is "RATE_LIMIT_EXCEEDED"

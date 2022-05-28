@@ -24,6 +24,12 @@ public class AbuseReportLoginAction implements LoginAction {
             return;
         }
 
+        // Check if the integration ignores login attempts
+        if(config.getBoolean("config.login.actions.abuseipdb.ignore-login")) {
+            // If so, return
+            return;
+        }
+
         // Get the address as a string
         String addressAsString = context.getHandshakeAddress().getHostAddress();
 
