@@ -9,6 +9,7 @@ import com.comugamers.sentey.core.ping.filter.PingFilter;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
+import org.apache.commons.lang.SystemUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
@@ -29,10 +30,29 @@ public class Sentey extends JavaPlugin {
 
     @Override
     public void onLoad() {
+        // Initialize array lists
         this.loginFilters = new ArrayList<>();
         this.loginActions = new ArrayList<>();
         this.pingActions = new ArrayList<>();
         this.pingFilters = new ArrayList<>();
+
+        // Check if the server is running Java 16 or later
+        if (SystemUtils.isJavaVersionAtLeast(16)) {
+            // If so, warn the server admin that this plugin may not be compatible with it
+            getLogger().warning(
+                    "It looks like you're running Java 16 or higher. " + this.getDescription().getName()
+                            + " may not be fully compatible with it."
+            );
+
+            // And tell the admin to add the following arguments to their Java
+            // Virtual Machine in order to solve the Google Guice errors during startup
+            getLogger().warning(
+                    "Please make sure to include the following arguments to your JVM - especially if" +
+                            " you see Google Guice errors during plugin startup: \"--add-opens " +
+                            "java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED " +
+                            "--add-opens java.base/java.util.zip=ALL-UNNAMED\""
+            );
+        }
     }
 
     @Override
