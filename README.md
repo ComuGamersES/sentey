@@ -69,7 +69,7 @@ configure those alerts at the `alerts` section:
         enabled: true
 
         # The message sent to online staff
-        message: "&5&l>> &fServer list ping received from &c%address%&f, is the firewall properly configured?"
+        message: "&b&lSENTEY >> &fServer list ping received from &c%address%&f, is the firewall properly configured?"
       webhook:
         # Whether to send a message to a Discord webhook or not
         enabled: false
@@ -113,7 +113,7 @@ example):
         enabled: true
 
         # The message sent to online staff
-        message: "&5&l>> &fUnauthorized connection attempt made by &c%player%&f. Handshake made from &c%proxyAddress% &7(%detectionType%)"
+        message: "&b&lSENTEY >> &fUnauthorized connection attempt made by &c%player%&f. Handshake made from &c%proxyAddress% &7(%detectionType%)"
       webhook:
         # Whether to send a message to a Discord webhook or not
         enabled: false
