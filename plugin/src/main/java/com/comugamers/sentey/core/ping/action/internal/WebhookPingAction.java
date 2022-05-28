@@ -27,22 +27,17 @@ public class WebhookPingAction implements PingAction {
                     config.getString("config.server-list-ping.actions.webhook.url")
             );
 
-            // Set the TTS option
-            webhook.setTTS(
-                    config.getBoolean("config.server-list-ping.actions.webhook.tts", false)
-            );
-
-            // Set the message
-            webhook.setContent(
-                    PlaceholderUtil.applyPlaceholdersFromPingContext(
-                            config.getString("config.server-list-ping.actions.webhook.message"), address
-                    )
-            );
-
-            // And send it in a try/catch block
             try {
-                webhook.execute();
+                // Update the TTS option, the content of the message and then send it
+                webhook.setTTS(
+                        config.getBoolean("config.server-list-ping.actions.webhook.tts", false)
+                ).setContent(
+                        PlaceholderUtil.applyPlaceholdersFromPingContext(
+                                config.getString("config.server-list-ping.actions.webhook.message"), address
+                        )
+                ).execute();
             } catch (IOException e) {
+                // If an exception is thrown, log it:
                 plugin.getLogger().severe("Unable to send webhook message (is the webhook URL still valid?): ");
                 e.printStackTrace();
             }
