@@ -24,7 +24,7 @@ public class PlayerJoinListener implements Listener {
 
         // Check if the unknown proxy detection is currently enabled on setup mode
         if(config.getBoolean("config.login.unknown-proxies.enabled")
-                && messages.getBoolean("config.login.unknown-proxies.setup")
+                && config.getBoolean("config.login.unknown-proxies.setup")
         ) {
             // If true, check if the player has enough permissions to see
             // the 'Please configure the unknown proxy detection' message
