@@ -36,7 +36,8 @@ public class Sentey extends JavaPlugin {
         this.pingActions = new ArrayList<>();
         this.pingFilters = new ArrayList<>();
 
-        // Check if the server is running Java 16 or later
+        // Check if the server is running Java 16 or later. We do this on plugin load
+        // to prevent Guice from doing its things before sending the warning to the logs.
         if (SystemUtils.isJavaVersionAtLeast(16)) {
             // If so, warn the server admin that this plugin may not be compatible with it
             getLogger().warning(
