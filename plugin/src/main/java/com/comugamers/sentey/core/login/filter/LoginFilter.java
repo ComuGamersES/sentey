@@ -3,20 +3,22 @@ package com.comugamers.sentey.core.login.filter;
 import com.comugamers.sentey.core.login.context.LoginContext;
 
 /**
- * Represents a login security module.
- * These are later ran by the Sentey plugin on player login.
+ * Represents a login filter which analyzes a login attempt based on its {@link LoginContext}.
+ * @author Pabszito
  */
 public interface LoginFilter {
 
     /**
-     * The name of the module displayed on detection types.
+     * The name of a {@link LoginFilter} is usually displayed on alerts. It should
+     * follow the same naming convention as {@link Enum enums}.
+     * @return The name of the filter as a {@link String}.
      */
     String getName();
 
     /**
-     * Handles the login attempt.
-     * @param context The login context.
-     * @return false if the login attempt should be cancelled.
+     * Checks if a login attempt is clean or not.
+     * @param context The {@link LoginContext}.
+     * @return false if the login attempt should be denied.
      */
     boolean isClean(LoginContext context);
 }
