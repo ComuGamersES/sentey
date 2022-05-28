@@ -25,24 +25,19 @@ public class WebhookLoginAction implements LoginAction {
             // If so, create a new webhook
             DiscordWebhook webhook = new DiscordWebhook(config.getString("config.login.actions.webhook.url"));
 
-            // Set the TTS option
-            webhook.setTTS(
-                    config.getBoolean("config.login.actions.webhook.tts", false)
-            );
-
-            // Set the message
-            webhook.setContent(
-                    PlaceholderUtil.applyPlaceholdersFromLoginContext(
-                            config.getString("config.login.actions.webhook.message"),
-                            detection,
-                            context
-                    )
-            );
-
-            // And send it in a try/catch block
             try {
-                webhook.execute();
+                // Update the TTS option, the content of the message and then send it
+                webhook.setTTS(
+                        config.getBoolean("config.login.actions.webhook.tts", false)
+                ).setContent(
+                        PlaceholderUtil.applyPlaceholdersFromLoginContext(
+                                config.getString("config.login.actions.webhook.message"),
+                                detection,
+                                context
+                        )
+                ).execute();
             } catch (IOException e) {
+                // If an exception is thrown, log it:
                 plugin.getLogger().severe("Unable to send webhook message (is the webhook URL still valid?): ");
                 e.printStackTrace();
             }
