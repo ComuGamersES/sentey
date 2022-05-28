@@ -35,10 +35,15 @@ public class SenteyCommand implements CommandExecutor {
             // Send the 'Running Sentey version x.x.x' message
             sender.sendMessage(
                     colorize(
-                            "&5&l>> &fRunning &aSentey &fversion &a" + plugin.getDescription().getVersion()
-                                    + "&f.\n&5&l>> &fAuthors: &a"
-                                    + String.join("&f, &a", plugin.getDescription().getAuthors()
-                            )
+                            "&5&l>> &fRunning &aSentey &fversion &a" + plugin.getDescription().getVersion() + "&f."
+                    )
+            );
+
+            // And send the list of authors as well
+            sender.sendMessage(
+                    colorize(
+                            "&5&l>> &fAuthors: &a"
+                                    + String.join("&f, &a", plugin.getDescription().getAuthors())
                     )
             );
 
