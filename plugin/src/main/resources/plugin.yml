@@ -1,5 +1,5 @@
 name: Sentey
-description: Protects your server against BungeeCord IP forwarding exploits
+description: Protect your server against common BungeeCord IP forwarding exploits
 version: ${project.parent.version}
 main: com.comugamers.sentey.core.Sentey
 authors: [ Pabszito, Jojo1545 ]
