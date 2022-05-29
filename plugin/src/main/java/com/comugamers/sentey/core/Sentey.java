@@ -34,21 +34,23 @@ public class Sentey extends JavaPlugin {
     public void onLoad() {
         // Check if the server is running Java 16 or later. We do this on plugin load
         // to prevent Guice from doing its things before sending the warning to the logs.
-        if (SystemUtils.getJavaVersion() != 1.8F && SystemUtils.isJavaVersionAtLeast(16)) {
+        if (SystemUtils.getJavaVersion() >= 16) {
             // If so, warn the server admin that this plugin may not be compatible with it
             getLogger().warning(
                     "It looks like you're running Java 16 or higher. " + this.getDescription().getName()
                             + " may not be fully compatible with it."
             );
 
+            // Get required arguments since in Java 17 the "--illegal-access=permit" argument was removed
+            String requiredArguments = SystemUtils.getJavaVersion() >= 17
+                    ? "--add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.util.zip=ALL-UNNAMED"
+                    : "--illegal-access=permit";
+
             // And tell the admin to add the following arguments to their
             // JVM in order to solve the errors during plugin initialization
             getLogger().warning(
-                    "Please make sure to include the following arguments to your JVM - especially if" +
-                            " you see errors during plugin initialization: \"--add-opens " +
-                            "java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED " +
-                            "--add-opens java.base/java.util.zip=ALL-UNNAMED --add-opens java.base/java.net" +
-                            "=ALL-UNNAMED\""
+                    "Please make sure to include the following argument(s) to your JVM - especially if" +
+                            " you see errors during plugin initialization: \"" + requiredArguments + "\""
             );
         }
 
