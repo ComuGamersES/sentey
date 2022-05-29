@@ -6,6 +6,7 @@ import com.comugamers.sentey.core.login.action.LoginAction;
 import com.comugamers.sentey.core.guice.SenteyModule;
 import com.comugamers.sentey.core.ping.action.PingAction;
 import com.comugamers.sentey.core.ping.filter.PingFilter;
+import com.comugamers.sentey.core.service.dependency.DependencyService;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
@@ -14,6 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Sentey extends JavaPlugin {
 
@@ -30,30 +32,35 @@ public class Sentey extends JavaPlugin {
 
     @Override
     public void onLoad() {
-        // Initialize array lists
-        this.loginFilters = new ArrayList<>();
-        this.loginActions = new ArrayList<>();
-        this.pingActions = new ArrayList<>();
-        this.pingFilters = new ArrayList<>();
-
         // Check if the server is running Java 16 or later. We do this on plugin load
         // to prevent Guice from doing its things before sending the warning to the logs.
-        if (SystemUtils.isJavaVersionAtLeast(16)) {
+        if (SystemUtils.getJavaVersion() != 1.8F && SystemUtils.isJavaVersionAtLeast(16)) {
             // If so, warn the server admin that this plugin may not be compatible with it
             getLogger().warning(
                     "It looks like you're running Java 16 or higher. " + this.getDescription().getName()
                             + " may not be fully compatible with it."
             );
 
-            // And tell the admin to add the following arguments to their Java
-            // Virtual Machine in order to solve the Google Guice errors during startup
+            // And tell the admin to add the following arguments to their
+            // JVM in order to solve the errors during plugin initialization
             getLogger().warning(
                     "Please make sure to include the following arguments to your JVM - especially if" +
-                            " you see Google Guice errors during plugin startup: \"--add-opens " +
+                            " you see errors during plugin initialization: \"--add-opens " +
                             "java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED " +
-                            "--add-opens java.base/java.util.zip=ALL-UNNAMED\""
+                            "--add-opens java.base/java.util.zip=ALL-UNNAMED --add-opens java.base/java.net" +
+                            "=ALL-UNNAMED\""
             );
         }
+
+        // Initialize array lists
+        this.loginFilters = new ArrayList<>();
+        this.loginActions = new ArrayList<>();
+        this.pingActions = new ArrayList<>();
+        this.pingFilters = new ArrayList<>();
+
+        // Start the dependency service which will download all required dependencies by the plugin
+        Service dependencyService = new DependencyService(this);
+        dependencyService.start();
     }
 
     @Override
@@ -72,8 +79,16 @@ public class Sentey extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Stop the main service
-        service.stop();
+        // Check if the main service was injected properly
+        if(service == null) {
+            // If not, log an error
+            this.getLogger().severe(
+                    "Sentey was not properly initialized. Did an error occur while downloading dependencies?"
+            );
+        } else {
+            // Stop the main service
+            service.stop();
+        }
     }
 
     /**

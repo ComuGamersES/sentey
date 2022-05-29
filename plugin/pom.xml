@@ -17,11 +17,23 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>nms-repo</id>
+            <url>https://repo.codemc.io/repository/nms/</url>
+        </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -40,12 +52,12 @@
                         <configuration>
                             <relocations>
                                 <relocation>
-                                    <pattern>com.google</pattern>
-                                    <shadedPattern>com.comugamers.lib.google</shadedPattern>
+                                    <pattern>net.byteflux.libby</pattern>
+                                    <shadedPattern>com.comugamers.sentey.lib.libby</shadedPattern>
                                 </relocation>
                                 <relocation>
                                     <pattern>org.bstats</pattern>
-                                    <shadedPattern>com.comugamers.lib.bstats</shadedPattern>
+                                    <shadedPattern>com.comugamers.sentey.lib.bstats</shadedPattern>
                                 </relocation>
                             </relocations>
                             <filters>
@@ -65,6 +77,29 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.github.Azim</groupId>
+                <artifactId>azimdp-maven-plugin</artifactId>
+                <version>1.0.1</version>
+                <configuration>
+                    <ignoreVersions>true</ignoreVersions>
+                    <beautify>false</beautify>
+                    <path>dependencies.json</path>
+                    <excludes>
+                        <exclude>org.spigotmc:spigot:version</exclude>
+                        <exclude>com.github.Azim.libby:libby-bukkit:1.8.8-R0.1-SNAPSHOT</exclude>
+                        <exclude>com.comugamers.sentey:common:${project.parent.version}</exclude>
+                        <exclude>org.bstats:bstats-bukkit:3.0.0</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate-dependency-list</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
         <resources>
             <resource>
@@ -73,13 +108,6 @@
             </resource>
         </resources>
     </build>
-
-    <repositories>
-        <repository>
-            <id>nms-repo</id>
-            <url>https://repo.codemc.io/repository/nms/</url>
-        </repository>
-    </repositories>
 
     <dependencies>
         <dependency>
@@ -91,20 +119,20 @@
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.8.9</version>
-            <scope>compile</scope>
+            <version>2.9.0</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
             <version>4.0</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.google.inject.extensions</groupId>
             <artifactId>guice-multibindings</artifactId>
             <version>4.0</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.comugamers.sentey</groupId>
@@ -116,6 +144,18 @@
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
             <version>3.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.13</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.Azim.libby</groupId>
+            <artifactId>libby-bukkit</artifactId>
+            <version>8107184</version> <!-- Had to specify the short commit hash for it to download -->
             <scope>compile</scope>
         </dependency>
     </dependencies>
