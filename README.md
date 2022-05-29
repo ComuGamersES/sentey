@@ -2,10 +2,10 @@
 Protect your Spigot server against IP forwarding exploits, block unknown BungeeCord and Velocity proxies and even 
 create a Honeypot if you want.
 
-## Use a firewall!
-A firewall is 100 times better than this, so use it whenever you can. Only use this as a second option in case of an 
-accidental firewall misconfiguration or to create a Honeypot. Some people may not be able to access or configure 
-their firewall system, so plugins like this are probably the best option for them.
+## Use a firewall if you can!
+A firewall is 100 times better than this, so try to use Sentey as a second option in case of an accidental firewall 
+misconfiguration or to create a honeypot. Some people may not be able to access or configure their firewall system, 
+so plugins like this are probably the best option for them.
 
 ## How it works
 When proxies such as BungeeCord or Velocity have the IP forwarding option enabled, they need to send the IP address of 
@@ -143,7 +143,7 @@ public class MyPingAction implements PingAction {
     @Override
     public void handle(InetAddress address) {
         // For example, print the address to the console
-        // Please use JavaPlugin#getLogger() on an actual implementation :)
+        // Please use JavaPlugin#getLogger() on an actual implementation
         Bukkit.getLogger().info("Ping from " + address.getHostAddress());
     }
 }
@@ -266,7 +266,7 @@ public class MyLoginAction implements LoginAction {
     @Override
     public void handle(LoginContext context, String detection) {
         // For example, print the address to the console. 
-        // Please use JavaPlugin#getLogger() on an actual implementation :)
+        // Please use JavaPlugin#getLogger() on an actual implementation
         Bukkit.getLogger().info("----- My custom login action! -----")
         Bukkit.getLogger().info("Unauthorized login attempt detected by filter " + detection);
         Bukkit.getLogger().info("Spoofed address: " + context.isValidSpoofedAddress() ? context.getSpoofedAddress().getHostAddress() : "null");
