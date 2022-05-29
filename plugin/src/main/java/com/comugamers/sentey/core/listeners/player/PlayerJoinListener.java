@@ -2,12 +2,11 @@ package com.comugamers.sentey.core.listeners.player;
 
 import com.comugamers.sentey.common.file.YamlFile;
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-
-import javax.inject.Named;
 
 public class PlayerJoinListener implements Listener {
 
