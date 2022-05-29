@@ -86,8 +86,8 @@
                     <beautify>false</beautify>
                     <path>dependencies.json</path>
                     <excludes>
-                        <exclude>org.spigotmc:spigot:version</exclude>
-                        <exclude>com.github.Azim.libby:libby-bukkit:1.8.8-R0.1-SNAPSHOT</exclude>
+                        <exclude>org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT</exclude>
+                        <exclude>com.github.Pabszito.libby:libby-bukkit:adc7d63</exclude>
                         <exclude>com.comugamers.sentey:common:${project.parent.version}</exclude>
                         <exclude>org.bstats:bstats-bukkit:3.0.0</exclude>
                     </excludes>
@@ -153,9 +153,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.Azim.libby</groupId>
+            <groupId>com.github.Pabszito.libby</groupId>
             <artifactId>libby-bukkit</artifactId>
-            <version>8107184</version> <!-- Had to specify the short commit hash for it to download -->
+            <version>adc7d63</version> <!-- Had to specify the short commit hash for it to download -->
             <scope>compile</scope>
         </dependency>
     </dependencies>
