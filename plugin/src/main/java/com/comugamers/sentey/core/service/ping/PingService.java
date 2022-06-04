@@ -30,6 +30,7 @@ public class PingService implements Service {
                     colorize("&a-> &fRegistering internal ping filter &a" + filter.getClass().getSimpleName())
             );
 
+            // And add it to the list of ping filters
             plugin.addPingFilter(filter);
         });
 
@@ -40,7 +41,7 @@ public class PingService implements Service {
                     colorize("&a-> &fRegistering internal ping action &a" + action.getClass().getSimpleName())
             );
 
-            // Add it to the list of login actions
+            // And add it to the list of login actions
             plugin.addPingAction(action);
         });
     }

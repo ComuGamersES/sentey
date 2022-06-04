@@ -89,7 +89,8 @@ public class Sentey extends JavaPlugin {
         if(service == null) {
             // If not, log an error
             this.getLogger().severe(
-                    "Sentey was not properly initialized. Did an error occur while downloading dependencies?"
+                    "Sentey was not properly initialized. Did an error occur while downloading dependencies? " +
+                            "(version: " + this.getDescription().getVersion() + ")"
             );
         } else {
             // Stop the main service
