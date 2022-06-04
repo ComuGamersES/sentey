@@ -117,12 +117,6 @@ public class SenteyCommand implements CommandExecutor {
                 sender.sendMessage(messages.getString("messages.command.config-reloaded"));
                 return true;
             }
-            default:
-            case "help": {
-                // Send the help message
-                sender.sendMessage(messages.getString("messages.command.help"));
-                return true;
-            }
             case "trusted-proxies": {
                 if(args.length < 2) {
                     sender.sendMessage(messages.getString("messages.command.trusted-proxies.usage"));
@@ -131,13 +125,6 @@ public class SenteyCommand implements CommandExecutor {
 
                 String action = args[1].toLowerCase();
                 switch(action) {
-                    default: {
-                        // Send the usage message
-                        sender.sendMessage(messages.getString("messages.command.trusted-proxies.usage"));
-
-                        // And return
-                        return true;
-                    }
                     case "add": {
                         // Check if enough arguments were provided
                         if(args.length < 3) {
@@ -293,7 +280,20 @@ public class SenteyCommand implements CommandExecutor {
                         // And return
                         return true;
                     }
+                    default: {
+                        // Send the usage message
+                        sender.sendMessage(messages.getString("messages.command.trusted-proxies.usage"));
+
+                        // And return
+                        return true;
+                    }
                 }
+            }
+            case "help":
+            default: {
+                // Send the help message
+                sender.sendMessage(messages.getString("messages.command.help"));
+                return true;
             }
         }
     }
