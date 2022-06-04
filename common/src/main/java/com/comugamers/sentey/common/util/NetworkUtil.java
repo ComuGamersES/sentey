@@ -36,9 +36,9 @@ public class NetworkUtil {
 
     /**
      * Checks if a {@link String} is a valid IPv4 address.
-     * This is deprecated - please use {@link InetAddresses#isInetAddress(String)} instead.
+     * @deprecated Please use Guava's {@link InetAddresses#isInetAddress(String)} instead.
      * @param ip The IP address to check as a {@link String}
-     * @return true if the address valid.
+     * @return True if the {@link String} is a valid IPv4 address.
      */
     @Deprecated
     public static boolean isValidIPv4(String ip) {
