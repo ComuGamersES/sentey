@@ -1,4 +1,4 @@
-# Sentey
+# Sentey [![GitHub Actions](https://github.com/ComuGamersES/sentey/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/ComuGamersES/sentey/actions/workflows/maven.yml) [![CodeFactor](https://www.codefactor.io/repository/github/comugamerses/sentey/badge/master)](https://www.codefactor.io/repository/github/comugamerses/sentey/overview/master)
 Protect your Spigot server against IP forwarding exploits, block unknown BungeeCord and Velocity proxies and even 
 create a Honeypot if you want.
 
