@@ -2,7 +2,6 @@ package com.comugamers.sentey.guice;
 
 import com.comugamers.sentey.util.file.YamlFile;
 import com.comugamers.sentey.Sentey;
-import com.comugamers.sentey.core.guice.submodules.*;
 import com.comugamers.sentey.guice.submodules.*;
 import com.google.inject.AbstractModule;
 import org.bukkit.plugin.Plugin;
