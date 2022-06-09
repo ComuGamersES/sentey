@@ -1,9 +1,7 @@
 package com.comugamers.sentey.guice.submodules;
 
 import com.comugamers.sentey.login.action.LoginAction;
-import com.comugamers.sentey.core.login.action.internal.*;
 import com.comugamers.sentey.login.filter.LoginFilter;
-import com.comugamers.sentey.core.login.filter.internal.*;
 import com.comugamers.sentey.login.action.internal.*;
 import com.comugamers.sentey.login.filter.internal.*;
 import com.google.inject.AbstractModule;
