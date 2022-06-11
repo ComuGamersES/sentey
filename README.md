@@ -7,6 +7,40 @@ A firewall is 100 times better than this, so try to use Sentey as a second optio
 misconfiguration or to create a honeypot. Some people may not be able to access or configure their firewall system, 
 so plugins like this are probably the best option for them.
 
+## Downloading
+You may download the latest release from [GitHub](https://github.com/ComuGamersES/sentey/releases). Additionally, you
+can also download the latest build from our [Jenkins CI](https://ci.pabszito.ml/job/sentey).
+
+## Installation
+Installing Sentey should be as simple as any other plugin, however, it has some requirements:
+- Java 8 or later.
+- Spigot or a fork of it, such as Paper. CraftBukkit is unsupported.
+- IP forwarding should be enabled. It is the `bungeecord` option on the `spigot.yml` file.
+- The machine running the server should have an Internet connection. This is only required on the first run though, and
+it is used to download required dependencies.
+
+If for whatever reason Sentey tells you that you aren't running a Spigot-based server while being on one, you can always
+skip this check on the `plugins/sentey/config.yml` file:
+```yaml
+config:
+  # Whether to enable the plugin even if the server is NOT running
+  # Spigot. This is not recommended at all, refrain from enabling it.
+  ignore-spigot-check: false
+```
+
+The same thing applies for the IP forwarding check:
+```yaml
+config:
+  # Whether to enable the plugin even if the 'bungeecord' option is
+  # disabled on the Spigot configuration files. Not recommended.
+  ignore-bungeecord-check: false
+```
+
+⚠️ When running on Java 16 or later, you will need to add the following arguments to your JVM for the plugin to start:
+```
+--add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.util.zip=ALL-UNNAMED
+```
+
 ## How it works
 When proxies such as BungeeCord or Velocity have the IP forwarding option enabled, they need to send the IP address of 
 the player to Spigot servers through the [handshake packet](https://wiki.vg/Protocol#Handshake). If they don't, the IP 
@@ -18,19 +52,21 @@ IP address) since Spigot does *not* care if the IP address is valid. Seriously, 
 
 ![EssentialsX](https://i.imgur.com/rutkmoA.png)
 
-The way this plugin works is by sending the player's spoofed IP address through a variety of filters such as:
+The way this plugin works is by sending the player's spoofed and handshake IP address through a variety of built-in 
+filters such as:
 
 - Checking if the IP address is not null or empty
 - Checking if the IP address is malformed
-- Checking if the spoofed address is a local, loopback or site local address.
+- Checking if the spoofed address is a local, loopback or site local address. (disabled by default)
 
 You can find more information on how the [handshake packet](https://wiki.vg/Protocol#Handshake) is abused on 
 [this writeup](https://github.com/wodxgod/Griefing-Methods/blob/master/Exploitation/UUID%20Spoofing.md) made by 
 [wodxgod](https://github.com/wodxgod).
 
 The plugin also offers an option for filtering the handshake IP address - which is essentially the IP address of the 
-proxy. By default, it is on set up mode to prevent blocking all connections to the server. Administrators may configure 
-this filter by using the `/sentey trusted-proxies` command.
+proxy on a BungeeCord or Velocity setup. By default, it is on set up mode to prevent blocking all connections to the 
+server. Administrators may configure this filter by using the `/sentey trusted-proxies` command. If you have ever used 
+IPWhitelist before, it is pretty similar.
 
 ## Detecting port scans
 The plugin also offers a way of detecting server list pings which may be caused by external programs such as 
