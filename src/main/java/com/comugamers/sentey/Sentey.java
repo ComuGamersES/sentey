@@ -64,8 +64,7 @@ public class Sentey extends JavaPlugin {
         this.pingFilters = new ArrayList<>();
 
         // Start the dependency service which will download all required dependencies by the plugin
-        Service dependencyService = new DependencyService(this);
-        dependencyService.start();
+        new DependencyService(this).start();
     }
 
     @Override
