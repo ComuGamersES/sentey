@@ -37,7 +37,7 @@ public class AbuseReportPingAction implements PingAction {
         }
 
         // Get the comment
-        String comment = PlaceholderUtil.applyPlaceholdersFromPingContext(
+        String comment = PlaceholderUtil.applyPlaceholdersFromPingAddress(
                 config.getString("config.server-list-ping.actions.abuseipdb.comment"), address
         );
 

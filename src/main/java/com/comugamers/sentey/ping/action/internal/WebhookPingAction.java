@@ -32,7 +32,7 @@ public class WebhookPingAction implements PingAction {
                 webhook.setTTS(
                         config.getBoolean("config.server-list-ping.actions.webhook.tts", false)
                 ).setContent(
-                        PlaceholderUtil.applyPlaceholdersFromPingContext(
+                        PlaceholderUtil.applyPlaceholdersFromPingAddress(
                                 config.getString("config.server-list-ping.actions.webhook.message"), address
                         )
                 ).execute();
