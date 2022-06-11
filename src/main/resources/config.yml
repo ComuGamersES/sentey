@@ -32,10 +32,10 @@ config:
     # See: https://docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html#isAnyLocalAddress--)
     block-local-addresses:
       # Whether to enable the check or not
-      enabled: true
+      enabled: false
 
       # Whether to check for the proxy IP address or not
-      check-handshake: true
+      check-handshake: false
 
       # Whether to check the 'spoofed' address or not
       check-spoofed-address: true
@@ -44,10 +44,10 @@ config:
     # See: https://docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html#isSiteLocalAddress--)
     block-site-local-addresses:
       # Whether to enable the check or not
-      enabled: true
+      enabled: false
 
       # Whether to check for the proxy IP address or not
-      check-handshake: true
+      check-handshake: false
 
       # Whether to check the 'spoofed' address or not
       check-spoofed-address: true
@@ -56,10 +56,10 @@ config:
     # See: https://docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html#isLoopbackAddress--)
     block-loopback-addresses:
       # Whether to enable the check or not
-      enabled: true
+      enabled: false
 
       # Whether to check for the proxy IP address or not
-      check-handshake: true
+      check-handshake: false
 
       # Whether to check the 'spoofed' address or not
       check-spoofed-address: true
