@@ -47,7 +47,10 @@ public class AbuseReportPingAction implements PingAction {
         // Check if the abuse report result is "RATE_LIMIT_EXCEEDED"
         if(result == AbuseReportResult.RATE_LIMIT_EXCEEDED) {
             // If so, warn the server admin
-            plugin.getLogger().warning("AbuseIPDB daily rate limit exceeded. Please consider upgrading your API key.");
+            plugin.getLogger().warning(
+                    "AbuseIPDB daily rate limit exceeded. Please consider upgrading your API key to " +
+                            "continue reporting."
+            );
         }
     }
 }
