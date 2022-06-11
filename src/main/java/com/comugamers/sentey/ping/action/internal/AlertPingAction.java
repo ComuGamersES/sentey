@@ -24,7 +24,7 @@ public class AlertPingAction implements PingAction {
             plugin.getServer().getOnlinePlayers().forEach(target -> {
                 if(target.hasPermission("sentey.alerts")) {
                     target.sendMessage(
-                            PlaceholderUtil.applyPlaceholdersFromPingContext(
+                            PlaceholderUtil.applyPlaceholdersFromPingAddress(
                                     config.getString("config.server-list-ping.actions.alerts.message"), address
                             )
                     );

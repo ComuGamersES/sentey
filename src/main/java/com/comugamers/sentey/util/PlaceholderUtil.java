@@ -19,7 +19,7 @@ public class PlaceholderUtil {
                 .replace("%serverPort%", String.valueOf(Bukkit.getPort()));
     }
 
-    public static String applyPlaceholdersFromPingContext(String string, InetAddress address) {
+    public static String applyPlaceholdersFromPingAddress(String string, InetAddress address) {
         return string.replace("%address%", address.getHostAddress())
                 .replace("%serverAddress%", getIPv4() + ":" + Bukkit.getPort())
                 .replace("%serverPort%", String.valueOf(Bukkit.getPort()));
