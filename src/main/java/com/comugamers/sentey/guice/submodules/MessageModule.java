@@ -18,6 +18,6 @@ public class MessageModule extends AbstractModule {
     protected void configure() {
         this.bind(YamlFile.class)
                 .annotatedWith(named("messages"))
-                .toInstance(new YamlFile(plugin, "src/main/resources/messages.yml"));
+                .toInstance(new YamlFile(plugin, "messages.yml"));
     }
 }

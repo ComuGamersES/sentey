@@ -21,7 +21,7 @@ public class SenteyModule extends AbstractModule {
         this.bind(Plugin.class).toInstance(plugin);
 
         // Create a new YamlFile instance for the config.yml file
-        YamlFile config = new YamlFile(plugin, "src/main/resources/config.yml");
+        YamlFile config = new YamlFile(plugin, "config.yml");
 
         // Bind it
         this.bind(YamlFile.class).toInstance(config);
