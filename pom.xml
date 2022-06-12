@@ -12,7 +12,7 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <revision>2022.0612.1</revision>
+        <revision>2022.0612.2</revision>
     </properties>
 
     <repositories>
@@ -48,6 +48,7 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
                             <relocations>
                                 <relocation>
                                     <pattern>net.byteflux.libby</pattern>
@@ -100,7 +101,7 @@
         </plugins>
         <resources>
             <resource>
-                <directory>./src/main/resources</directory>
+                <directory>src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>
