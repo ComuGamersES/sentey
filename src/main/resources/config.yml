@@ -5,6 +5,15 @@ config:
   # want to keep this enabled. Thanks for using Sentey! :)
   bstats: true
 
+  # Whether to check for plugin updates or not.
+  updates:
+    # If enabled, this will run an update check on plugin startup.
+    plugin-startup: true
+
+    # If enabled, this will register an asynchronous repeating task
+    # that will check for updates every 15 minutes.
+    repeating-task: true
+
   # Whether to enable the plugin even if the 'bungeecord' option is
   # disabled on the Spigot configuration files. Not recommended.
   ignore-bungeecord-check: false

@@ -6,14 +6,13 @@
 
     <groupId>com.comugamers</groupId>
     <artifactId>sentey</artifactId>
-    <version>${buildNumber}.0</version>
+    <version>${revision}</version>
     <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <maven.build.timestamp.format>yyyy.MMdd</maven.build.timestamp.format>
-        <buildNumber>${maven.build.timestamp}</buildNumber>
+        <revision>2022.0612.1</revision>
     </properties>
 
     <repositories>

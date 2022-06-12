@@ -6,6 +6,7 @@ import com.comugamers.sentey.service.command.CommandService;
 import com.comugamers.sentey.service.listener.ListenerService;
 import com.comugamers.sentey.service.login.LoginService;
 import com.comugamers.sentey.service.ping.PingService;
+import com.comugamers.sentey.service.update.UpdateCheckerService;
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
 
@@ -42,6 +43,11 @@ public class ServiceModule extends AbstractModule {
         this.bind(Service.class)
                 .annotatedWith(named("login"))
                 .to(LoginService.class)
+                .in(Scopes.SINGLETON);
+
+        this.bind(Service.class)
+                .annotatedWith(named("updateChecker"))
+                .to(UpdateCheckerService.class)
                 .in(Scopes.SINGLETON);
     }
 }
