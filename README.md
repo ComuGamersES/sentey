@@ -1,11 +1,11 @@
-# Sentey [![GitHub Actions](https://github.com/ComuGamersES/sentey/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/ComuGamersES/sentey/actions/workflows/maven.yml) [![CodeFactor](https://www.codefactor.io/repository/github/comugamerses/sentey/badge/master)](https://www.codefactor.io/repository/github/comugamerses/sentey/overview/master)
-Protect your Spigot server against IP forwarding exploits, block unknown BungeeCord and Velocity proxies and even 
-create a Honeypot if you want.
+# Sentey [![GitHub Actions](https://github.com/ComuGamersES/sentey/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/ComuGamersES/sentey/actions/workflows/maven.yml) ![Jenkins CI](https://ci.pabszito.ml/job/sentey/badge/icon?subject=Jenkins%20CI) [![CodeFactor](https://www.codefactor.io/repository/github/comugamerses/sentey/badge/master)](https://www.codefactor.io/repository/github/comugamerses/sentey/overview/master)
+Protect your Spigot server by blocking unknown BungeeCord and Velocity proxies, checking for malformed or invalid IP 
+forwarding addresses and automatically report the source.
 
-## Use a firewall if you can!
-A firewall is 100 times better than this, so try to use Sentey as a second option in case of an accidental firewall 
-misconfiguration or to create a honeypot. Some people may not be able to access or configure their firewall system, 
-so plugins like this are probably the best option for them.
+## Firewall
+If you can use a firewall, use it. Try to use Sentey only as a second option in case of an accidental firewall 
+misconfiguration or in case you can't access your firewall system. You may also use it to catch port-scans and 
+automatically report the source using the [AbuseIPDB](https://abuseipdb.com) integration.
 
 ## Downloading
 You may download the latest release from [GitHub](https://github.com/ComuGamersES/sentey/releases). Additionally, you
@@ -36,7 +36,7 @@ config:
   ignore-bungeecord-check: false
 ```
 
-⚠️ When running on Java 16 or later, you will need to add the following arguments to your JVM for the plugin to start:
+When running on Java 16 or later, you will need to add the following arguments to your JVM for the plugin to start:
 ```
 --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.util.zip=ALL-UNNAMED
 ```
