@@ -62,6 +62,7 @@ public class MainService implements Service {
 
                 // Log that the plugin startup process finished with a fatal error.
                 cancelStartup();
+                return;
             }
         } else {
             // Log that the server software check is ignored.
@@ -85,6 +86,7 @@ public class MainService implements Service {
 
                 // Log that the plugin startup process finished with a fatal error.
                 cancelStartup();
+                return;
             }
         } else {
             // Log that the BungeeCord option check is ignored.
