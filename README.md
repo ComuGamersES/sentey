@@ -13,7 +13,7 @@ can also download the latest build from our [Jenkins CI](https://ci.pabszito.ml/
 
 ## Installation
 Installing Sentey should be as simple as any other plugin, however, it has some requirements:
-- Java 8 or later.
+- Java 8 or later is required.
 - Spigot or a fork of it, such as Paper. CraftBukkit is unsupported.
 - IP forwarding should be enabled. It is the `bungeecord` option on the `spigot.yml` file.
 - The machine running the server should have an Internet connection. This is only required on the first run though, and
