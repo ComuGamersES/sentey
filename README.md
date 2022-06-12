@@ -12,7 +12,8 @@ You may download the latest release from [GitHub](https://github.com/ComuGamersE
 can also download the latest build from our [Jenkins CI](https://ci.pabszito.ml/job/sentey).
 
 ## Installation
-Installing Sentey should be as simple as any other plugin, however, it has some requirements:
+Installing Sentey should be as simple as any other plugin (just drop the plugin to the `plugins` folder of your server),
+however, it has some requirements:
 - Java 8 or later is required.
 - Spigot or a fork of it, such as Paper. CraftBukkit is unsupported.
 - IP forwarding should be enabled. It is the `bungeecord` option on the `spigot.yml` file.
