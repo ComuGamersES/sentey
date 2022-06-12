@@ -31,6 +31,9 @@ public class MainService implements Service {
     @Inject @Named("ping")
     private Service pingService;
 
+    @Inject @Named("updateChecker")
+    private Service updateCheckerService;
+
     @Override
     public void start() {
         // Get the ConsoleCommandSender
@@ -95,7 +98,8 @@ public class MainService implements Service {
                 loginService,
                 pingService,
                 listenerService,
-                commandService
+                commandService,
+                updateCheckerService
         );
 
         // Send a message to the console saying that the startup process is finished

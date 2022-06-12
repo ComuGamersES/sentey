@@ -46,5 +46,8 @@ public class SenteyModule extends AbstractModule {
 
         // Install the listener module
         this.install(new ListenerModule());
+
+        // Install the update checker module
+        this.install(new UpdateCheckerModule());
     }
 }
