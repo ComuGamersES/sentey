@@ -56,7 +56,8 @@ public class MainService implements Service {
                         .getConsoleSender()
                         .sendMessage(
                                 colorize(
-                                        "&4-> &fYour current server software is unsupported. Please use Spigot or a fork."
+                                        "&4-> &fYour current server software is unsupported. Please use Spigot " +
+                                                "or a fork of it."
                                 )
                         );
 
@@ -80,7 +81,8 @@ public class MainService implements Service {
                         .getConsoleSender()
                         .sendMessage(
                                 colorize(
-                                        "&4-> &fYour current server has the 'bungeecord' option disabled. Enable it on 'spigot.yml' file to use Sentey."
+                                        "&4-> &fYour current server has the 'bungeecord' option disabled. " +
+                                                "Enable it on 'spigot.yml' file to use Sentey."
                                 )
                         );
 
