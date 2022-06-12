@@ -37,7 +37,7 @@ config:
   ignore-bungeecord-check: false
 ```
 
-When running on Java 16 or later, you will need to add the following arguments to your JVM for the plugin to start:
+When running under Java 16 or later, you will need to add the following arguments to your JVM for the plugin to start:
 ```
 --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.util.zip=ALL-UNNAMED
 ```
