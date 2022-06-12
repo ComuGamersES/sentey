@@ -1,6 +1,6 @@
 # Sentey [![GitHub Actions](https://github.com/ComuGamersES/sentey/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/ComuGamersES/sentey/actions/workflows/maven.yml) ![Jenkins CI](https://ci.pabszito.ml/job/sentey/badge/icon?subject=Jenkins%20CI) [![CodeFactor](https://www.codefactor.io/repository/github/comugamerses/sentey/badge/master)](https://www.codefactor.io/repository/github/comugamerses/sentey/overview/master)
-Protect your Spigot server by blocking unknown BungeeCord and Velocity proxies, checking for malformed or invalid IP 
-forwarding addresses and automatically report the source.
+Protect your Spigot server by blocking unknown BungeeCord and Velocity proxies and checking for invalid IP forwarding 
+addresses.
 
 ## Firewall
 If you can use a firewall, use it. Try to use Sentey only as a second option in case of an accidental firewall 
