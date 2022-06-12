@@ -8,10 +8,11 @@ can also download the latest build from our [Jenkins CI](https://ci.pabszito.ml/
 install the plugin can be seen at the [wiki](https://github.com/ComuGamersES/sentey/wiki).
 
 ## Building from source
-Building from source requires:
+To build from source, you'll need:
+- Git
 - Java 8 or later
 - Apache Maven
-- An internet connection
+- An Internet connection
 
 To get started, clone the repository:
 ```shell
