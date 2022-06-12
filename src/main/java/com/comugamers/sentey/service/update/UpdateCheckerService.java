@@ -43,8 +43,8 @@ public class UpdateCheckerService implements Service {
 
         // Check if checking for updates on plugin startup is enabled
         if(config.getBoolean("config.updates.plugin-startup", true)) {
-            // Request a check on plugin startup
-            requestCheck();
+            // Request a check on plugin startup after a while
+            plugin.getServer().getScheduler().runTaskLaterAsynchronously(plugin, this::requestCheck, 80L);
             return;
         }
 
