@@ -23,7 +23,7 @@ config:
       enabled: false
 
       # The API key used for this integration - get one for free at https://www.abuseipdb.com/account/api
-      # Please note that the login actions and ping actions are able to use different API keys.
+      # Please note that the login actions and ping actions aren't able to use different API keys.
       key: ""
 
   # Login listener related settings. This can't be disabled entirely since it is the main function of the plugin.
@@ -176,48 +176,3 @@ config:
 
         # The comment sent with the report if the AbuseIPDB integration is enabled on the integrations section.
         comment: "Possible port scan on port %serverPort%/tcp"
-
-  # This is still an early work-in-progress.
-  # Recommended if you have more than 2 or 3 servers and want to sync alerts, messages and commands.
-  sync:
-    # The service to use for syncing.
-    # This can be one of the following: NONE, REDIS, RABBITMQ, NATS
-    service: NONE
-
-    credentials:
-      # If you're using Redis as the sync service, put the credentials here.
-      redis:
-        # The hostname of the Redis server
-        host: localhost
-
-        # The port of the Redis server
-        port: 6379
-
-        # And the password of the Redis server
-        password: ""
-
-      # If you're using RabbitMQ as the sync service, put the credentials here.
-      rabbit-mq:
-        # The hostname of the RabbitMQ server
-        host: "localhost"
-
-        # The port of the RabbitMQ server
-        port: 5672
-
-        # The username of the RabbitMQ server
-        username: "guest"
-
-        # The password of the RabbitMQ server
-        password: "guest"
-
-        # And the virtual host of the RabbitMQ server
-        vhost: "/"
-
-      # If you're using NATS as the sync service, put the credentials here.
-      nats:
-        # The NATS server URI
-        uri: "nats://localhost:4222"
-
-        auth:
-          # And the NATS credentials file
-          file: "nats/credentials"
