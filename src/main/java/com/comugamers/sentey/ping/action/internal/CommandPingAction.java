@@ -20,17 +20,20 @@ public class CommandPingAction implements PingAction {
     public void handle(InetAddress address) {
         // Check if we should run commands
         if(config.getBoolean("config.server-list-ping.actions.commands.enabled")) {
-            // If so, loop through the list of commands
-            config.getStringList("config.login.actions.commands.list").forEach(
-                    // And dispatch each one of them
-                    command ->
-                            plugin.getServer().dispatchCommand(
-                                    plugin.getServer().getConsoleSender(),
-                                    PlaceholderUtil.applyPlaceholdersFromPingAddress(
-                                            command, address
-                                    )
-                            )
-            );
+            // If so, don't do this async
+            plugin.getServer().getScheduler().runTask(plugin, () -> {
+                // Loop through the list of commands
+                config.getStringList("config.login.actions.commands.list").forEach(
+                        // And dispatch each one of them
+                        command ->
+                                plugin.getServer().dispatchCommand(
+                                        plugin.getServer().getConsoleSender(),
+                                        PlaceholderUtil.applyPlaceholdersFromPingAddress(
+                                                command, address
+                                        )
+                                )
+                );
+            });
         }
     }
 }
