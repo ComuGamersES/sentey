@@ -6,7 +6,6 @@ import com.comugamers.sentey.login.action.LoginAction;
 import com.comugamers.sentey.inject.SenteyModule;
 import com.comugamers.sentey.ping.action.PingAction;
 import com.comugamers.sentey.ping.filter.PingFilter;
-import org.apache.commons.lang.SystemUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 import team.unnamed.inject.Injector;
 
