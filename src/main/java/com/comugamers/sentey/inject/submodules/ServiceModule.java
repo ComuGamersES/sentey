@@ -1,4 +1,4 @@
-package com.comugamers.sentey.guice.submodules;
+package com.comugamers.sentey.inject.submodules;
 
 import com.comugamers.sentey.service.Service;
 import com.comugamers.sentey.service.main.MainService;
@@ -7,10 +7,7 @@ import com.comugamers.sentey.service.listener.ListenerService;
 import com.comugamers.sentey.service.login.LoginService;
 import com.comugamers.sentey.service.ping.PingService;
 import com.comugamers.sentey.service.update.UpdateCheckerService;
-import com.google.inject.AbstractModule;
-import com.google.inject.Scopes;
-
-import static com.google.inject.name.Names.named;
+import team.unnamed.inject.AbstractModule;
 
 public class ServiceModule extends AbstractModule {
 
@@ -19,35 +16,35 @@ public class ServiceModule extends AbstractModule {
         // Bind the main service
         this.bind(Service.class)
                 .to(MainService.class)
-                .in(Scopes.SINGLETON);
+                .singleton();
 
         // Bind the listener service
         this.bind(Service.class)
-                .annotatedWith(named("listener"))
+                .named("listener")
                 .to(ListenerService.class)
-                .in(Scopes.SINGLETON);
+                .singleton();
 
         // Bind the command service
         this.bind(Service.class)
-                .annotatedWith(named("command"))
+                .named("command")
                 .to(CommandService.class)
-                .in(Scopes.SINGLETON);
+                .singleton();
 
         // Bind the ping service
         this.bind(Service.class)
-                .annotatedWith(named("ping"))
+                .named("ping")
                 .to(PingService.class)
-                .in(Scopes.SINGLETON);
+                .singleton();
 
         // Bind the login service
         this.bind(Service.class)
-                .annotatedWith(named("login"))
+                .named("login")
                 .to(LoginService.class)
-                .in(Scopes.SINGLETON);
+                .singleton();
 
         this.bind(Service.class)
-                .annotatedWith(named("updateChecker"))
+                .named("updateChecker")
                 .to(UpdateCheckerService.class)
-                .in(Scopes.SINGLETON);
+                .singleton();
     }
 }

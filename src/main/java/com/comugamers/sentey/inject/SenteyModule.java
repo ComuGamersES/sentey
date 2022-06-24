@@ -1,10 +1,9 @@
-package com.comugamers.sentey.guice;
+package com.comugamers.sentey.inject;
 
 import com.comugamers.sentey.util.file.YamlFile;
 import com.comugamers.sentey.Sentey;
-import com.comugamers.sentey.guice.submodules.*;
-import com.google.inject.AbstractModule;
-import org.bukkit.plugin.Plugin;
+import com.comugamers.sentey.inject.submodules.*;
+import team.unnamed.inject.AbstractModule;
 
 public class SenteyModule extends AbstractModule {
 
@@ -18,7 +17,6 @@ public class SenteyModule extends AbstractModule {
     protected void configure() {
         // Bind the plugin so it can be injected
         this.bind(Sentey.class).toInstance(plugin);
-        this.bind(Plugin.class).toInstance(plugin);
 
         // Create a new YamlFile instance for the config.yml file
         YamlFile config = new YamlFile(plugin, "config.yml");

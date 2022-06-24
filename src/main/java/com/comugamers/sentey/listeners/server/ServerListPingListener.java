@@ -4,11 +4,11 @@ import com.comugamers.sentey.Sentey;
 import com.comugamers.sentey.util.file.YamlFile;
 import com.comugamers.sentey.ping.action.PingAction;
 import com.comugamers.sentey.ping.filter.PingFilter;
-import com.google.inject.Inject;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.ServerListPingEvent;
 
+import javax.inject.Inject;
 import java.net.InetAddress;
 
 public class ServerListPingListener implements Listener {

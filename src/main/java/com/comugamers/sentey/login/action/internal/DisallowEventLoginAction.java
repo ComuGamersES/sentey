@@ -4,8 +4,9 @@ import com.comugamers.sentey.util.file.YamlFile;
 import com.comugamers.sentey.login.action.LoginAction;
 import com.comugamers.sentey.login.structure.LoginContext;
 import com.comugamers.sentey.util.PlaceholderUtil;
-import com.google.inject.Inject;
 import org.bukkit.event.player.PlayerLoginEvent;
+
+import javax.inject.Inject;
 
 public class DisallowEventLoginAction implements LoginAction {
 

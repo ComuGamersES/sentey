@@ -3,7 +3,8 @@ package com.comugamers.sentey.service.command;
 import com.comugamers.sentey.service.Service;
 import com.comugamers.sentey.Sentey;
 import com.comugamers.sentey.command.SenteyCommand;
-import com.google.inject.Inject;
+
+import javax.inject.Inject;
 
 public class CommandService implements Service {
 

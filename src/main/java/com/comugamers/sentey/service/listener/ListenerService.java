@@ -2,10 +2,10 @@ package com.comugamers.sentey.service.listener;
 
 import com.comugamers.sentey.service.Service;
 import com.comugamers.sentey.Sentey;
-import com.google.inject.Inject;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 
+import javax.inject.Inject;
 import java.util.Set;
 
 import static com.comugamers.sentey.util.TextUtil.colorize;

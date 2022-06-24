@@ -3,10 +3,11 @@ package com.comugamers.sentey.service.main;
 import com.comugamers.sentey.util.file.YamlFile;
 import com.comugamers.sentey.Sentey;
 import com.comugamers.sentey.service.Service;
-import com.google.inject.Inject;
-import com.google.inject.name.Named;
 import org.bukkit.command.CommandSender;
 import org.spigotmc.SpigotConfig;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import static com.comugamers.sentey.util.TextUtil.colorize;
 import static com.comugamers.sentey.util.VersionUtil.isSpigot;

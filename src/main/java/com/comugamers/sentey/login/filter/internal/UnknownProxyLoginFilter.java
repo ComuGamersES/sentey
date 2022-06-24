@@ -3,8 +3,8 @@ package com.comugamers.sentey.login.filter.internal;
 import com.comugamers.sentey.util.file.YamlFile;
 import com.comugamers.sentey.login.structure.LoginContext;
 import com.comugamers.sentey.login.filter.LoginFilter;
-import com.google.inject.Inject;
 
+import javax.inject.Inject;
 import java.util.List;
 
 public class UnknownProxyLoginFilter implements LoginFilter {

@@ -1,12 +1,10 @@
-package com.comugamers.sentey.guice.submodules;
+package com.comugamers.sentey.inject.submodules;
 
 import com.comugamers.sentey.util.file.YamlFile;
 import com.comugamers.sentey.report.AbuseDatabase;
 import com.comugamers.sentey.report.abuseipdb.AbuseIPDB;
 import com.comugamers.sentey.Sentey;
-import com.google.inject.AbstractModule;
-
-import static com.google.inject.name.Names.named;
+import team.unnamed.inject.AbstractModule;
 
 public class AbuseDatabaseModule extends AbstractModule {
 
@@ -22,7 +20,7 @@ public class AbuseDatabaseModule extends AbstractModule {
     protected void configure() {
         // Bind the AbuseDatabase instance based on the AbuseIPDB's implementation
         this.bind(AbuseDatabase.class)
-                .annotatedWith(named("abuseipdb"))
+                .named("abuseipdb")
                 .toInstance(
                         new AbuseIPDB(
                                 plugin, config.getString("config.integrations.abuseipdb.key")

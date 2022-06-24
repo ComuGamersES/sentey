@@ -4,8 +4,8 @@ import com.comugamers.sentey.service.Service;
 import com.comugamers.sentey.Sentey;
 import com.comugamers.sentey.ping.action.PingAction;
 import com.comugamers.sentey.ping.filter.PingFilter;
-import com.google.inject.Inject;
 
+import javax.inject.Inject;
 import java.util.Set;
 
 import static com.comugamers.sentey.util.TextUtil.colorize;

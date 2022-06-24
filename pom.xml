@@ -6,13 +6,12 @@
 
     <groupId>com.comugamers</groupId>
     <artifactId>sentey</artifactId>
-    <version>${revision}</version>
+    <version>2022.0623.0</version>
     <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <revision>2022.0612.2</revision>
     </properties>
 
     <repositories>
@@ -23,6 +22,10 @@
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
+        </repository>
+        <repository>
+            <id>unnamed-public</id>
+            <url>https://repo.unnamed.team/repository/unnamed-public/</url>
         </repository>
     </repositories>
 
@@ -51,12 +54,12 @@
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                             <relocations>
                                 <relocation>
-                                    <pattern>net.byteflux.libby</pattern>
-                                    <shadedPattern>com.comugamers.sentey.lib.libby</shadedPattern>
-                                </relocation>
-                                <relocation>
                                     <pattern>org.bstats</pattern>
                                     <shadedPattern>com.comugamers.sentey.lib.bstats</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>team.unnamed.inject</pattern>
+                                    <shadedPattern>com.comugamers.sentey.lib.trew</shadedPattern>
                                 </relocation>
                             </relocations>
                             <filters>
@@ -73,28 +76,6 @@
                             </filters>
                             <finalName>sentey-${project.version}</finalName>
                         </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>com.github.Azim</groupId>
-                <artifactId>azimdp-maven-plugin</artifactId>
-                <version>1.0.1</version>
-                <configuration>
-                    <ignoreVersions>true</ignoreVersions>
-                    <beautify>false</beautify>
-                    <path>dependencies.json</path>
-                    <excludes>
-                        <exclude>org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT</exclude>
-                        <exclude>com.github.Pabszito.libby:libby-bukkit:adc7d63</exclude>
-                        <exclude>org.bstats:bstats-bukkit:3.0.0</exclude>
-                    </excludes>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate-dependency-list</goal>
-                        </goals>
                     </execution>
                 </executions>
             </plugin>
@@ -118,19 +99,7 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.9.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.inject</groupId>
-            <artifactId>guice</artifactId>
-            <version>4.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.inject.extensions</groupId>
-            <artifactId>guice-multibindings</artifactId>
-            <version>4.0</version>
-            <scope>provided</scope>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.bstats</groupId>
@@ -142,12 +111,12 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>4.5.13</version>
-            <scope>provided</scope>
+            <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.Pabszito.libby</groupId>
-            <artifactId>libby-bukkit</artifactId>
-            <version>adc7d63</version> <!-- Had to specify the short commit hash for it to download -->
+            <groupId>team.unnamed</groupId>
+            <artifactId>inject</artifactId>
+            <version>1.0.1</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

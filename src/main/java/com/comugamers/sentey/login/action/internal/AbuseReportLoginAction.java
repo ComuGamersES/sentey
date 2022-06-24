@@ -5,8 +5,9 @@ import com.comugamers.sentey.report.AbuseDatabase;
 import com.comugamers.sentey.login.action.LoginAction;
 import com.comugamers.sentey.login.structure.LoginContext;
 import com.comugamers.sentey.util.PlaceholderUtil;
-import com.google.inject.Inject;
-import com.google.inject.name.Named;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 public class AbuseReportLoginAction implements LoginAction {
 

@@ -4,8 +4,8 @@ import com.comugamers.sentey.service.Service;
 import com.comugamers.sentey.Sentey;
 import com.comugamers.sentey.login.action.LoginAction;
 import com.comugamers.sentey.login.filter.LoginFilter;
-import com.google.inject.Inject;
 
+import javax.inject.Inject;
 import java.util.Set;
 
 import static com.comugamers.sentey.util.TextUtil.colorize;
