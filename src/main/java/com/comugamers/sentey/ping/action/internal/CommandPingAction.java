@@ -23,7 +23,7 @@ public class CommandPingAction implements PingAction {
             // If so, don't do this async
             plugin.getServer().getScheduler().runTask(plugin, () -> {
                 // Loop through the list of commands
-                config.getStringList("config.login.actions.commands.list").forEach(
+                config.getStringList("config.server-list-ping.actions.commands.list").forEach(
                         // And dispatch each one of them
                         command ->
                                 plugin.getServer().dispatchCommand(
