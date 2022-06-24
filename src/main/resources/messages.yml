@@ -1,9 +1,5 @@
-# Message section - not much to do here
 messages:
-  # Sent when an administrator joins the server having the unknown proxy detection disabled.
   setup-mode-enabled: "&b&lSENTEY >> &fThe &aunknown proxy&f detection is currently running under setup mode. Please run &a/sentey help&f to learn how to configure it."
-
-  # Command messages
   command:
     no-permission: "&4&l>> &cYou don't have permission to use this command."
     config-reloaded: "&b&lSENTEY >> &fConfiguration files reloaded."
@@ -13,12 +9,10 @@ messages:
       &7- &f/sentey address: &7Shows the handshake & spoofed address of a player.
       &7- &f/sentey trusted-proxies: &7Configure the 'Unknown Proxy' detection.
       &7- &f/sentey reload: &7Reloads the configuration.
-
     address:
       usage: "&b&lSENTEY >> &fUsage: &a/sentey address <player>"
       must-be-online: "&b&lSENTEY >> &fThe player must be online!"
       information: "&b&lSENTEY >> &a%player% &fis connected from &a%rawAddress% &fusing the forwarded IP address &a%address%&f."
-
     trusted-proxies:
       usage: "&b&lSENTEY >> &fUsage: &a/sentey trusted-proxies <add|remove|list|toggle-setup> [<ip>]"
       add:
