@@ -1,9 +1,9 @@
-package com.comugamers.sentey.guice.submodules;
+package com.comugamers.sentey.inject.submodules;
 
 import com.comugamers.sentey.util.file.YamlFile;
 import com.comugamers.sentey.Sentey;
-import com.google.inject.AbstractModule;
 import org.bstats.bukkit.Metrics;
+import team.unnamed.inject.AbstractModule;
 
 public class MetricsModule extends AbstractModule {
 

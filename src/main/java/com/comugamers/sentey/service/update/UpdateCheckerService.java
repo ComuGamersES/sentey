@@ -4,8 +4,8 @@ import com.comugamers.sentey.Sentey;
 import com.comugamers.sentey.service.Service;
 import com.comugamers.sentey.util.UpdateChecker;
 import com.comugamers.sentey.util.file.YamlFile;
-import com.google.inject.Inject;
 
+import javax.inject.Inject;
 import java.io.IOException;
 
 import static com.comugamers.sentey.util.TextUtil.colorize;

@@ -4,7 +4,8 @@ import com.comugamers.sentey.util.file.YamlFile;
 import com.comugamers.sentey.login.structure.LoginContext;
 import com.comugamers.sentey.login.filter.LoginFilter;
 import com.google.common.net.InetAddresses;
-import com.google.inject.Inject;
+
+import javax.inject.Inject;
 
 public class MalformedAddressLoginFilter implements LoginFilter {
 

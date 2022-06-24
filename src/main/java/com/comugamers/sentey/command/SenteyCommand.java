@@ -5,13 +5,13 @@ import com.comugamers.sentey.report.AbuseDatabase;
 import com.comugamers.sentey.util.ConnectionUtil;
 import com.comugamers.sentey.Sentey;
 import com.google.common.net.InetAddresses;
-import com.google.inject.Inject;
-import com.google.inject.name.Named;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.List;
 
 import static com.comugamers.sentey.util.TextUtil.colorize;

@@ -4,10 +4,11 @@ import com.comugamers.sentey.login.filter.LoginFilter;
 import com.comugamers.sentey.login.action.LoginAction;
 import com.comugamers.sentey.login.structure.LoginContext;
 import com.comugamers.sentey.Sentey;
-import com.google.inject.Inject;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
+
+import javax.inject.Inject;
 
 public class PlayerLoginListener implements Listener {
 

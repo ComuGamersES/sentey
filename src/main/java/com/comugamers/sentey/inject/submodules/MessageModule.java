@@ -1,10 +1,8 @@
-package com.comugamers.sentey.guice.submodules;
+package com.comugamers.sentey.inject.submodules;
 
 import com.comugamers.sentey.util.file.YamlFile;
 import com.comugamers.sentey.Sentey;
-import com.google.inject.AbstractModule;
-
-import static com.google.inject.name.Names.named;
+import team.unnamed.inject.AbstractModule;
 
 public class MessageModule extends AbstractModule {
 
@@ -17,7 +15,7 @@ public class MessageModule extends AbstractModule {
     @Override
     protected void configure() {
         this.bind(YamlFile.class)
-                .annotatedWith(named("messages"))
+                .named("messages")
                 .toInstance(new YamlFile(plugin, "messages.yml"));
     }
 }

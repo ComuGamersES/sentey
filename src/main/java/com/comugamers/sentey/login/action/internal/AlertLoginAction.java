@@ -5,7 +5,8 @@ import com.comugamers.sentey.login.action.LoginAction;
 import com.comugamers.sentey.login.structure.LoginContext;
 import com.comugamers.sentey.util.PlaceholderUtil;
 import com.comugamers.sentey.Sentey;
-import com.google.inject.Inject;
+
+import javax.inject.Inject;
 
 public class AlertLoginAction implements LoginAction {
 

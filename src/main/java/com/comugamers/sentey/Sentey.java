@@ -3,16 +3,14 @@ package com.comugamers.sentey;
 import com.comugamers.sentey.service.Service;
 import com.comugamers.sentey.login.filter.LoginFilter;
 import com.comugamers.sentey.login.action.LoginAction;
-import com.comugamers.sentey.guice.SenteyModule;
+import com.comugamers.sentey.inject.SenteyModule;
 import com.comugamers.sentey.ping.action.PingAction;
 import com.comugamers.sentey.ping.filter.PingFilter;
-import com.comugamers.sentey.service.dependency.DependencyService;
-import com.google.inject.Guice;
-import com.google.inject.Inject;
-import com.google.inject.Injector;
 import org.apache.commons.lang.SystemUtils;
 import org.bukkit.plugin.java.JavaPlugin;
+import team.unnamed.inject.Injector;
 
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,15 +60,12 @@ public class Sentey extends JavaPlugin {
         this.loginActions = new ArrayList<>();
         this.pingActions = new ArrayList<>();
         this.pingFilters = new ArrayList<>();
-
-        // Start the dependency service which will download all required dependencies by the plugin
-        new DependencyService(this).start();
     }
 
     @Override
     public void onEnable() {
         // Create a new Injector based on the Sentey module
-        Injector injector = Guice.createInjector(
+        Injector injector = Injector.create(
                 new SenteyModule(this)
         );
 

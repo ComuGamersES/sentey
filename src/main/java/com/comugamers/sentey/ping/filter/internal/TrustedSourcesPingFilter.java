@@ -2,8 +2,8 @@ package com.comugamers.sentey.ping.filter.internal;
 
 import com.comugamers.sentey.util.file.YamlFile;
 import com.comugamers.sentey.ping.filter.PingFilter;
-import com.google.inject.Inject;
 
+import javax.inject.Inject;
 import java.net.InetAddress;
 import java.util.List;
 

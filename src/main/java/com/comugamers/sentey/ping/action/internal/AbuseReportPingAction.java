@@ -6,9 +6,9 @@ import com.comugamers.sentey.report.result.AbuseReportResult;
 import com.comugamers.sentey.Sentey;
 import com.comugamers.sentey.ping.action.PingAction;
 import com.comugamers.sentey.util.PlaceholderUtil;
-import com.google.inject.Inject;
-import com.google.inject.name.Named;
 
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.net.InetAddress;
 
 public class AbuseReportPingAction implements PingAction {

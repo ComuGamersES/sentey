@@ -1,7 +1,7 @@
-package com.comugamers.sentey.guice.submodules;
+package com.comugamers.sentey.inject.submodules;
 
 import com.comugamers.sentey.util.UpdateChecker;
-import com.google.inject.AbstractModule;
+import team.unnamed.inject.AbstractModule;
 
 public class UpdateCheckerModule extends AbstractModule {
 
