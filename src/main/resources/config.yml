@@ -22,7 +22,7 @@ config:
   # Spigot. This is not recommended at all, refrain from enabling it.
   ignore-spigot-check: false
 
-  # Whether to log socket addresses on login or not.
+  # Whether to log socket addresses on player join or not.
   log-socket-addresses: false
 
   # List of plugin integrations to enable or disable.
