@@ -3,6 +3,7 @@ package com.comugamers.sentey.inject.submodules;
 import com.comugamers.sentey.ping.action.PingAction;
 import com.comugamers.sentey.ping.action.internal.AbuseReportPingAction;
 import com.comugamers.sentey.ping.action.internal.AlertPingAction;
+import com.comugamers.sentey.ping.action.internal.CommandPingAction;
 import com.comugamers.sentey.ping.action.internal.WebhookPingAction;
 import com.comugamers.sentey.ping.filter.PingFilter;
 import com.comugamers.sentey.ping.filter.internal.TrustedSourcesPingFilter;
@@ -18,6 +19,7 @@ public class PingModule extends AbstractModule {
                 .to(AlertPingAction.class)
                 .to(WebhookPingAction.class)
                 .to(AbuseReportPingAction.class)
+                .to(CommandPingAction.class)
                 .singleton();
 
         // Bind each internal ping filter

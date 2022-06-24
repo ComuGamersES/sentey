@@ -160,12 +160,25 @@ config:
 
     # The actions taken when a ping is received
     actions:
+      abuseipdb:
+        # Whether to disable auto-reporting on server list pings
+        ignore-pings: false
+
+        # The comment sent with the report if the AbuseIPDB integration is enabled on the integrations section.
+        comment: "Possible port scan on port %serverPort%/tcp"
       alerts:
         # Whether to send a message through the chat to online staff or not
         enabled: true
 
         # The message sent to online staff
         message: "&b&lSENTEY >> &fServer list ping received from &c%address%&f, is the firewall properly configured?"
+      commands:
+        # Whether to run a list of commands or not
+        enabled: false
+
+        # The list of commands to run
+        list:
+          - "minecraft:ban-ip %address% Received unauthorized server list ping"
       webhook:
         # Whether to send a message to a Discord webhook or not
         enabled: false
@@ -179,9 +192,3 @@ config:
 
         # The message that will be sent
         message: "[`%serverAddress%`] | Server list ping received from `%address%`"
-      abuseipdb:
-        # Whether to disable auto-reporting on server list pings
-        ignore-pings: false
-
-        # The comment sent with the report if the AbuseIPDB integration is enabled on the integrations section.
-        comment: "Possible port scan on port %serverPort%/tcp"
