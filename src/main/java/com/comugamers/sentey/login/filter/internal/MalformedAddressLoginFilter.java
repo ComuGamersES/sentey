@@ -23,7 +23,9 @@ public class MalformedAddressLoginFilter implements LoginFilter {
         // the null address check, but we do it again just in case
         if(config.getBoolean("config.login.block-invalid-addresses.enabled")) {
             // Get the spoofed address as a string
-            String spoofedAddress = context.getSpoofedAddress().getHostAddress();
+            String spoofedAddress = context.getSpoofedAddress() != null
+                    ? context.getSpoofedAddress().getHostAddress()
+                    : "null";
 
             // Get the handshake address as a string as well
             String handshakeAddress = context.getHandshakeAddress().getHostAddress();
