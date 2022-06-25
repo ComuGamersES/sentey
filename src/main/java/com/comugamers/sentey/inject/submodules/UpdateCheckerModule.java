@@ -2,14 +2,15 @@ package com.comugamers.sentey.inject.submodules;
 
 import com.comugamers.sentey.util.UpdateChecker;
 import team.unnamed.inject.AbstractModule;
+import team.unnamed.inject.Provides;
+
+import javax.inject.Singleton;
 
 public class UpdateCheckerModule extends AbstractModule {
 
-    @Override
-    protected void configure() {
-        this.bind(UpdateChecker.class)
-                .toInstance(
-                        new UpdateChecker(102550)
-                );
+    @Singleton
+    @Provides
+    public UpdateChecker provideUpdateChecker() {
+        return new UpdateChecker(102550);
     }
 }

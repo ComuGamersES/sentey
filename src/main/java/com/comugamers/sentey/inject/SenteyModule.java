@@ -27,9 +27,6 @@ public class SenteyModule extends AbstractModule {
         // Install the message module
         this.install(new MessageModule(plugin));
 
-        // Install the metrics module
-        this.install(new MetricsModule(plugin, config));
-
         // Install the service module
         this.install(new ServiceModule());
 
