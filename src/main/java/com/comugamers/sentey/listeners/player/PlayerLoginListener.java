@@ -21,14 +21,11 @@ public class PlayerLoginListener implements Listener {
         LoginContext ctx = new LoginContext(event);
 
         // Loop through each login filter
-        for(LoginFilter module : plugin.getLoginFilters()) {
-            // Handle the login attempt
-            boolean result = module.isClean(ctx);
-
-            // If the login attempt was denied, cancel the login event
-            if(!result) {
+        for (LoginFilter module : plugin.getLoginFilters()) {
+            // If the login attempt was denied, run login actions
+            if (!module.isClean(ctx)) {
                 // Run user desired actions
-                for(LoginAction action : plugin.getLoginActions()) {
+                for (LoginAction action : plugin.getLoginActions()) {
                     action.handle(ctx, module.getName());
                 }
 

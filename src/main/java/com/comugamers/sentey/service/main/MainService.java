@@ -35,6 +35,9 @@ public class MainService implements Service {
     @Inject @Named("updateChecker")
     private Service updateCheckerService;
 
+    @Inject @Named("metrics")
+    private Service metricsService;
+
     @Override
     public void start() {
         // Get the ConsoleCommandSender

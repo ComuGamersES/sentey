@@ -1,7 +1,7 @@
 package com.comugamers.sentey.command;
 
+import com.comugamers.sentey.integrations.abuseipdb.AbuseIPDB;
 import com.comugamers.sentey.util.file.YamlFile;
-import com.comugamers.sentey.report.AbuseDatabase;
 import com.comugamers.sentey.util.ConnectionUtil;
 import com.comugamers.sentey.Sentey;
 import com.google.common.net.InetAddresses;
@@ -25,11 +25,11 @@ public class SenteyCommand implements CommandExecutor {
     @Inject
     private YamlFile config;
 
+    @Inject
+    private AbuseIPDB abuseIPDB;
+
     @Inject @Named("messages")
     private YamlFile messages;
-
-    @Inject @Named("abuseipdb")
-    private AbuseDatabase abuseDatabase;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
@@ -109,7 +109,7 @@ public class SenteyCommand implements CommandExecutor {
                 config.reload();
 
                 // Update the API key
-                abuseDatabase.updateKey(
+                abuseIPDB.updateKey(
                         config.getString("config.integrations.abuseipdb.key")
                 );
 
