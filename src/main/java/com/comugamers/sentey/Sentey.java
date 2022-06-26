@@ -6,6 +6,7 @@ import com.comugamers.sentey.login.action.LoginAction;
 import com.comugamers.sentey.inject.SenteyModule;
 import com.comugamers.sentey.ping.action.PingAction;
 import com.comugamers.sentey.ping.filter.PingFilter;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import team.unnamed.inject.Injector;
 
@@ -13,10 +14,17 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The main class of the Sentey {@link Plugin plugin}.
+ * @author ComuGamers
+ */
 public class Sentey extends JavaPlugin {
 
     @Inject
     private Service service;
+
+    // The version of the plugin
+    private static String version;
 
     // Login related
     private List<LoginFilter> loginFilters;
@@ -37,6 +45,9 @@ public class Sentey extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        // Set the version
+        version = getDescription().getVersion();
+
         // Create a new Injector based on the Sentey module
         Injector injector = Injector.create(
                 new SenteyModule(this)
@@ -65,9 +76,16 @@ public class Sentey extends JavaPlugin {
     }
 
     /**
+     * @return The current version of {@link Sentey}.
+     */
+    public static String getCurrentVersion() {
+        return version;
+    }
+
+    /**
      * This method will return the raw {@link ArrayList} of {@link LoginFilter login actions}. Removing items
      * from the {@link ArrayList} is not recommended and may result in unexpected and/or unwanted behavior.
-     *
+     * <p>
      * You may want to use {@link Sentey#addLoginFilter(LoginFilter)}, {@link Sentey#removeLoginFilter(LoginFilter)}
      * or {@link Sentey#isLoginFilterRegistered(LoginFilter)} instead.
      *
