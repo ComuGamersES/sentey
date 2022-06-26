@@ -43,7 +43,7 @@ public enum AbuseCategory {
      * @param id The <a href="https://abuseipdb.com">identifier</a> of the {@link AbuseCategory}.
      * @return The {@link AbuseCategory}.
      */
-    public static AbuseCategory fromId(int id) throws IllegalArgumentException {
+    public static AbuseCategory fromId(int id) {
         return Arrays.stream(AbuseCategory.values())
                 .filter(category -> category.getId() == id)
                 .findFirst()
