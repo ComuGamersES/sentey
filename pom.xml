@@ -6,7 +6,7 @@
 
     <groupId>com.comugamers</groupId>
     <artifactId>sentey</artifactId>
-    <version>2022.0707.0</version>
+    <version>2022.0707.1</version>
     <packaging>jar</packaging>
 
     <properties>
