@@ -2,7 +2,7 @@ messages:
   setup-mode-enabled: "&b&lSENTEY >> &fThe &aunknown proxy&f detection is currently running under setup mode. Please run &a/sentey help&f to learn how to configure it."
   command:
     no-permission: "&4&l>> &cYou don't have permission to use this command."
-    config-reloaded: "&b&lSENTEY >> &fConfiguration files reloaded."
+    config-reloaded: "&b&lSENTEY >> &fConfiguration files reloaded. Some settings may require a server restart in order to be updated."
     help: |-
       &b&lSENTEY >> &fSentey Help &a(1/1)
       &7- &f/sentey help: &7Shows this message.
