@@ -1,10 +1,10 @@
-# Sentey [![GitHub Actions](https://github.com/ComuGamersES/sentey/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/ComuGamersES/sentey/actions/workflows/maven.yml) ![Jenkins CI](https://ci.pabszito.ml/job/sentey/badge/icon?subject=Jenkins%20CI) [![CodeFactor](https://www.codefactor.io/repository/github/comugamerses/sentey/badge/master)](https://www.codefactor.io/repository/github/comugamerses/sentey/overview/master)
+# Sentey [![GitHub Actions](https://github.com/ComuGamersES/sentey/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/ComuGamersES/sentey/actions/workflows/maven.yml) ![Jenkins CI](https://ci.pabszito.tech/job/sentey/badge/icon?subject=Jenkins%20CI) [![CodeFactor](https://www.codefactor.io/repository/github/comugamerses/sentey/badge/master)](https://www.codefactor.io/repository/github/comugamerses/sentey/overview/master)
 Protect your Spigot server by blocking unknown BungeeCord and Velocity proxies and checking for invalid IP forwarding 
 addresses.
 
 ## Downloading
 You can download the latest release from [GitHub](https://github.com/ComuGamersES/sentey/releases). Additionally, you
-can also download the latest build from our [Jenkins CI](https://ci.pabszito.ml/job/sentey). Instructions on how to
+can also download the latest build from our [Jenkins CI](https://ci.pabszito.tech/job/sentey). Instructions on how to
 install the plugin can be seen at the [wiki](https://github.com/ComuGamersES/sentey/wiki).
 
 ## Building from source
