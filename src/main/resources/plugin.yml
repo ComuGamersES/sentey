@@ -1,5 +1,5 @@
 name: Sentey
-description: Protect your server against common BungeeCord IP forwarding exploits
+description: Protect your Spigot server against attackers and automatically report the source!
 version: ${project.version}
 main: com.comugamers.sentey.Sentey
 authors: [ Pabszito, Jojo1545 ]

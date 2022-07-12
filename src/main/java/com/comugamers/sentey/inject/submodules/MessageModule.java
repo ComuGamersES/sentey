@@ -3,6 +3,10 @@ package com.comugamers.sentey.inject.submodules;
 import com.comugamers.sentey.util.file.YamlFile;
 import com.comugamers.sentey.Sentey;
 import team.unnamed.inject.AbstractModule;
+import team.unnamed.inject.Provides;
+
+import javax.inject.Named;
+import javax.inject.Singleton;
 
 public class MessageModule extends AbstractModule {
 
@@ -12,10 +16,10 @@ public class MessageModule extends AbstractModule {
         this.plugin = plugin;
     }
 
-    @Override
-    protected void configure() {
-        this.bind(YamlFile.class)
-                .named("messages")
-                .toInstance(new YamlFile(plugin, "messages.yml"));
+    @Singleton
+    @Provides
+    @Named("messages")
+    private YamlFile provideMessages() {
+        return new YamlFile(plugin, "messages.yml");
     }
 }

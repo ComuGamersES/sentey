@@ -4,6 +4,9 @@ import com.comugamers.sentey.util.file.YamlFile;
 import com.comugamers.sentey.Sentey;
 import com.comugamers.sentey.inject.submodules.*;
 import team.unnamed.inject.AbstractModule;
+import team.unnamed.inject.Provides;
+
+import javax.inject.Singleton;
 
 public class SenteyModule extends AbstractModule {
 
@@ -13,14 +16,19 @@ public class SenteyModule extends AbstractModule {
         this.plugin = plugin;
     }
 
+    @Singleton
+    @Provides
+    public YamlFile provideConfiguration() {
+        return new YamlFile(plugin, "config.yml");
+    }
+
     @Override
     protected void configure() {
         // Bind main instance
         this.bind(Sentey.class).toInstance(plugin);
 
-        // Bind configuration files
-        YamlFile config = new YamlFile(plugin, "config.yml");
-        this.bind(YamlFile.class).toInstance(config);
+        // Get the main configuration file
+        YamlFile config = provideConfiguration();
 
         // Install modules
         this.install(new CommandModule());
