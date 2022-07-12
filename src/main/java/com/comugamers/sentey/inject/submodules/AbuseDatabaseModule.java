@@ -1,8 +1,7 @@
 package com.comugamers.sentey.inject.submodules;
 
 import com.comugamers.sentey.util.file.YamlFile;
-import com.comugamers.sentey.report.AbuseDatabase;
-import com.comugamers.sentey.report.abuseipdb.AbuseIPDB;
+import com.comugamers.sentey.integrations.abuseipdb.AbuseIPDB;
 import com.comugamers.sentey.Sentey;
 import team.unnamed.inject.AbstractModule;
 import team.unnamed.inject.Provides;
@@ -23,9 +22,9 @@ public class AbuseDatabaseModule extends AbstractModule {
     @Singleton
     @Provides
     @Named("abuseipdb")
-    public AbuseDatabase provideAbuseIPDB() {
+    public AbuseIPDB provideAbuseIPDB() {
         return new AbuseIPDB(
-                plugin, config.getString("config.integrations.abuseipdb.key")
+                plugin, config.getString("config.integrations.abuseipdb.key", "unknown")
         );
     }
 }

@@ -1,11 +1,13 @@
-package com.comugamers.sentey.report.abuseipdb;
+package com.comugamers.sentey.integrations.abuseipdb;
 
-import com.comugamers.sentey.report.AbuseDatabase;
-import com.comugamers.sentey.report.result.AbuseReportResult;
+import com.comugamers.sentey.integrations.abuseipdb.categories.AbuseCategory;
+import com.comugamers.sentey.integrations.abuseipdb.result.AbuseReportResult;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -16,9 +18,10 @@ import org.bukkit.plugin.Plugin;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class AbuseIPDB implements AbuseDatabase {
+public class AbuseIPDB {
 
     private final Plugin plugin;
     private final List<String> onCooldown;
@@ -30,7 +33,13 @@ public class AbuseIPDB implements AbuseDatabase {
         this.key = key;
     }
 
-    private JsonObject submitReport(String address, String comment) {
+    private JsonObject submitReport(String address, String comment, int... categories) {
+        // Check if categories were provided
+        if(categories == null || categories.length == 0) {
+            // If not, throw an exception
+            throw new IllegalArgumentException("No categories were provided!");
+        }
+
         // Create a new Closeable HTTP client
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             // Create a new HTTP post request
@@ -44,9 +53,12 @@ public class AbuseIPDB implements AbuseDatabase {
             // Create a new JSON object
             JsonObject entity = new JsonObject();
 
+            // Parse provided categories
+            String parsedCategories = StringUtils.join(ArrayUtils.toObject(categories), ",");
+
             // Add properties
             entity.addProperty("ip", address);
-            entity.addProperty("categories", "14,15");
+            entity.addProperty("categories", parsedCategories);
             entity.addProperty("comment", comment);
 
             // Create a new StringEntity using the previously created JSON object
@@ -82,8 +94,48 @@ public class AbuseIPDB implements AbuseDatabase {
         }
     }
 
-    @Override
+    /**
+     * Reports an IP address to <a href="https://www.abuseipdb.com">AbuseIPDB</a>.
+     * @param address The IP address to report.
+     * @param comment The comment to include with the report.
+     * @deprecated Please provide categories by either using the {@link AbuseCategory} enum or
+     *             <a href="https://www.abuseipdb.com/categories">category IDs</a>.
+     * @see #reportAddress(String, String, AbuseCategory...)
+     * @see #reportAddress(String, String, int...) 
+     * @return An {@link AbuseReportResult}, which can be <code>SUCCESS</code> or an error.
+     */
+    @Deprecated
     public AbuseReportResult reportAddress(String address, String comment) {
+        return reportAddress(address, comment, 14, 15);
+    }
+
+    /**
+     * Reports an IP address to <a href="https://www.abuseipdb.com">AbuseIPDB</a>.
+     * @param address The IP address to report.
+     * @param comment The comment to include with the report.
+     * @param categories An array of {@link AbuseCategory abuse categories}.
+     * @see #submitReport(String, String, int...)
+     * @return An {@link AbuseReportResult}, which can be <code>SUCCESS</code> or an error.
+     */
+    public AbuseReportResult reportAddress(String address, String comment, AbuseCategory... categories) {
+        return reportAddress(
+                address,
+                comment,
+                Arrays.stream(categories)
+                        .mapToInt(AbuseCategory::getId)
+                        .toArray()
+        );
+    }
+
+    /**
+     * Reports an IP address to <a href="https://www.abuseipdb.com">AbuseIPDB</a>.
+     * @param address The IP address to report.
+     * @param comment The comment to include with the report.
+     * @param categories A list of <a href="">IDs</a> of each category.
+     * @see #reportAddress(String, String, AbuseCategory...)
+     * @return An {@link AbuseReportResult}, which can be <code>SUCCESS</code> or an error.
+     */
+    public AbuseReportResult reportAddress(String address, String comment, int... categories) {
         // Check if the address is on cooldown
         if(onCooldown.contains(address)) {
             // If so, return an "ON_COOLDOWN" result
@@ -91,7 +143,7 @@ public class AbuseIPDB implements AbuseDatabase {
         }
 
         // Report the address and get the response
-        JsonObject jsonObject = submitReport(address, comment);
+        JsonObject jsonObject = submitReport(address, comment, categories);
 
         // Check if the JSON object is null
         if(jsonObject == null) {
@@ -125,7 +177,12 @@ public class AbuseIPDB implements AbuseDatabase {
 
             // Check if the request failed because of cooldown
             if (statusCode == 403) {
-                // If so, return an "ON_COOLDOWN" result
+                // If so, log a warning since it isn't on the cooldown list
+                plugin.getLogger().warning(
+                        "Unable to report abuse for " + address + ": 'On cooldown, not known locally.'"
+                );
+
+                // Return an "ON_COOLDOWN" result
                 return AbuseReportResult.ON_COOLDOWN;
             }
 
@@ -137,8 +194,8 @@ public class AbuseIPDB implements AbuseDatabase {
 
             // Log a warning
             plugin.getLogger().warning(
-                    "Unable to report abuse for " + address + ": Request failed with status code "
-                            + statusCode + " (" + detail + ")"
+                    "Unable to report abuse for " + address + ": 'Request failed with status code "
+                            + statusCode + " (" + detail + ")'"
             );
 
             // Return an "ERROR" result
@@ -154,7 +211,10 @@ public class AbuseIPDB implements AbuseDatabase {
         }
     }
 
-    @Override
+    /**
+     * Updates the authorization key being used for making requests.
+     * @param key The authorization key as a {@link String}.
+     */
     public void updateKey(String key) {
         this.key = key;
     }

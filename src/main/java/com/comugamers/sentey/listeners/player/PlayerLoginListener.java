@@ -4,16 +4,23 @@ import com.comugamers.sentey.login.filter.LoginFilter;
 import com.comugamers.sentey.login.action.LoginAction;
 import com.comugamers.sentey.login.structure.LoginContext;
 import com.comugamers.sentey.Sentey;
+import com.comugamers.sentey.util.file.YamlFile;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
 
 import javax.inject.Inject;
 
+import static com.comugamers.sentey.util.ConnectionUtil.getRemoteAddress;
+
 public class PlayerLoginListener implements Listener {
 
     @Inject
     private Sentey plugin;
+
+    @Inject
+    private YamlFile config;
 
     @EventHandler
     public void onPlayerLoginEvent(PlayerLoginEvent event) {
@@ -21,14 +28,11 @@ public class PlayerLoginListener implements Listener {
         LoginContext ctx = new LoginContext(event);
 
         // Loop through each login filter
-        for(LoginFilter module : plugin.getLoginFilters()) {
-            // Handle the login attempt
-            boolean result = module.isClean(ctx);
-
-            // If the login attempt was denied, cancel the login event
-            if(!result) {
+        for (LoginFilter module : plugin.getLoginFilters()) {
+            // If the login attempt was denied, run login actions
+            if (!module.isClean(ctx)) {
                 // Run user desired actions
-                for(LoginAction action : plugin.getLoginActions()) {
+                for (LoginAction action : plugin.getLoginActions()) {
                     action.handle(ctx, module.getName());
                 }
 

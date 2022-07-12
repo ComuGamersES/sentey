@@ -24,34 +24,20 @@ public class SenteyModule extends AbstractModule {
 
     @Override
     protected void configure() {
+        // Bind main instance
+        this.bind(Sentey.class).toInstance(plugin);
+
         // Get the main configuration file
         YamlFile config = provideConfiguration();
 
-        // Bind the plugin so it can be injected
-        this.bind(Sentey.class).toInstance(plugin);
-
-        // Install the message module
+        // Install modules
+        this.install(new CommandModule());
         this.install(new MessageModule(plugin));
-
-        // Install the metrics module
-        this.install(new MetricsModule(plugin, config));
-
-        // Install the service module
         this.install(new ServiceModule());
-
-        // Install the abuse database module
         this.install(new AbuseDatabaseModule(plugin, config));
-
-        // Install the login module which will register all internal login filters and actions
         this.install(new LoginModule());
-
-        // Install the ping module which will register all internal ping filters and actions
         this.install(new PingModule());
-
-        // Install the listener module
         this.install(new ListenerModule());
-
-        // Install the update checker module
         this.install(new UpdateCheckerModule());
     }
 }
