@@ -1,14 +1,20 @@
 messages:
   setup-mode-enabled: "&b&lSENTEY >> &fThe &aunknown proxy&f detection is currently running under setup mode. Please run &a/sentey help&f to learn how to configure it."
   command:
-    no-permission: "&4&l>> &cYou don't have permission to use this command."
+    unknown-command: "&4&l>> &cUnknown command."
+    no-permission: "&4&l>> &cYou don't have enough permissions to run that command."
+    player-only: "&4&l>> &cThis command can only be ran by players."
+    console-only: "&4&l>> &cThis command can only be ran by the server console."
+    too-many-arguments: "&4&l>> &cToo many arguments were provided!"
+    not-enough-arguments: "&4&l>> &cNot enough arguments were provided!"
+    invalid-argument: "&4&l>> &cInvalid command usage!"
     config-reloaded: "&b&lSENTEY >> &fConfiguration files reloaded."
     help: |-
       &b&lSENTEY >> &fSentey Help &a(1/1)
       &7- &f/sentey help: &7Shows this message.
-      &7- &f/sentey address: &7Shows the handshake & spoofed address of a player.
-      &7- &f/sentey trusted-proxies: &7Configure the 'Unknown Proxy' detection.
       &7- &f/sentey reload: &7Reloads the configuration.
+      &7- &f/sentey address <player>: &7Shows the handshake & spoofed address of a player.
+      &7- &f/sentey trusted-proxies: &7Configure the 'Unknown Proxy' detection.
     address:
       usage: "&b&lSENTEY >> &fUsage: &a/sentey address <player>"
       must-be-online: "&b&lSENTEY >> &fThe player must be online!"
