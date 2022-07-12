@@ -10,8 +10,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import static com.comugamers.sentey.util.ConnectionUtil.getRemoteAddress;
-
 public class PlayerJoinListener implements Listener {
 
     @Inject
@@ -38,14 +36,6 @@ public class PlayerJoinListener implements Listener {
                 // If true, send the message to the player
                 player.sendMessage(messages.getString("messages.setup-mode-enabled"));
             }
-        }
-
-        // Check if we should log socket addresses
-        if(config.getBoolean("config.log-socket-addresses", false)) {
-            // If so, do it
-            plugin.getLogger().info(
-                    "Player " + player.getName() + " is joining through " + getRemoteAddress(player)
-            );
         }
     }
 }

@@ -6,7 +6,7 @@
 
     <groupId>com.comugamers</groupId>
     <artifactId>sentey</artifactId>
-    <version>2022.0624.0</version>
+    <version>2022.0712.0</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -26,6 +26,10 @@
         <repository>
             <id>unnamed-public</id>
             <url>https://repo.unnamed.team/repository/unnamed-public/</url>
+        </repository>
+        <repository>
+            <id>repo</id>
+            <url>https://repo.triumphteam.dev/snapshots/</url>
         </repository>
     </repositories>
 
@@ -92,6 +96,10 @@
                                     <pattern>javax.inject</pattern>
                                     <shadedPattern>com.comugamers.sentey.lib.javax.inject</shadedPattern>
                                 </relocation>
+                                <relocation>
+                                    <pattern>dev.triumphteam.cmd</pattern>
+                                    <shadedPattern>com.comugamers.sentey.lib.triumphteam.cmd</shadedPattern>
+                                </relocation>
                             </relocations>
                         </configuration>
                     </execution>
@@ -129,6 +137,12 @@
             <groupId>team.unnamed</groupId>
             <artifactId>inject</artifactId>
             <version>1.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>dev.triumphteam</groupId>
+            <artifactId>triumph-cmd-bukkit</artifactId>
+            <version>2.0.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
