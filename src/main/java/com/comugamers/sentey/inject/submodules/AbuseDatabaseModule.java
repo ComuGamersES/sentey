@@ -6,6 +6,7 @@ import com.comugamers.sentey.Sentey;
 import team.unnamed.inject.AbstractModule;
 import team.unnamed.inject.Provides;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 public class AbuseDatabaseModule extends AbstractModule {
@@ -20,6 +21,7 @@ public class AbuseDatabaseModule extends AbstractModule {
 
     @Singleton
     @Provides
+    @Named("abuseipdb")
     public AbuseIPDB provideAbuseIPDB() {
         return new AbuseIPDB(
                 plugin, config.getString("config.integrations.abuseipdb.key", "unknown")
