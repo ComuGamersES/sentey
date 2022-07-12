@@ -28,6 +28,14 @@ public class PlayerJoinListener implements Listener {
         // Get the player that joined
         Player player = event.getPlayer();
 
+        // Check if we should log socket addresses
+        if(config.getBoolean("config.log-socket-addresses", false)) {
+            // If so, do it
+            plugin.getLogger().info(
+                    "Player " + player.getName() + " is joining through " + getRemoteAddress(player)
+            );
+        }
+
         // Check if the unknown proxy detection is currently enabled on setup mode
         if(config.getBoolean("config.login.unknown-proxies.enabled")
                 && config.getBoolean("config.login.unknown-proxies.setup")
@@ -38,14 +46,6 @@ public class PlayerJoinListener implements Listener {
                 // If true, send the message to the player
                 player.sendMessage(messages.getString("messages.setup-mode-enabled"));
             }
-        }
-
-        // Check if we should log socket addresses
-        if(config.getBoolean("config.log-socket-addresses", false)) {
-            // If so, do it
-            plugin.getLogger().info(
-                    "Player " + player.getName() + " is joining through " + getRemoteAddress(player)
-            );
         }
     }
 }

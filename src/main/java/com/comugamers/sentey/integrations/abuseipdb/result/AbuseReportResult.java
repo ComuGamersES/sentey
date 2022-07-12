@@ -1,4 +1,4 @@
-package com.comugamers.sentey.report.result;
+package com.comugamers.sentey.integrations.abuseipdb.result;
 
 public enum AbuseReportResult {
 
