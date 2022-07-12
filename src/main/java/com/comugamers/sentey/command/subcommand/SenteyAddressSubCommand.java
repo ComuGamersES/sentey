@@ -16,8 +16,6 @@ public class SenteyAddressSubCommand extends SenteyCommand {
     @Inject @Named("messages")
     private YamlFile messages;
 
-    // TODO: should I make target an optional argument so we can send the usage message?
-
     @SubCommand(value = "address", alias = { "socket-address", "real-address", "ip" })
     @Permission("sentey.admin")
     public void execute(CommandSender sender, Player target) {
