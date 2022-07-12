@@ -21,7 +21,6 @@ public class AbuseDatabaseModule extends AbstractModule {
 
     @Singleton
     @Provides
-    @Named("abuseipdb")
     public AbuseIPDB provideAbuseIPDB() {
         return new AbuseIPDB(
                 plugin, config.getString("config.integrations.abuseipdb.key", "unknown")
