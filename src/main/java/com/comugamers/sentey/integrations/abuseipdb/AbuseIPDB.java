@@ -6,7 +6,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -52,9 +53,12 @@ public class AbuseIPDB {
             // Create a new JSON object
             JsonObject entity = new JsonObject();
 
+            // Parse provided categories
+            String parsedCategories = StringUtils.join(ArrayUtils.toObject(categories), ",");
+
             // Add properties
             entity.addProperty("ip", address);
-            entity.addProperty("categories", StringUtils.join(categories, ","));
+            entity.addProperty("categories", parsedCategories);
             entity.addProperty("comment", comment);
 
             // Create a new StringEntity using the previously created JSON object
