@@ -14,13 +14,11 @@ messages:
       &7- &f/sentey help: &7Shows this message.
       &7- &f/sentey reload: &7Reloads the configuration.
       &7- &f/sentey address <player>: &7Shows the handshake & spoofed address of a player.
-      &7- &f/sentey trusted-proxies: &7Configure the 'Unknown Proxy' detection.
+      &7- &f/sentey trusted-proxies <add/remove/list/setup> [<address>]: &7Configure the 'Unknown Proxy' detection.
     address:
-      usage: "&b&lSENTEY >> &fUsage: &a/sentey address <player>"
       must-be-online: "&b&lSENTEY >> &fThe player must be online!"
       information: "&b&lSENTEY >> &a%player% &fis connected from &a%rawAddress% &fusing the forwarded IP address &a%address%&f."
     trusted-proxies:
-      usage: "&b&lSENTEY >> &fUsage: &a/sentey trusted-proxies <add|remove|list|toggle-setup> [<ip>]"
       add:
         success: "&b&lSENTEY >> &fAdded &a%proxy%&f to the trusted proxies list. You may now turn on the detection by using &a/sentey trusted-proxies toggle-setup&f."
         usage: "&b&lSENTEY >> &fUsage: &a/sentey trusted-proxies add <ip>"
