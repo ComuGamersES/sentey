@@ -27,17 +27,6 @@ public class PlayerLoginListener implements Listener {
         // Create a new login context
         LoginContext ctx = new LoginContext(event);
 
-        // Get the player who logged in
-        Player player = ctx.getPlayer();
-
-        // Check if we should log socket addresses
-        if(config.getBoolean("config.log-socket-addresses", false)) {
-            // If so, do it
-            plugin.getLogger().info(
-                    "Player " + player.getName() + " is joining through " + getRemoteAddress(player)
-            );
-        }
-
         // Loop through each login filter
         for (LoginFilter module : plugin.getLoginFilters()) {
             // If the login attempt was denied, run login actions

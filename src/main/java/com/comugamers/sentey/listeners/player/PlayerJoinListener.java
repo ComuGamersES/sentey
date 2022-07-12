@@ -10,6 +10,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import static com.comugamers.sentey.util.ConnectionUtil.getRemoteAddress;
+
 public class PlayerJoinListener implements Listener {
 
     @Inject
@@ -25,6 +27,14 @@ public class PlayerJoinListener implements Listener {
     public void onPlayerJoinEvent(PlayerJoinEvent event) {
         // Get the player that joined
         Player player = event.getPlayer();
+
+        // Check if we should log socket addresses
+        if(config.getBoolean("config.log-socket-addresses", false)) {
+            // If so, do it
+            plugin.getLogger().info(
+                    "Player " + player.getName() + " is joining through " + getRemoteAddress(player)
+            );
+        }
 
         // Check if the unknown proxy detection is currently enabled on setup mode
         if(config.getBoolean("config.login.unknown-proxies.enabled")
