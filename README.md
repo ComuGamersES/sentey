@@ -25,6 +25,11 @@ Then, build from source:
 mvn clean package
 ```
 
+If you also want to publish the plugin to your local Maven repository (`~/.m2/`), consider using the following command instead:
+```shell
+mvn clean install
+```
+
 If the build succeeds, you will find two different JAR files at the `target/` folder. Choose the one without `original`
 in the file name, and you're ready to go.
 
