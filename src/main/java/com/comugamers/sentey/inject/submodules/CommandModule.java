@@ -2,10 +2,7 @@ package com.comugamers.sentey.inject.submodules;
 
 import com.comugamers.sentey.Sentey;
 import com.comugamers.sentey.command.SenteyCommand;
-import com.comugamers.sentey.command.subcommand.SenteyAddressSubCommand;
-import com.comugamers.sentey.command.subcommand.SenteyHelpSubCommand;
-import com.comugamers.sentey.command.subcommand.SenteyReloadSubCommand;
-import com.comugamers.sentey.command.subcommand.SenteyTrustedProxiesSubCommand;
+import com.comugamers.sentey.command.subcommand.*;
 import dev.triumphteam.cmd.bukkit.BukkitCommandManager;
 import dev.triumphteam.cmd.core.BaseCommand;
 import org.bukkit.command.CommandSender;
@@ -25,6 +22,7 @@ public class CommandModule extends AbstractModule {
                 .to(SenteyAddressSubCommand.class)
                 .to(SenteyHelpSubCommand.class)
                 .to(SenteyTrustedProxiesSubCommand.class)
+                .to(SenteyResolveSubCommand.class)
                 .singleton();
     }
 

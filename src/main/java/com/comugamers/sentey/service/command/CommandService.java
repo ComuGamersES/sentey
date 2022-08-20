@@ -13,6 +13,7 @@ import org.bukkit.command.CommandSender;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Set;
 
 public class CommandService implements Service {
@@ -37,10 +38,23 @@ public class CommandService implements Service {
         this.configureMessage(MessageKey.TOO_MANY_ARGUMENTS, "messages.command.too-many-arguments");
         this.configureMessage(MessageKey.INVALID_ARGUMENT, "messages.command.invalid-argument");
 
-        // Add suggestions
+        // Add trusted proxies suggestions
         commandManager.registerSuggestion(
                 SuggestionKey.of("trusted-proxies"),
                 (sender, ctx) -> Arrays.asList("list", "add", "remove", "setup")
+        );
+
+        // Add common trusted proxies
+        commandManager.registerSuggestion(
+                SuggestionKey.of("domains"),
+                (sender, ctx) -> Arrays.asList(
+                        "0x7f000001",
+                        "comugamers.com",
+                        "spigotmc.org",
+                        "google.com",
+                        "cloudflare.com",
+                        "twitter.com"
+                )
         );
 
         // Register each command

@@ -29,7 +29,7 @@ public class SenteyTrustedProxiesSubCommand extends SenteyCommand {
     @Inject
     private SenteyHelpSubCommand helpSubCommand;
 
-    @SubCommand(value = "trusted-proxies", alias = { "allowed-proxies", "allowed-ips" })
+    @SubCommand(value = "trusted-proxies", alias = { "allowed-proxies", "allowed-ips", "trusted", "proxies" })
     public void execute(CommandSender sender, @Suggestion("trusted-proxies") String action, @Optional String address) {
         switch(action.toLowerCase()) {
             case "add": {

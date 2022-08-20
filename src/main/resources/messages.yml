@@ -15,17 +15,23 @@ messages:
       &7- &f/sentey reload: &7Reloads the configuration.
       &7- &f/sentey address <player>: &7Shows the handshake & spoofed address of a player.
       &7- &f/sentey trusted-proxies <add/remove/list/setup> [<address>]: &7Configure the 'Unknown Proxy' detection.
+      &7- &f/sentey resolve <address>: &7Resolves a hostname to an IP address.
     address:
       must-be-online: "&b&lSENTEY >> &fThe player must be online!"
       information: "&b&lSENTEY >> &a%player% &fis connected from &a%rawAddress% &fusing the forwarded IP address &a%address%&f."
+    resolve:
+      success: "&b&lSENTEY >> &fResolved &a%host% &fto &a%address%&f."
+      unknown-host: "&b&lSENTEY >> &fName or service not known."
     trusted-proxies:
       add:
         success: "&b&lSENTEY >> &fAdded &a%proxy%&f to the trusted proxies list. You may now turn on the detection by using &a/sentey trusted-proxies toggle-setup&f."
+        success-resolved: "&b&lSENTEY >> &fAdded &a%raw% &7(%resolved%) &fto the trusted proxies list. You may now turn on the detection by using &a/sentey trusted-proxies toggle-setup&f."
         usage: "&b&lSENTEY >> &fUsage: &a/sentey trusted-proxies add <ip>"
         already-trusted: "&b&lSENTEY >> &fThat proxy is already in the trusted proxies list."
         invalid-ipv4: "&b&lSENTEY >> &fInvalid IPv4 address: &a%proxy%&f."
       remove:
         success: "&b&lSENTEY >> &fRemoved proxy &a%proxy%&f from the trusted proxies list."
+        success-resolved: "&b&lSENTEY >> &fRemoved proxy &a%raw% &7(%resolved%)&f from the trusted proxies list."
         usage: "&b&lSENTEY >> &fUsage: &a/sentey trusted-proxies remove <ip>"
         not-trusted: "&b&lSENTEY >> &fThat proxy is not in the trusted proxies list."
       list:

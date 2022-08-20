@@ -6,6 +6,8 @@ import org.bukkit.command.CommandSender;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
 
 public class SenteyTrustedProxiesAddSubCommand {
@@ -29,17 +31,6 @@ public class SenteyTrustedProxiesAddSubCommand {
                 "config.login.unknown-proxies.allowed-proxies"
         );
 
-        // Check if the proxy address is valid
-        if (!InetAddresses.isInetAddress(address)) {
-            // If not, send the 'Invalid IP address' message
-            sender.sendMessage(
-                    messages.getString("messages.command.trusted-proxies.add.invalid-ipv4")
-                            .replace("%proxy%", address)
-            );
-
-            return;
-        }
-
         // Check if the proxy is already trusted
         if (trustedProxies.contains(address)) {
             // If so, send the 'Proxy already trusted' message and return
@@ -47,19 +38,48 @@ public class SenteyTrustedProxiesAddSubCommand {
             return;
         }
 
-        // Add the proxy to the trusted proxies list
-        trustedProxies.add(address);
+        // Check if the proxy address is an IPv4/IPv6 address
+        if (InetAddresses.isInetAddress(address)) {
+            // Add the proxy to the trusted proxies list
+            trustedProxies.add(address);
 
-        // Set the trusted proxies list
-        config.set("config.login.unknown-proxies.allowed-proxies", trustedProxies);
+            // Set the trusted proxies list
+            config.set("config.login.unknown-proxies.allowed-proxies", trustedProxies);
 
-        // Save the configuration file
-        config.save();
+            // Save the configuration file
+            config.save();
 
-        // Send the 'Proxy added' message
-        sender.sendMessage(
-                messages.getString("messages.command.trusted-proxies.add.success")
-                        .replace("%proxy%", address)
-        );
+            // Send the 'Proxy added' message
+            sender.sendMessage(
+                    messages.getString("messages.command.trusted-proxies.add.success")
+                            .replace("%proxy%", address)
+            );
+        } else {
+            try {
+                // If not, check if the address is a hostname
+                InetAddress domainAddress = InetAddress.getByName(address);
+
+                // If so, add the proxy to the trusted proxies list
+                trustedProxies.add(domainAddress.getHostAddress());
+
+                // Send the 'Proxy added' message
+                sender.sendMessage(
+                        messages.getString("messages.command.trusted-proxies.add.success-resolved")
+                                .replace("%raw%", address)
+                                .replace("%resolved%", domainAddress.getHostAddress())
+                );
+
+                // Set the trusted proxies list
+                config.set("config.login.unknown-proxies.allowed-proxies", trustedProxies);
+
+                // Save the configuration file
+                config.save();
+            } catch (UnknownHostException ex) {
+                sender.sendMessage(
+                        messages.getString("messages.command.resolve.unknown-host")
+                                .replace("%hostname%", address)
+                );
+            }
+        }
     }
 }
