@@ -39,3 +39,13 @@ We have a wiki now to keep things more organized! Check it out [here](https://gi
 ### Developer API
 Want to use the plugin's API and write your own custom actions? All the information about it can be found at the wiki 
 as well. Click [here](https://github.com/ComuGamersES/sentey/wiki/4.-Developer-API) to take a look!
+
+
+### Special Thanks
+![YourKit](https://www.yourkit.com/images/yklogo.png)
+
+YourKit supports open source projects with innovative and intelligent tools
+for monitoring and profiling Java and .NET applications.
+YourKit is the creator of <a href="https://www.yourkit.com/java/profiler/">YourKit Java Profiler</a>,
+<a href="https://www.yourkit.com/.net/profiler/">YourKit .NET Profiler</a>,
+and <a href="https://www.yourkit.com/youmonitor/">YourKit YouMonitor</a>.
