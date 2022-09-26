@@ -39,7 +39,7 @@ We have a wiki now to keep things more organized! Check it out [here](https://gi
 Want to use the plugin's API and write your own custom actions? All the information about it can be found at the wiki 
 as well. Click [here](https://github.com/ComuGamersES/sentey/wiki/4.-Developer-API) to take a look!
 
-### Special Thanks
+## Special Thanks
 ![YourKit](https://www.yourkit.com/images/yklogo.png)
 
 YourKit supports open source projects with innovative and intelligent tools
