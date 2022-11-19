@@ -31,7 +31,7 @@ public class PingService implements Service {
             );
 
             // And add it to the list of ping filters
-            plugin.addPingFilter(filter);
+            plugin.getPingFilters().add(filter);
         });
 
         // Loop through each bound ping action
@@ -42,7 +42,7 @@ public class PingService implements Service {
             );
 
             // And add it to the list of login actions
-            plugin.addPingAction(action);
+            plugin.getPingActions().add(action);
         });
     }
 }
