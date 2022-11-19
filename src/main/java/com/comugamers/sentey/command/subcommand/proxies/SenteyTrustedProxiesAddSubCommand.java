@@ -26,10 +26,11 @@ public class SenteyTrustedProxiesAddSubCommand {
             return;
         }
 
+        // Set the allowed proxies path
+        String path = "config.login.unknown-proxies.allowed-proxies";
+
         // Get the list of trusted proxies
-        List<String> trustedProxies = config.getStringList(
-                "config.login.unknown-proxies.allowed-proxies"
-        );
+        List<String> trustedProxies = config.getStringList(path);
 
         // Check if the proxy is already trusted
         if (trustedProxies.contains(address)) {
@@ -44,7 +45,7 @@ public class SenteyTrustedProxiesAddSubCommand {
             trustedProxies.add(address);
 
             // Set the trusted proxies list
-            config.set("config.login.unknown-proxies.allowed-proxies", trustedProxies);
+            config.set(path, trustedProxies);
 
             // Save the configuration file
             config.save();
@@ -70,7 +71,7 @@ public class SenteyTrustedProxiesAddSubCommand {
                 );
 
                 // Set the trusted proxies list
-                config.set("config.login.unknown-proxies.allowed-proxies", trustedProxies);
+                config.set(path, trustedProxies);
 
                 // Save the configuration file
                 config.save();
