@@ -125,7 +125,7 @@ config:
 
         # The message sent to the attacker
         reason: |-
-          https://cdn.discordapp.com/attachments/697331954085003314/975608533640953897/mailbox.mov
+          https://l.cgm.rs/domado
       commands:
         # Whether to run a list of commands or not
         enabled: false
