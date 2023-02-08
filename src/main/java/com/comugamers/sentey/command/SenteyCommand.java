@@ -6,6 +6,7 @@ import com.comugamers.sentey.Sentey;
 import dev.triumphteam.cmd.core.BaseCommand;
 import dev.triumphteam.cmd.core.annotation.Command;
 import dev.triumphteam.cmd.core.annotation.Default;
+import dev.triumphteam.cmd.core.annotation.Description;
 import org.bukkit.command.CommandSender;
 
 import javax.inject.Inject;
@@ -14,6 +15,7 @@ import javax.inject.Named;
 import static com.comugamers.sentey.util.TextUtil.colorize;
 
 @Command(value = "sentey", alias = { "comusentey", "csentey" })
+@Description("Main command of the plugin.")
 public class SenteyCommand extends BaseCommand {
 
     @Inject
