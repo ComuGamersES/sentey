@@ -6,6 +6,7 @@ import com.comugamers.sentey.login.filter.LoginFilter;
 
 import javax.inject.Inject;
 
+@Deprecated
 public class SiteLocalAddressLoginFilter implements LoginFilter {
 
     @Inject

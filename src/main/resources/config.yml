@@ -40,7 +40,7 @@ config:
 
   # Login listener related settings. This can't be disabled entirely since it is the main function of the plugin.
   login:
-    # Detects local addresses
+    # Detects local addresses. Deprecated.
     # See: https://docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html#isAnyLocalAddress--)
     block-local-addresses:
       # Whether to enable the check or not
@@ -52,7 +52,7 @@ config:
       # Whether to check the 'spoofed' address or not
       check-spoofed-address: true
 
-    # Detects site local addresses
+    # Detects site local addresses. Deprecated.
     # See: https://docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html#isSiteLocalAddress--)
     block-site-local-addresses:
       # Whether to enable the check or not
@@ -64,7 +64,7 @@ config:
       # Whether to check the 'spoofed' address or not
       check-spoofed-address: true
 
-    # Detects loopback addresses
+    # Detects loopback addresses. Deprecated.
     # See: https://docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html#isLoopbackAddress--)
     block-loopback-addresses:
       # Whether to enable the check or not
@@ -74,7 +74,7 @@ config:
       check-handshake: false
 
       # Whether to check the 'spoofed' address or not
-      check-spoofed-address: true
+      check-spoofed-address: false
 
     # Detects null IP addresses. Since the server is using IP forwarding,
     # BungeeCord (or Velocity) needs to send the player's IP address to
@@ -125,7 +125,8 @@ config:
 
         # The message sent to the attacker
         reason: |-
-          https://l.cgm.rs/domado
+          &cYou are not allowed to connect to this server.
+          &cIf you believe this is a mistake, please contact the server administrators.
       commands:
         # Whether to run a list of commands or not
         enabled: false
