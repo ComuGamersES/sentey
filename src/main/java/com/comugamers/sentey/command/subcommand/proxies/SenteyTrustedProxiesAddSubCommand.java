@@ -26,6 +26,16 @@ public class SenteyTrustedProxiesAddSubCommand {
             return;
         }
 
+        // Rewrite 'docker' to default Docker network
+        if (address.equals("docker")) {
+            address = "172.17.0.1";
+        }
+
+        // Rewrite 'pterodactyl' to default pterodactyl Docker network
+        if (address.equals("pterodactyl")) {
+            address = "172.18.0.1";
+        }
+
         // Set the allowed proxies path
         String path = "config.login.unknown-proxies.allowed-proxies";
 
