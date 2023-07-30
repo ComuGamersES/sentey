@@ -33,8 +33,5 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: chmod +x
-        run: chmod +x ./gradlew
-
       - name: Build with Gradle
         run: ./gradlew build
