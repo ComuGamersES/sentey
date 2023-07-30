@@ -11,11 +11,9 @@ plugins {
 repositories {
     mavenLocal()
     mavenCentral()
-    maven("https://repo.comugamers.com/repository/maven-releases") {
-        credentials {
-            username = findProperty("repoUsername") as String
-            password = findProperty("repoPassword") as String
-        }
+    maven("https://repo.comugamers.com/repository/maven-group/") {
+        name = "comugamersRepository"
+        credentials(PasswordCredentials::class)
     }
 }
 
@@ -43,10 +41,8 @@ publishing {
 
     repositories {
         maven {
-            credentials {
-                username = findProperty("repoUsername") as String
-                password = findProperty("repoPassword") as String
-            }
+            name = "comugamersRepository"
+            credentials(PasswordCredentials::class)
 
             if (project.version.toString().contains("-SNAPSHOT")) {
                 url = uri("https://repo.comugamers.com/repository/maven-snapshots/")
@@ -97,7 +93,6 @@ tasks {
 }
 
 bukkit {
-    load = BukkitPluginDescription.PluginLoadOrder.POSTWORLD
     main = "com.comugamers.sentey.Sentey"
     apiVersion = "1.13"
     version = "${project.version}"
