@@ -10,13 +10,14 @@ plugins {
 
 repositories {
     mavenCentral()
+    maven("https://repo.triumphteam.dev/snapshots/")
     maven("https://repo.unnamed.team/repository/unnamed-public/")
-    maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+    maven("https://repo.codemc.io/repository/nms/")
 }
 
 dependencies {
     // dependencies that are only needed during build time
-    compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT")
 
     // dependencies that should be shaded into the final JAR file
     implementation("org.bstats:bstats-bukkit:3.0.0")
