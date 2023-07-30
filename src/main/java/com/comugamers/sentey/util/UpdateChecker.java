@@ -22,17 +22,11 @@ public class UpdateChecker {
     }
 
     public String fetchLatest() throws IOException {
-        // Create a new connection
         HttpURLConnection con = (HttpURLConnection) new URL(SPIGOT_API_URL + resourceId).openConnection();
-
-        // Set timeout
         con.setConnectTimeout(timeout);
         con.setReadTimeout(timeout);
 
-        // Create an input stream reader
         InputStreamReader inputStreamReader = new InputStreamReader(con.getInputStream());
-
-        // Read the response
         return new BufferedReader(inputStreamReader).readLine();
     }
 }

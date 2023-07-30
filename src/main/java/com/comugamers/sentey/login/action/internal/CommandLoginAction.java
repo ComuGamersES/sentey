@@ -18,18 +18,14 @@ public class CommandLoginAction implements LoginAction {
 
     @Override
     public void handle(LoginContext context, String detection) {
-        // Check if we should run commands
-        if(config.getBoolean("config.login.actions.commands.enabled")) {
-            // If so, loop through the list of commands
-            config.getStringList("config.login.actions.commands.list").forEach(
-                    // And dispatch each one of them
-                    command ->
-                            plugin.getServer().dispatchCommand(
-                                    plugin.getServer().getConsoleSender(),
-                                    PlaceholderUtil.applyPlaceholdersFromLoginContext(
-                                            command, detection, context
-                                    )
+        if (config.getBoolean("config.login.actions.commands.enabled")) {
+            config.getStringList("config.login.actions.commands.list").forEach(command ->
+                    plugin.getServer().dispatchCommand(
+                            plugin.getServer().getConsoleSender(),
+                            PlaceholderUtil.applyPlaceholdersFromLoginContext(
+                                    command, detection, context
                             )
+                    )
             );
         }
     }

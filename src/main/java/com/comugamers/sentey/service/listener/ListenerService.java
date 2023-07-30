@@ -20,17 +20,12 @@ public class ListenerService implements Service {
 
     @Override
     public void start() {
-        // Log that we're registering listeners
         plugin.getServer()
                 .getConsoleSender()
                 .sendMessage(
                         colorize("&a-> &fRegistering listeners...")
                 );
 
-        // Get the Bukkit plugin manager
-        PluginManager pluginManager = plugin.getServer().getPluginManager();
-
-        // Loop through each listener and register it
-        listeners.forEach(listener -> pluginManager.registerEvents(listener, plugin));
+        listeners.forEach(listener -> plugin.getServer().getPluginManager().registerEvents(listener, plugin));
     }
 }

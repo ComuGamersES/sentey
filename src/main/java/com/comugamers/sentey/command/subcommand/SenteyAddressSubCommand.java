@@ -19,7 +19,6 @@ public class SenteyAddressSubCommand extends SenteyCommand {
     @SubCommand(value = "address", alias = { "socket-address", "real-address", "ip" })
     @Permission("sentey.admin")
     public void execute(CommandSender sender, Player target) {
-        // Send the address information message
         sender.sendMessage(
                 messages.getString("messages.command.address.information")
                         .replace("%player%", target.getName())

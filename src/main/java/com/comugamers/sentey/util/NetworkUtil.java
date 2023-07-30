@@ -11,6 +11,7 @@ public class NetworkUtil {
 
     /**
      * Gets the IPv4 address of the machine running this Java application.
+     *
      * @return The IPv4 address as a {@link String}.
      */
     public static String getIPv4() {
@@ -26,9 +27,10 @@ public class NetworkUtil {
 
     /**
      * Checks if a {@link String} is a valid IPv4 address.
-     * @deprecated Please use Guava's {@link InetAddresses#isInetAddress(String)} instead.
+     *
      * @param ip The IP address to check as a {@link String}
      * @return True if the {@link String} is a valid IPv4 address.
+     * @deprecated Please use Guava's {@link InetAddresses#isInetAddress(String)} instead.
      */
     @Deprecated
     public static boolean isValidIPv4(String ip) {
@@ -37,15 +39,15 @@ public class NetworkUtil {
             String[] parts = ip.split("\\.", -1);
 
             // Check if the IP is in the correct format
-            if(parts.length != 4) {
+            if (parts.length != 4) {
                 return false;
             }
 
             // Loop through each part of the IP looking for integers > 255 and < 0
-            for(String part : parts) {
+            for (String part : parts) {
                 int i = Integer.parseInt(part);
 
-                if(i < 0 || i > 255) {
+                if (i < 0 || i > 255) {
                     return false;
                 }
             }
@@ -58,6 +60,7 @@ public class NetworkUtil {
 
     /**
      * Gets the formatted current server address. Only works under Bukkit.
+     *
      * @return The formatted server address as a string, for example <code>194.48.18.94:25565</code>.
      */
     public static String getCurrentServerAddress() {

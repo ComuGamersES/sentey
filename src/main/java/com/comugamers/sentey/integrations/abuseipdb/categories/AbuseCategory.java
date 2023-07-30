@@ -40,6 +40,7 @@ public enum AbuseCategory {
 
     /**
      * Finds an {@link AbuseCategory} by its <a href="https://abuseipdb.com">identifier</a>.
+     *
      * @param id The <a href="https://abuseipdb.com">identifier</a> of the {@link AbuseCategory}.
      * @return The {@link AbuseCategory}.
      */

@@ -16,6 +16,7 @@ import java.util.List;
 
 /**
  * The main class of the Sentey {@link Plugin plugin}.
+ *
  * @author ComuGamers
  */
 public class Sentey extends JavaPlugin {
@@ -23,20 +24,15 @@ public class Sentey extends JavaPlugin {
     @Inject
     private Service service;
 
-    // The version of the plugin
     private static String version;
 
-    // Login related
     private List<LoginFilter> loginFilters;
     private List<LoginAction> loginActions;
-
-    // Server list ping related
     private List<PingAction> pingActions;
     private List<PingFilter> pingFilters;
 
     @Override
     public void onLoad() {
-        // Initialize array lists
         this.loginFilters = new ArrayList<>();
         this.loginActions = new ArrayList<>();
         this.pingActions = new ArrayList<>();
@@ -45,32 +41,20 @@ public class Sentey extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // Set the version
         version = getDescription().getVersion();
-
-        // Create a new Injector based on the Sentey module
-        Injector injector = Injector.create(
-                new SenteyModule(this)
-        );
-
-        // Inject members
+        Injector injector = Injector.create(new SenteyModule(this));
         injector.injectMembers(this);
-
-        // Start the main service
         service.start();
     }
 
     @Override
     public void onDisable() {
-        // Check if the main service was injected properly
-        if(service == null) {
-            // If not, log an error
+        if (service == null) {
             this.getLogger().severe(
                     "Sentey was not properly initialized. Try checking above for more information. " +
                             "(version: " + this.getDescription().getVersion() + ")"
             );
         } else {
-            // Stop the main service
             service.stop();
         }
     }

@@ -21,25 +21,14 @@ public class SenteyCommand extends BaseCommand {
     @Inject
     private Sentey plugin;
 
-    @Inject
-    private YamlFile config;
-
-    @Inject
-    private AbuseIPDB abuseIPDB;
-
-    @Inject @Named("messages")
-    private YamlFile messages;
-
     @Default
     public void execute(CommandSender sender) {
-        // Send the 'Running Sentey version x.x.x' message
         sender.sendMessage(
                 colorize(
                         "&b&lSENTEY >> &fRunning &aSentey &fversion &a" + plugin.getDescription().getVersion() + "&f."
                 )
         );
 
-        // And send the list of authors as well
         sender.sendMessage(
                 colorize(
                         "&b&lSENTEY >> &fAuthors: &a"
@@ -47,9 +36,7 @@ public class SenteyCommand extends BaseCommand {
                 )
         );
 
-        // Check if the sender has the 'sentey.admin' permission
         if (sender.hasPermission("sentey.admin")) {
-            // If so, send the 'Run /sentey help' message
             sender.sendMessage(
                     colorize("&b&lSENTEY >> &fRun &a/sentey help&f for help.")
             );

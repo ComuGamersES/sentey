@@ -23,9 +23,7 @@ public class LoginService implements Service {
 
     @Override
     public void start() {
-        // Loop through each bound login filter
         loginFilterSet.forEach(filter -> {
-            // Log that we're registering a specific login filter
             plugin.getServer().getConsoleSender().sendMessage(
                     colorize("&a-> &fRegistering internal login filter &a" + filter.getClass().getSimpleName())
             );
@@ -33,14 +31,11 @@ public class LoginService implements Service {
             plugin.getLoginFilters().add(filter);
         });
 
-        // Loop through each bound login action
         loginActionSet.forEach(action -> {
-            // Log that we're registering a specific login action
             plugin.getServer().getConsoleSender().sendMessage(
                     colorize("&a-> &fRegistering internal login action &a" + action.getClass().getSimpleName())
             );
 
-            // Add it to the list of login actions
             plugin.getLoginActions().add(action);
         });
     }

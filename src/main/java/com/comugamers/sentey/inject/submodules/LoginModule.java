@@ -10,7 +10,6 @@ public class LoginModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        // Bind each internal login action
         this.multibind(LoginAction.class)
                 .asSet()
                 .to(DisallowEventLoginAction.class)
@@ -20,7 +19,6 @@ public class LoginModule extends AbstractModule {
                 .to(AbuseReportLoginAction.class)
                 .singleton();
 
-        // Bind each internal login filter
         this.multibind(LoginFilter.class)
                 .asSet()
                 .to(NullAddressLoginFilter.class)

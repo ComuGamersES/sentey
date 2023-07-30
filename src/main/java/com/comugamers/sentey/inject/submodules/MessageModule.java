@@ -10,16 +10,10 @@ import javax.inject.Singleton;
 
 public class MessageModule extends AbstractModule {
 
-    private final Sentey plugin;
-
-    public MessageModule(Sentey plugin) {
-        this.plugin = plugin;
-    }
-
     @Singleton
     @Provides
     @Named("messages")
-    private YamlFile provideMessages() {
+    private YamlFile provideMessages(Sentey plugin) {
         return new YamlFile(plugin, "messages.yml");
     }
 }

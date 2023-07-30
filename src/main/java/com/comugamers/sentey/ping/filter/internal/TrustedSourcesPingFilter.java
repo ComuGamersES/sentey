@@ -14,18 +14,14 @@ public class TrustedSourcesPingFilter implements PingFilter {
 
     @Override
     public boolean isClean(InetAddress address) {
-        // Check if we should filter trusted proxies
-        if(!config.getBoolean("config.server-list-ping.filters.ignore-trusted-proxies")) {
-            // If so, return
+        if (!config.getBoolean("config.server-list-ping.filters.ignore-trusted-proxies")) {
             return true;
         }
 
-        // Get the list of trusted proxies
         List<String> allowedProxies = config.getStringList(
                 "config.login.unknown-proxies.allowed-proxies", false
         );
 
-        // Check if the IP address is trusted. If so, return true.
         return !allowedProxies.contains(address.getHostAddress());
     }
 }

@@ -53,7 +53,7 @@ public final class YamlFile extends YamlConfiguration {
         List<String> list = super.getStringList(path);
 
         // Check if the list is null
-        if(list == null) {
+        if (list == null) {
             // Return an empty array list
             return new ArrayList<>();
         }

@@ -21,13 +21,10 @@ public class WebhookLoginAction implements LoginAction {
 
     @Override
     public void handle(LoginContext context, String detection) {
-        // Check if we should send a message to a webhook
-        if(config.getBoolean("config.login.actions.webhook.enabled")) {
-            // If so, create a new webhook
+        if (config.getBoolean("config.login.actions.webhook.enabled")) {
             DiscordWebhook webhook = new DiscordWebhook(config.getString("config.login.actions.webhook.url"));
 
             try {
-                // Update the TTS option, the content of the message and then send it
                 webhook.setTTS(
                         config.getBoolean("config.login.actions.webhook.tts", false)
                 ).setContent(

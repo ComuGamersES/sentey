@@ -20,30 +20,34 @@ public class MainService implements Service {
     @Inject
     private YamlFile config;
 
-    @Inject @Named("listener")
+    @Inject
+    @Named("listener")
     private Service listenerService;
 
-    @Inject @Named("command")
+    @Inject
+    @Named("command")
     private Service commandService;
 
-    @Inject @Named("login")
+    @Inject
+    @Named("login")
     private Service loginService;
 
-    @Inject @Named("ping")
+    @Inject
+    @Named("ping")
     private Service pingService;
 
-    @Inject @Named("updateChecker")
+    @Inject
+    @Named("updateChecker")
     private Service updateCheckerService;
 
-    @Inject @Named("metrics")
+    @Inject
+    @Named("metrics")
     private Service metricsService;
 
     @Override
     public void start() {
-        // Get the ConsoleCommandSender
         CommandSender consoleCommandSender = plugin.getServer().getConsoleSender();
 
-        // Send a nice initialization message to the console
         consoleCommandSender.sendMessage(colorize("          &fSentey - Version &a" + plugin.getDescription().getVersion()));
         consoleCommandSender.sendMessage(colorize("&a------------------------------------------"));
         consoleCommandSender.sendMessage(colorize("&a-> &fMade by: &a" + plugin.getDescription().getAuthors().toString()));
@@ -51,11 +55,8 @@ public class MainService implements Service {
         consoleCommandSender.sendMessage(colorize("&a-> &fServer software: &a" + plugin.getServer().getVersion()));
         consoleCommandSender.sendMessage(colorize(""));
 
-        // Check if the 'Ignore Spigot Check' option is disabled
-        if(!config.getBoolean("config.ignore-spigot-check")) {
-            // If so, check if the server is running Spigot
-            if(!isSpigot()) {
-                // If not, log that the plugin can't run on CraftBukkit
+        if (!config.getBoolean("config.ignore-spigot-check")) {
+            if (!isSpigot()) {
                 plugin.getServer()
                         .getConsoleSender()
                         .sendMessage(
@@ -65,22 +66,17 @@ public class MainService implements Service {
                                 )
                         );
 
-                // Log that the plugin startup process finished with a fatal error.
                 cancelStartup();
                 return;
             }
         } else {
-            // Log that the server software check is ignored.
             plugin.getServer()
                     .getConsoleSender()
                     .sendMessage(colorize("&e-> &fIgnoring server software check!"));
         }
 
-        // Check if the 'Ignore BungeeCord setting' option is disabled
-        if(!config.getBoolean("config.ignore-bungeecord-check")) {
-            // If so, check if the server has the BungeeCord option enabled
-            if(isSpigot() && !SpigotConfig.bungee) {
-                // If not, log that the BungeeCord option must be enabled on the 'spigot.yml' file.
+        if (!config.getBoolean("config.ignore-bungeecord-check")) {
+            if (isSpigot() && !SpigotConfig.bungee) {
                 plugin.getServer()
                         .getConsoleSender()
                         .sendMessage(
@@ -90,18 +86,15 @@ public class MainService implements Service {
                                 )
                         );
 
-                // Log that the plugin startup process finished with a fatal error.
                 cancelStartup();
                 return;
             }
         } else {
-            // Log that the BungeeCord option check is ignored.
             plugin.getServer()
                     .getConsoleSender()
                     .sendMessage(colorize("&e-> &fIgnoring BungeeCord boolean check!"));
         }
 
-        // Start all services
         startServices(
                 loginService,
                 pingService,
@@ -110,7 +103,6 @@ public class MainService implements Service {
                 updateCheckerService
         );
 
-        // Send a message to the console saying that the startup process is finished
         consoleCommandSender.sendMessage(colorize("&a-> &fStartup process finished!"));
         consoleCommandSender.sendMessage(colorize("&a------------------------------------------"));
     }
@@ -133,17 +125,14 @@ public class MainService implements Service {
     }
 
     private void cancelStartup() {
-        // Log that the plugin startup process finished with a fatal error.
         plugin.getServer()
                 .getConsoleSender()
                 .sendMessage(colorize("&4-> &fStartup process finished with a fatal error."));
 
-        // Log a separator
         plugin.getServer()
                 .getConsoleSender()
                 .sendMessage(colorize("&a------------------------------------------"));
 
-        // And then stop the plugin
         plugin.getServer().getPluginManager().disablePlugin(plugin);
     }
 }

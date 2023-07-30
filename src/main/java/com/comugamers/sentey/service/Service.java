@@ -3,6 +3,7 @@ package com.comugamers.sentey.service;
 /**
  * Represents a service, which may be from a Bukkit plugin or even
  * from a completely unrelated type of project.
+ *
  * @author Pabszito
  */
 public interface Service {
@@ -15,5 +16,6 @@ public interface Service {
     /**
      * Stops the specified {@link Service}.
      */
-    default void stop() {}
+    default void stop() {
+    }
 }

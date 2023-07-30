@@ -21,15 +21,12 @@ public class WebhookPingAction implements PingAction {
 
     @Override
     public void handle(InetAddress address) {
-        // Check if we should send a message to a webhook
-        if(config.getBoolean("config.server-list-ping.actions.webhook.enabled")) {
-            // If so, create a new webhook
+        if (config.getBoolean("config.server-list-ping.actions.webhook.enabled")) {
             DiscordWebhook webhook = new DiscordWebhook(
                     config.getString("config.server-list-ping.actions.webhook.url")
             );
 
             try {
-                // Update the TTS option, the content of the message and then send it
                 webhook.setTTS(
                         config.getBoolean("config.server-list-ping.actions.webhook.tts", false)
                 ).setContent(

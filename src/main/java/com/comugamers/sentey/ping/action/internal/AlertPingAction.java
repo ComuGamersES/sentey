@@ -18,11 +18,9 @@ public class AlertPingAction implements PingAction {
 
     @Override
     public void handle(InetAddress address) {
-        // Check if we should send a message to online staff
-        if(config.getBoolean("config.server-list-ping.actions.alerts.enabled")) {
-            // If so, send the message
+        if (config.getBoolean("config.server-list-ping.actions.alerts.enabled")) {
             plugin.getServer().getOnlinePlayers().forEach(target -> {
-                if(target.hasPermission("sentey.alerts")) {
+                if (target.hasPermission("sentey.alerts")) {
                     target.sendMessage(
                             PlaceholderUtil.applyPlaceholdersFromPingAddress(
                                     config.getString("config.server-list-ping.actions.alerts.message"), address

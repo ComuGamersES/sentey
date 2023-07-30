@@ -18,11 +18,9 @@ public class AlertLoginAction implements LoginAction {
 
     @Override
     public void handle(LoginContext context, String detection) {
-        // Check if we should send a message to online staff
-        if(config.getBoolean("config.login.actions.alerts.enabled")) {
-            // If so, send the message
+        if (config.getBoolean("config.login.actions.alerts.enabled")) {
             plugin.getServer().getOnlinePlayers().forEach(target -> {
-                if(target.hasPermission("sentey.alerts")) {
+                if (target.hasPermission("sentey.alerts")) {
                     target.sendMessage(
                             PlaceholderUtil.applyPlaceholdersFromLoginContext(
                                     config.getString("config.login.actions.alerts.message"),

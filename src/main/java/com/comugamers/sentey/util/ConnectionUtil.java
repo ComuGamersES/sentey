@@ -8,6 +8,7 @@ public class ConnectionUtil {
 
     /**
      * Gets the remote address of a {@link Player} as a {@link String}.
+     *
      * @param player The {@link Player}
      * @return their IP address as a {@link String}.
      */
@@ -21,6 +22,7 @@ public class ConnectionUtil {
 
     /**
      * Gets the remote address of a {@link Player} as a {@link String} by using reflection.
+     *
      * @param player The {@link Player}
      * @return their IP address as a {@link String}.
      */

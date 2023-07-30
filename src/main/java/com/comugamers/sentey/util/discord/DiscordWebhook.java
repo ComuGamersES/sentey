@@ -20,6 +20,7 @@ public class DiscordWebhook {
 
     /**
      * Constructs a new instance of this class.
+     *
      * @param url The webhook URL from <a href="https://discord.com">Discord</a>.
      */
     public DiscordWebhook(String url) {
@@ -28,6 +29,7 @@ public class DiscordWebhook {
 
     /**
      * Sets the message that will be sent through the webhook.
+     *
      * @param content The message content as a {@link String}.
      * @return The current instance of this class.
      */
@@ -38,6 +40,7 @@ public class DiscordWebhook {
 
     /**
      * Enables or disables TTS (text-to-speech)
+     *
      * @param tts Whether TTS should be enabled or not.
      * @return The current instance of this class.
      */
@@ -48,6 +51,7 @@ public class DiscordWebhook {
 
     /**
      * Sends the provided values through the webhook.
+     *
      * @throws IOException if an error occurs while
      */
     public void execute() throws IOException {

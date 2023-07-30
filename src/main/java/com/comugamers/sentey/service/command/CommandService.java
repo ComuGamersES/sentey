@@ -29,7 +29,6 @@ public class CommandService implements Service {
 
     @Override
     public void start() {
-        // Configure messages
         this.configureMessage(BukkitMessageKey.NO_PERMISSION, "messages.command.no-permission");
         this.configureMessage(BukkitMessageKey.CONSOLE_ONLY, "messages.command.console-only");
         this.configureMessage(BukkitMessageKey.PLAYER_ONLY, "messages.command.player-only");
@@ -38,13 +37,11 @@ public class CommandService implements Service {
         this.configureMessage(MessageKey.TOO_MANY_ARGUMENTS, "messages.command.too-many-arguments");
         this.configureMessage(MessageKey.INVALID_ARGUMENT, "messages.command.invalid-argument");
 
-        // Add trusted proxies suggestions
         commandManager.registerSuggestion(
                 SuggestionKey.of("trusted-proxies"),
                 (sender, ctx) -> Arrays.asList("list", "add", "remove", "setup")
         );
 
-        // Add common trusted proxies
         commandManager.registerSuggestion(
                 SuggestionKey.of("domains"),
                 (sender, ctx) -> Arrays.asList(
@@ -57,7 +54,6 @@ public class CommandService implements Service {
                 )
         );
 
-        // Register each command
         commands.forEach(commandManager::registerCommand);
     }
 

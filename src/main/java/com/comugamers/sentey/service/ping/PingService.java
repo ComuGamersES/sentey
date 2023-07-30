@@ -23,25 +23,19 @@ public class PingService implements Service {
 
     @Override
     public void start() {
-        // Loop through each bound ping filter
         pingFilterSet.forEach(filter -> {
-            // Log that we're registering a specific ping filter
             plugin.getServer().getConsoleSender().sendMessage(
                     colorize("&a-> &fRegistering internal ping filter &a" + filter.getClass().getSimpleName())
             );
 
-            // And add it to the list of ping filters
             plugin.getPingFilters().add(filter);
         });
 
-        // Loop through each bound ping action
         pingActionSet.forEach(action -> {
-            // Log that we're registering a specific ping action
             plugin.getServer().getConsoleSender().sendMessage(
                     colorize("&a-> &fRegistering internal ping action &a" + action.getClass().getSimpleName())
             );
 
-            // And add it to the list of login actions
             plugin.getPingActions().add(action);
         });
     }

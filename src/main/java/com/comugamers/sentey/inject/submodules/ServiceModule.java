@@ -14,30 +14,25 @@ public class ServiceModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        // Bind the main service
         this.bind(Service.class)
                 .to(MainService.class)
                 .singleton();
 
-        // Bind the listener service
         this.bind(Service.class)
                 .named("listener")
                 .to(ListenerService.class)
                 .singleton();
 
-        // Bind the command service
         this.bind(Service.class)
                 .named("command")
                 .to(CommandService.class)
                 .singleton();
 
-        // Bind the ping service
         this.bind(Service.class)
                 .named("ping")
                 .to(PingService.class)
                 .singleton();
 
-        // Bind the login service
         this.bind(Service.class)
                 .named("login")
                 .to(LoginService.class)

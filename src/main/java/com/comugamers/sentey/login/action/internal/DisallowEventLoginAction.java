@@ -15,9 +15,7 @@ public class DisallowEventLoginAction implements LoginAction {
 
     @Override
     public void handle(LoginContext context, String detection) {
-        // Check if we should disallow the connection attempt
-        if(config.getBoolean("config.login.actions.disallow-connection.enabled")) {
-            // If so, do it I guess
+        if (config.getBoolean("config.login.actions.disallow-connection.enabled")) {
             context.getRawLoginEvent().disallow(
                     PlayerLoginEvent.Result.KICK_OTHER,
                     PlaceholderUtil.applyPlaceholdersFromLoginContext(

@@ -13,7 +13,6 @@ public class PingModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        // Bind each internal ping action
         this.multibind(PingAction.class)
                 .asSet()
                 .to(AlertPingAction.class)
@@ -22,7 +21,6 @@ public class PingModule extends AbstractModule {
                 .to(CommandPingAction.class)
                 .singleton();
 
-        // Bind each internal ping filter
         this.multibind(PingFilter.class)
                 .asSet()
                 .to(TrustedSourcesPingFilter.class)

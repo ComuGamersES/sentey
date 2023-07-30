@@ -17,13 +17,10 @@ public class MetricsService implements Service {
 
     @Override
     public void start() {
-        // Check if bStats is enabled
-        if(!config.getBoolean("config.bstats", true)) {
-            // If false, return
+        if (!config.getBoolean("config.bstats", true)) {
             return;
         }
 
-        // Create a new instance of the metrics class
         new Metrics(plugin, 15027);
     }
 }

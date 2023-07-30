@@ -8,6 +8,7 @@ public class TextUtil {
 
     /**
      * Colorizes a {@link String} by using {@link ChatColor#translateAlternateColorCodes(char, String)}.
+     *
      * @param str The {@link String} to colorize.
      * @return The colorized {@link String}.
      */
@@ -17,6 +18,7 @@ public class TextUtil {
 
     /**
      * Colorizes a {@link List<String>} by using {@link ChatColor#translateAlternateColorCodes(char, String)}.
+     *
      * @param list The {@link List<String>} to colorize
      * @return The colorized {@link List<String>}
      */

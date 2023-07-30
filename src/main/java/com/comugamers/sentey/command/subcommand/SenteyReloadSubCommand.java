@@ -24,16 +24,13 @@ public class SenteyReloadSubCommand extends SenteyCommand {
     @SubCommand(value = "reload", alias = { "rl" })
     @Permission("sentey.admin")
     public void execute(CommandSender sender) {
-        // Reload messages and configuration
         config.reload();
         messages.reload();
 
-        // Update the API key
         abuseIPDB.updateKey(
                 config.getString("config.integrations.abuseipdb.key")
         );
 
-        // Send the 'Configuration reloaded' message
         sender.sendMessage(messages.getString("messages.command.config-reloaded"));
     }
 }
