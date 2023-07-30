@@ -9,7 +9,6 @@ plugins {
 }
 
 repositories {
-    mavenLocal()
     mavenCentral()
     maven("https://repo.unnamed.team/repository/unnamed-public/")
     maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
