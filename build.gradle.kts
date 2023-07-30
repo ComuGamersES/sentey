@@ -1,5 +1,4 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import net.minecrell.pluginyml.bukkit.BukkitPluginDescription
 
 plugins {
     id("java")
@@ -42,10 +41,10 @@ publishing {
             name = "comugamersRepository"
             credentials(PasswordCredentials::class)
 
-            if (project.version.toString().contains("-SNAPSHOT")) {
-                url = uri("https://repo.comugamers.com/repository/maven-snapshots/")
+            url = if (project.version.toString().contains("-SNAPSHOT")) {
+                uri("https://repo.comugamers.com/repository/maven-snapshots/")
             } else {
-                url = uri("https://repo.comugamers.com/repository/maven-releases/")
+                uri("https://repo.comugamers.com/repository/maven-releases/")
             }
         }
     }
