@@ -26,32 +26,24 @@ public class ConnectionUtil {
      */
     public static String getRemoteAddressFromReflection(Player player) {
         try {
-            // Get the CraftPlayer#getHandle() method
             Method getHandle = player.getClass().getMethod("getHandle", (Class<?>[]) null);
-
-            // Get the EntityPlayer
             Object entityPlayer = getHandle.invoke(player);
 
-            // Get the player connection
             Object playerConnection = entityPlayer.getClass()
                     .getDeclaredField("playerConnection")
                     .get(entityPlayer);
 
-            // Get the network manager
             Object networkManager = playerConnection
                     .getClass()
                     .getDeclaredField("networkManager")
                     .get(playerConnection);
 
-            // Get the NetworkManager#getRawAddress() method
             Method getRawAddress = networkManager
                     .getClass()
                     .getMethod("getRawAddress");
 
-            // Invoke it and send the string as the result
             return getRawAddress.invoke(networkManager).toString();
         } catch (Throwable t) {
-            t.printStackTrace();
             return "unknown";
         }
     }

@@ -16,18 +16,8 @@ public class NetworkUtil {
     public static String getIPv4() {
         try {
             URL url = new URL("https://checkip.amazonaws.com");
-            BufferedReader in = null;
-            try {
-                in = new BufferedReader(new InputStreamReader(url.openStream()));
+            try (BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()))) {
                 return in.readLine();
-            } finally {
-                if (in != null) {
-                    try {
-                        in.close();
-                    } catch (IOException exception) {
-                        exception.printStackTrace();
-                    }
-                }
             }
         } catch (IOException ex) {
             return "localhost";

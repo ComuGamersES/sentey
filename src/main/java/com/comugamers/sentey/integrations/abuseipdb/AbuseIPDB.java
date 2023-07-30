@@ -20,6 +20,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
 
 public class AbuseIPDB {
 
@@ -81,15 +82,9 @@ public class AbuseIPDB {
                         .getAsJsonObject();
             }
         } catch (Exception ex) {
-            // Log an user-friendly error description
-            plugin.getLogger().severe(
-                    "An error occurred while reporting an address to AbuseIPDB (is the API key valid?):"
-            );
+            plugin.getLogger().log(Level.SEVERE,
+                    "An error occurred while reporting an address to AbuseIPDB (is the API key valid?):", ex);
 
-            // Print the stack trace
-            ex.printStackTrace();
-
-            // Return null
             return null;
         }
     }

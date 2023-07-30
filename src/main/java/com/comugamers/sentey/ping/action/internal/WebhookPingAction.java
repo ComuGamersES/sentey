@@ -9,6 +9,7 @@ import com.comugamers.sentey.util.PlaceholderUtil;
 import javax.inject.Inject;
 import java.io.IOException;
 import java.net.InetAddress;
+import java.util.logging.Level;
 
 public class WebhookPingAction implements PingAction {
 
@@ -37,9 +38,8 @@ public class WebhookPingAction implements PingAction {
                         )
                 ).execute();
             } catch (IOException e) {
-                // If an exception is thrown, log it:
-                plugin.getLogger().severe("Unable to send webhook message (is the webhook URL still valid?): ");
-                e.printStackTrace();
+                plugin.getLogger().log(Level.SEVERE,
+                        "Unable to send webhook message (is the webhook URL still valid?):", e);
             }
         }
     }
