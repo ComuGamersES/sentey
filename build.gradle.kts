@@ -11,10 +11,8 @@ plugins {
 repositories {
     mavenLocal()
     mavenCentral()
-    maven("https://repo.comugamers.com/repository/maven-group/") {
-        name = "comugamersRepository"
-        credentials(PasswordCredentials::class)
-    }
+    maven("https://repo.unnamed.team/repository/unnamed-public/")
+    maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
 }
 
 dependencies {
